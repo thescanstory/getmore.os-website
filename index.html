@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Getmore OS — Direct Growth & Digital Operating Systems for Local Enterprises</title>
+  <meta name="description"
+    content="Stop building on rented land. We build custom zero-commission booking platforms, WhatsApp automation engines, and local search systems starting from ₹9,999.">
+  <meta name="keywords"
+    content="Getmore OS, direct booking platform, zero commission, WhatsApp automation, local SEO, luxury branding, salon booking software, clinic management">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Getmore OS">
+  <meta property="og:url" content="https://getmoreos.in/">
+  <meta property="og:title" content="Getmore OS — Own Your Platform. Own Your Growth.">
+  <meta property="og:description"
+    content="Stop building on rented land. 0% commissions, automated WhatsApp flows, and custom local growth setups starting from ₹9,999 INR.">
+  <meta property="og:image" content="https://getmoreos.in/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Getmore OS — Direct Growth Systems">
+  <meta name="twitter:description"
+    content="0% commissions, automated WhatsApp booking engines, and custom local growth systems starting from ₹9,999.">
+  <meta name="twitter:image" content="https://getmoreos.in/og-image.jpg">
+
+  <!-- Typography: Syne (Editorial Display), Plus Jakarta Sans (Body), JetBrains Mono (Technical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Syne"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              black: '#09090B',
+              carbon: '#111114',
+              surface: '#18181B',
+              border: '#27272A',
+              muted: '#71717A',
+              accent: '#10B981',
+              light: '#F4F4F5'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: #09090B;
+      color: #F4F4F5;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-display {
+      font-family: 'Syne', system-ui, sans-serif;
+    }
+
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Subdued editorial noise and structural lines */
+    .editorial-border {
+      border: 1px solid #27272A;
+    }
+
+    .editorial-card {
+      background-color: #111114;
+      border: 1px solid #27272A;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .editorial-card:hover {
+      border-color: #3F3F46;
+      transform: translateY(-2px);
+    }
+
+    .badge-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      border: 1px solid #27272A;
+      background: rgba(255, 255, 255, 0.03);
+      color: #A1A1AA;
+    }
+
+    /* Tactile buttons */
+    .btn-solid {
+      background: #FFFFFF;
+      color: #09090B;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .btn-solid:hover {
+      background: #E4E4E7;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #27272A;
+      color: #F4F4F5;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      background: #18181B;
+      border-color: #3F3F46;
+    }
+
+    /* Sliders */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: #27272A;
+      height: 4px;
+      border-radius: 9999px;
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border: 2px solid #10B981;
+      transition: transform 0.1s ease;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272A;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-white selection:text-black">
+
+  <!-- TOP STATUS STRIP -->
+  <div class="border-b border-[#27272A] bg-[#0C0C0E] py-2 px-4 text-center text-[11px] font-mono-code text-[#A1A1AA]">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+        <span class="text-white font-medium">GETMORE.OS</span>
+        <span class="hidden sm:inline text-[#71717A]">• Direct Booking Infrastructure for Local Businesses</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#calculator" class="text-white hover:underline">Commission Calculator</a>
+        <a href="pitchfinder/index.html" class="text-emerald-400 font-semibold hover:underline">PitchFinder Lead OS ⚡</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-40 border-b border-[#27272A] bg-[#09090B]/90 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-4">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="h-7 w-7 rounded bg-white text-black font-display font-extrabold text-[14px] grid place-items-center">
+          G
+        </div>
+        <div class="flex items-baseline gap-1">
+          <span class="font-display text-[18px] font-bold tracking-tight text-white">getmore</span>
+          <span class="font-mono-code text-[11px] text-[#A1A1AA]">.os</span>
+        </div>
+      </a>
+
+      <!-- Links -->
+      <nav class="hidden md:flex items-center gap-7 text-[13px] font-medium text-[#A1A1AA]">
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+        <a href="#calculator" class="hover:text-white transition-colors">ROI Calculator</a>
+        <a href="#process" class="hover:text-white transition-colors">How It Works</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="#work" class="hover:text-white transition-colors">Case Studies</a>
+      </nav>
+
+      <!-- Action -->
+      <div class="flex items-center gap-3">
+        <a
+          href="https://wa.me/919738397933?text=Hi%20Getmore%20OS,%20I'd%20like%20to%20discuss%20growth%20for%20my%20business."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-2 text-[12px] font-mono-code text-[#A1A1AA] hover:text-white px-3 py-1.5 rounded-full border border-[#27272A] hover:border-[#3F3F46] transition-colors"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span>+91-9738397933</span>
+        </a>
+
+        <a
+          href="#discovery-call"
+          class="btn-solid px-4 py-2 rounded-full text-[12px] tracking-tight"
+        >
+          Book Discovery Call ↗
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="mx-auto max-w-7xl px-4 sm:px-8">
+
+    <!-- HERO SECTION -->
+    <section class="pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-[#27272A]">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="badge-pill inline-block">
+            0% COMMISSIONS • 100% OWNED DATA • SERVICES FROM ₹9,999
+          </div>
+
+          <h1 class="text-[40px] sm:text-[56px] md:text-[66px] font-display font-extrabold tracking-[-0.03em] leading-[1.0] text-white">
+            Own your platform. <br />
+            <span class="text-[#71717A]">Own your customer.</span> <br />
+            Own your growth.
+          </h1>
+
+          <p class="text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-xl leading-relaxed font-normal">
+            Aggregators and marketplace apps charge you 20% to 30% for customers who already want your services. We build your custom high-converting web stack, automated WhatsApp booking engine, and local search dominance.
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <a
+              href="#discovery-call"
+              class="btn-solid px-7 py-3.5 rounded-full text-[14px] text-center"
+            >
+              Book Free Discovery Call ↗
+            </a>
+            <a
+              href="#calculator"
+              class="btn-outline px-6 py-3.5 rounded-full text-[13px] text-center font-mono-code"
+            >
+              Calculate Commission Leaks ↓
+            </a>
+          </div>
+
+          <div class="pt-6 flex flex-wrap gap-6 text-[12px] font-mono-code text-[#71717A]">
+            <div><span class="text-white font-semibold">4 Weeks</span> to Launch</div>
+            <div><span class="text-white font-semibold">0%</span> Platform Commission</div>
+            <div><span class="text-white font-semibold">100%</span> Client Retention Data</div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Visual Stack / Phone Preview -->
+        <div class="lg:col-span-5">
+          <div class="editorial-card rounded-2xl p-6 relative overflow-hidden">
+            <div class="flex items-center justify-between pb-4 border-b border-[#27272A] mb-5">
+              <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-[12px] font-mono-code text-white font-medium">LIVE BOOKING ENGINE</span>
+              </div>
+              <span class="text-[11px] font-mono-code text-[#71717A]">SUB-60s CONVERSION</span>
+            </div>
+
+            <div class="space-y-3 font-mono-code text-[12px]">
+              
+              <!-- User message -->
+              <div class="p-3 rounded-lg bg-[#18181B] border border-[#27272A] text-[#A1A1AA]">
+                <div class="text-[10px] text-[#71717A] mb-1">CLIENT (VIA GOOGLE MAPS / INSTAGRAM):</div>
+                <p class="text-white">"Hi, I want to book a Hair & Beard Treatment this Saturday at 4 PM."</p>
+              </div>
+
+              <!-- Automated response -->
+              <div class="p-3.5 rounded-lg bg-[#141F1A] border border-emerald-900/40 text-emerald-300 space-y-2">
+                <div class="text-[10px] text-emerald-500 font-bold">GETMORE.OS AUTOMATED ENGINE:</div>
+                <p>"Hi Priya! 4:00 PM with Master Stylist Arjun is available. Direct price is ₹1,499 (0% booking fee)."</p>
+                <div class="pt-2 flex items-center justify-between text-[11px]">
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">1-Click Slot Reserved</span>
+                  <span class="text-emerald-500/80">Response in 8s</span>
+                </div>
+              </div>
+
+              <!-- Metrics impact box -->
+              <div class="grid grid-cols-2 gap-2.5 pt-2 text-center">
+                <div class="p-2.5 rounded-lg bg-[#18181B] border border-[#27272A]">
+                  <div class="text-[16px] font-bold text-white font-display">₹0</div>
+                  <div class="text-[10px] text-[#71717A]">Commission Paid</div>
+                </div>
+                <div class="p-2.5 rounded-lg bg-[#18181B] border border-[#27272A]">
+                  <div class="text-[16px] font-bold text-emerald-400 font-display">100%</div>
+                  <div class="text-[10px] text-[#71717A]">Data in your CRM</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMMISSION BLEED CALCULATOR -->
+    <section id="calculator" class="py-16 sm:py-20 border-b border-[#27272A]">
+      <div class="max-w-2xl mb-10">
+        <div class="badge-pill inline-block mb-3">FINANCIAL AUDIT TOOL</div>
+        <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+          How much profit is leaking to aggregators?
+        </h2>
+        <p class="text-[14px] sm:text-[15px] text-[#A1A1AA] mt-2">
+          When you rely on marketplace listings, you pay 20% to 30% of every sale. Adjust the sliders below to see your annual financial loss.
+        </p>
+      </div>
+
+      <div class="editorial-card rounded-2xl p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Sliders -->
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <div class="flex justify-between items-baseline mb-2">
+                <label class="text-[12px] font-mono-code text-[#A1A1AA] uppercase">Your Monthly Revenue</label>
+                <span id="calcRevVal" class="text-[20px] font-display font-bold text-white">₹5,00,000</span>
+              </div>
+              <input id="calcRev" type="range" min="100000" max="3000000" step="50000" value="500000" />
+              <div class="flex justify-between text-[11px] font-mono-code text-[#71717A] mt-1">
+                <span>₹1,00,000</span>
+                <span>₹15,00,000</span>
+                <span>₹30,00,000+</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-baseline mb-2">
+                <label class="text-[12px] font-mono-code text-[#A1A1AA] uppercase">Aggregator Cut</label>
+                <span id="calcRateVal" class="text-[20px] font-display font-bold text-emerald-400">25%</span>
+              </div>
+              <input id="calcRate" type="range" min="10" max="35" step="1" value="25" />
+              <div class="flex justify-between text-[11px] font-mono-code text-[#71717A] mt-1">
+                <span>10% (Low)</span>
+                <span>25% (Standard)</span>
+                <span>35% (High)</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#18181B] border border-[#27272A] text-[12px] text-[#A1A1AA] font-mono-code">
+              Getmore OS gives you complete ownership. One-time setup from ₹9,999 with 0% ongoing cuts on your customer bookings.
+            </div>
+          </div>
+
+          <!-- Output Box -->
+          <div class="lg:col-span-5 bg-[#18181B] border border-[#27272A] rounded-xl p-6 sm:p-8 space-y-5">
+            <div>
+              <div class="text-[11px] font-mono-code text-red-400 font-semibold mb-1">ANNUAL REVENUE LOST FOREVER:</div>
+              <div id="calcYearlyLoss" class="text-[34px] sm:text-[40px] font-display font-black text-white tracking-tight">
+                ₹15,00,000
+              </div>
+              <div class="text-[12px] text-[#71717A] mt-1">
+                Equal to <span id="calcMonthlyLoss" class="text-white font-medium">₹1,25,000</span> lost every single month.
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#27272A] space-y-2 text-[12px] font-mono-code text-[#A1A1AA]">
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 100% direct customer contact database</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Automated re-booking reminders on WhatsApp</div>
+            </div>
+
+            <a href="#discovery-call" class="btn-solid block text-center py-3 rounded-lg text-[13px] tracking-tight">
+              Stop The Bleed — Build Your OS →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 CORE PILLARS (LEO9 AGENCY DISCIPLINE) -->
+    <section id="services" class="py-16 sm:py-20 border-b border-[#27272A]">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="badge-pill inline-block mb-3">OUR CORE CAPABILITIES</div>
+          <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+            Design. Technology. Direct Growth.
+          </h2>
+        </div>
+        <p class="text-[14px] text-[#A1A1AA] max-w-sm">
+          We combine bespoke visual design with automated WhatsApp engineering to build your proprietary customer acquisition engine.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Pillar 1 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono-code text-[#71717A] mb-4">01 // BRAND & INTERACTION</div>
+            <h3 class="text-[20px] font-display font-bold text-white mb-2">Bespoke Web Applications</h3>
+            <p class="text-[13px] text-[#A1A1AA] leading-relaxed">
+              Fast, high-contrast web applications that present your services with luxury credibility. Zero template clutter, sub-1s load times, and frictionless mobile booking.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-[#27272A] mt-6 text-[11px] font-mono-code text-[#71717A] space-y-1">
+            <div>• Custom Domain & UI Architecture</div>
+            <div>• High-Converting Treatment/Service Menus</div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono-code text-[#71717A] mb-4">02 // AUTOMATION & TECH</div>
+            <h3 class="text-[20px] font-display font-bold text-white mb-2">WhatsApp Conversion Engines</h3>
+            <p class="text-[13px] text-[#A1A1AA] leading-relaxed">
+              In India, 90%+ of bookings happen on WhatsApp. We wire automated appointment scheduling, instant staff allocation, and payment links straight into your WhatsApp hotline.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-[#27272A] mt-6 text-[11px] font-mono-code text-[#71717A] space-y-1">
+            <div>• Sub-60s Automated Inquiry Capture</div>
+            <div>• Automated Slot Confirmation & UPI Integration</div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono-code text-[#71717A] mb-4">03 // SEARCH & DOMINANCE</div>
+            <h3 class="text-[20px] font-display font-bold text-white mb-2">Local SEO & Answer Engine OS</h3>
+            <p class="text-[13px] text-[#A1A1AA] leading-relaxed">
+              We position your business in the Google Maps 3-Pack and train AI answer engines (ChatGPT, Perplexity) to recommend your brand first for high-intent nearby searches.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-[#27272A] mt-6 text-[11px] font-mono-code text-[#71717A] space-y-1">
+            <div>• Local 3-Pack Authority & Review Boosters</div>
+            <div>• GEO (Generative Engine Optimization) Setup</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (PROCESS) -->
+    <section id="process" class="py-16 sm:py-20 border-b border-[#27272A]">
+      <div class="max-w-2xl mb-12">
+        <div class="badge-pill inline-block mb-3">EXECUTION ROADMAP</div>
+        <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+          From Audit to Live System in 4 Weeks.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="editorial-card rounded-xl p-6">
+          <div class="text-[28px] font-display font-extrabold text-[#3F3F46] mb-3">01</div>
+          <h4 class="text-[16px] font-display font-bold text-white mb-1.5">Funnel & Leak Audit</h4>
+          <p class="text-[12.5px] text-[#A1A1AA] leading-relaxed">
+            We review your current customer journey, calculate aggregator cuts, and map where booking drop-offs occur.
+          </p>
+        </div>
+
+        <div class="editorial-card rounded-xl p-6">
+          <div class="text-[28px] font-display font-extrabold text-[#3F3F46] mb-3">02</div>
+          <h4 class="text-[16px] font-display font-bold text-white mb-1.5">Design & Wireframing</h4>
+          <p class="text-[12.5px] text-[#A1A1AA] leading-relaxed">
+            We architect your custom web presence, service catalog, and mobile-first WhatsApp booking flow.
+          </p>
+        </div>
+
+        <div class="editorial-card rounded-xl p-6">
+          <div class="text-[28px] font-display font-extrabold text-[#3F3F46] mb-3">03</div>
+          <h4 class="text-[16px] font-display font-bold text-white mb-1.5">Full-Stack Deployment</h4>
+          <p class="text-[12.5px] text-[#A1A1AA] leading-relaxed">
+            We connect your WhatsApp business API, deploy your web app, and configure your direct booking database.
+          </p>
+        </div>
+
+        <div class="editorial-card rounded-xl p-6">
+          <div class="text-[28px] font-display font-extrabold text-[#3F3F46] mb-3">04</div>
+          <h4 class="text-[16px] font-display font-bold text-white mb-1.5">Search & Growth Launch</h4>
+          <p class="text-[12.5px] text-[#A1A1AA] leading-relaxed">
+            We optimize your Google Maps rank and launch automated review generation to drive recurring high-intent leads.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="work" class="py-16 sm:py-20 border-b border-[#27272A]">
+      <div class="max-w-2xl mb-12">
+        <div class="badge-pill inline-block mb-3">PROVEN TRACK RECORD</div>
+        <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+          Real businesses. Zero commissions.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Case 1 -->
+        <div class="editorial-card rounded-2xl p-7 sm:p-9 space-y-6">
+          <div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[11px] font-mono-code text-emerald-400">LUXURY AESTHETICS & SPA</span>
+                <h3 class="text-[22px] font-display font-bold text-white mt-1">Aura Wellness & Aesthetics</h3>
+              </div>
+              <span class="text-[11px] font-mono-code text-[#71717A]">BANGALORE</span>
+            </div>
+            <p class="text-[13.5px] text-[#A1A1AA] mt-3 leading-relaxed">
+              Paying ₹2.2L+ monthly in aggregator commissions on high-ticket skin and body treatments. We migrated 85% of bookings to their direct WhatsApp OS.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#27272A] text-center font-mono-code">
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-white">₹26.4L</div>
+              <div class="text-[10px] text-[#71717A]">Saved / Year</div>
+            </div>
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-emerald-400">+310%</div>
+              <div class="text-[10px] text-[#71717A]">Direct Bookings</div>
+            </div>
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-white">45s</div>
+              <div class="text-[10px] text-[#71717A]">Booking Speed</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="editorial-card rounded-2xl p-7 sm:p-9 space-y-6">
+          <div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[11px] font-mono-code text-emerald-400">HIGH-END FITNESS STUDIO</span>
+                <h3 class="text-[22px] font-display font-bold text-white mt-1">Apex Performance Club</h3>
+              </div>
+              <span class="text-[11px] font-mono-code text-[#71717A]">INDIRANAGAR</span>
+            </div>
+            <p class="text-[13.5px] text-[#A1A1AA] mt-3 leading-relaxed">
+              Suffered from 75% lead drop-off on trial bookings. Deployed automated 1-click WhatsApp confirmations and localized Google 3-Pack authority.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#27272A] text-center font-mono-code">
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-white">88%</div>
+              <div class="text-[10px] text-[#71717A]">Trial Attendance</div>
+            </div>
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-emerald-400">3.4x</div>
+              <div class="text-[10px] text-[#71717A]">Member Growth</div>
+            </div>
+            <div class="p-3 bg-[#18181B] rounded-lg">
+              <div class="text-[18px] font-display font-bold text-white">#1</div>
+              <div class="text-[10px] text-[#71717A]">Local Maps Rank</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PACKAGES & PRICING -->
+    <section id="pricing" class="py-16 sm:py-20 border-b border-[#27272A]">
+      <div class="max-w-2xl mb-12">
+        <div class="badge-pill inline-block mb-3">TRANSPARENT PRICING</div>
+        <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+          Predictable investment. High ROI.
+        </h2>
+        <p class="text-[14px] text-[#A1A1AA] mt-2">
+          No hidden fees, no ongoing percentage cuts. 100% of the customer relationship remains yours.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        
+        <!-- Tier 1 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono-code text-[#71717A] mb-2 font-semibold">ENTRY TIER</div>
+            <h3 class="text-[22px] font-display font-bold text-white">Launchpad OS</h3>
+            <p class="text-[13px] text-[#A1A1AA] mt-1 mb-6">
+              Ideal for single-location businesses launching their direct booking foundation.
+            </p>
+            <div class="py-4 border-y border-[#27272A] mb-6 flex items-baseline gap-1.5">
+              <span class="text-[36px] font-display font-extrabold text-white">₹9,999</span>
+              <span class="text-[12px] font-mono-code text-[#71717A]">/one-time</span>
+            </div>
+            <div class="space-y-2.5 text-[12.5px] text-[#A1A1AA]">
+              <div>✓ Custom Web Application</div>
+              <div>✓ Direct WhatsApp Booking Wire</div>
+              <div>✓ 0% Booking Commission Architecture</div>
+              <div>✓ Google Maps Search Setup</div>
+              <div>✓ 14-Day Delivery Guarantee</div>
+            </div>
+          </div>
+          <div class="pt-6 mt-6 border-t border-[#27272A]">
+            <a href="#discovery-call" onclick="setFormPlan('Launchpad OS (₹9,999)')" class="btn-outline block text-center py-3 rounded-full text-[13px] font-bold">
+              Choose Launchpad OS →
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between border-emerald-500/60 bg-[#121A16] lg:-translate-y-2">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-[11px] font-mono-code text-emerald-400 font-bold">RECOMMENDED STACK</span>
+              <span class="text-[10px] font-mono-code px-2 py-0.5 rounded bg-emerald-500 text-black font-bold">POPULAR</span>
+            </div>
+            <h3 class="text-[22px] font-display font-bold text-white">Growth OS</h3>
+            <p class="text-[13px] text-emerald-200/70 mt-1 mb-6">
+              The full automation stack for market leaders wanting complete dominance.
+            </p>
+            <div class="py-4 border-y border-emerald-900/50 mb-6 flex items-baseline gap-1.5">
+              <span class="text-[36px] font-display font-extrabold text-white">₹24,999</span>
+              <span class="text-[12px] font-mono-code text-emerald-400/60">/full-stack</span>
+            </div>
+            <div class="space-y-2.5 text-[12.5px] text-emerald-100/90">
+              <div>✓ <strong>Everything in Launchpad OS</strong></div>
+              <div>✓ Automated Sub-60s WhatsApp Booking AI</div>
+              <div>✓ ChatGPT & AI Search Engine Indexing (GEO)</div>
+              <div>✓ Automated 5-Star Review Generator</div>
+              <div>✓ Customer Broadcast & Re-engagement System</div>
+              <div>✓ 30-Day Founder Growth Support</div>
+            </div>
+          </div>
+          <div class="pt-6 mt-6 border-t border-emerald-900/50">
+            <a href="#discovery-call" onclick="setFormPlan('Growth OS (₹24,999)')" class="btn-solid block text-center py-3 rounded-full text-[13px] font-bold">
+              Get Growth OS (Recommended) →
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="editorial-card rounded-2xl p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono-code text-[#71717A] mb-2 font-semibold">ENTERPRISE / MULTI-BRANCH</div>
+            <h3 class="text-[22px] font-display font-bold text-white">Custom OS</h3>
+            <p class="text-[13px] text-[#A1A1AA] mt-1 mb-6">
+              For multi-outlet salon chains, medical clinics, and established franchises.
+            </p>
+            <div class="py-4 border-y border-[#27272A] mb-6 flex items-baseline gap-1.5">
+              <span class="text-[36px] font-display font-extrabold text-white">Custom</span>
+              <span class="text-[12px] font-mono-code text-[#71717A]">/tailored</span>
+            </div>
+            <div class="space-y-2.5 text-[12.5px] text-[#A1A1AA]">
+              <div>✓ Centralized Multi-Location Booking Hub</div>
+              <div>✓ Custom CRM / POS Integration</div>
+              <div>✓ Dedicated AI Concierge Agents</div>
+              <div>✓ Multi-branch Analytics Dashboard</div>
+              <div>✓ Dedicated Growth Engineer</div>
+            </div>
+          </div>
+          <div class="pt-6 mt-6 border-t border-[#27272A]">
+            <a href="#discovery-call" onclick="setFormPlan('Enterprise Custom OS')" class="btn-outline block text-center py-3 rounded-full text-[13px] font-bold">
+              Request Enterprise Brief →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PITCHFINDER OS BANNER -->
+    <section class="py-12 border-b border-[#27272A]">
+      <div class="editorial-card rounded-2xl p-6 sm:p-8 bg-[#111114] border-[#27272A] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-400 font-mono-code text-[11px] font-bold mb-1">
+            <span>⚡ SCANNER PRODUCT</span>
+          </div>
+          <h3 class="text-[20px] font-display font-bold text-white">PitchFinder Lead OS</h3>
+          <p class="text-[13px] text-[#A1A1AA] mt-0.5 max-w-md">
+            Find out which local businesses have commission leaks and untapped local search potential in real-time.
+          </p>
+        </div>
+        <a href="pitchfinder/index.html" class="btn-solid px-5 py-2.5 rounded-full text-[12px] font-bold shrink-0">
+          Launch PitchFinder ⚡
+        </a>
+      </div>
+    </section>
+
+    <!-- DISCOVERY CALL SECTION -->
+    <section id="discovery-call" class="py-16 sm:py-20">
+      <div class="editorial-card rounded-2xl p-6 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          <!-- Left Brief -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="badge-pill inline-block">FREE 15-MINUTE SESSION</div>
+            <h3 class="text-[28px] sm:text-[36px] font-display font-bold text-white tracking-tight leading-tight">
+              Let's audit your customer acquisition.
+            </h3>
+            <p class="text-[14px] text-[#A1A1AA] leading-relaxed">
+              We will calculate your commission leaks, review your booking flow, and show you how a custom Getmore OS will accelerate your direct revenue.
+            </p>
+
+            <div class="p-4 rounded-xl bg-[#18181B] border border-[#27272A] space-y-1 font-mono-code text-[12px]">
+              <div class="text-white font-semibold">Direct Founder WhatsApp / Call:</div>
+              <div class="text-emerald-400 font-bold text-[14px]">+91-9738397933</div>
+              <div class="text-[#71717A] text-[11px]">Mon–Sat 9AM–8PM IST</div>
+            </div>
+          </div>
+
+          <!-- Right Form -->
+          <div class="lg:col-span-7 bg-[#18181B] border border-[#27272A] rounded-xl p-6 sm:p-8">
+            
+            <div id="formSubmitted" class="hidden text-center py-8 space-y-3">
+              <div class="h-12 w-12 bg-white text-black font-bold rounded-full grid place-items-center mx-auto text-[20px]">
+                ✓
+              </div>
+              <h4 class="text-[20px] font-display font-bold text-white">Discovery Call Requested</h4>
+              <p class="text-[13px] text-[#A1A1AA] max-w-sm mx-auto">
+                WhatsApp has been launched with your brief. Our founder team will connect shortly.
+              </p>
+              <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer" class="btn-solid inline-block px-5 py-2.5 rounded-full text-[12px] font-bold mt-2">
+                Open WhatsApp (+91-9738397933) →
+              </a>
+            </div>
+
+            <form id="callForm" class="space-y-4">
+              <div>
+                <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Your Name *</label>
+                <input id="inputName" type="text" required placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] placeholder-[#52525B] focus:border-white focus:outline-none" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Phone / WhatsApp *</label>
+                  <input id="inputPhone" type="tel" required placeholder="+91 98765 43210" class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] placeholder-[#52525B] focus:border-white focus:outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Business Name *</label>
+                  <input id="inputBusiness" type="text" required placeholder="e.g. Aura Aesthetics" class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] placeholder-[#52525B] focus:border-white focus:outline-none" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Industry</label>
+                  <select id="inputIndustry" class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] focus:border-white focus:outline-none">
+                    <option value="Salons & Spas">Salons & Spas</option>
+                    <option value="Clinics & Doctors">Clinics & Doctors</option>
+                    <option value="Gyms & Fitness">Gyms & Fitness</option>
+                    <option value="Real Estate & Architecture">Real Estate & Architecture</option>
+                    <option value="Education & Coaching">Education & Coaching</option>
+                    <option value="Other Local Business">Other Local Business</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Interested Tier</label>
+                  <select id="inputTier" class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] focus:border-white focus:outline-none">
+                    <option value="Launchpad OS (₹9,999)">Launchpad OS (₹9,999)</option>
+                    <option value="Growth OS (₹24,999)" selected>Growth OS (₹24,999 - Recommended)</option>
+                    <option value="Enterprise Custom OS">Enterprise Custom OS</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-mono-code text-[#A1A1AA] uppercase mb-1">Notes (Optional)</label>
+                <textarea id="inputNotes" rows="2" placeholder="Tell us about your current booking workflow..." class="w-full px-3.5 py-2.5 rounded-lg bg-[#111114] border border-[#27272A] text-white text-[13px] placeholder-[#52525B] focus:border-white focus:outline-none resize-none"></textarea>
+              </div>
+
+              <button type="submit" class="btn-solid w-full py-3.5 rounded-lg text-[13px] tracking-tight">
+                Submit & Connect on WhatsApp (+91-9738397933) →
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 border-t border-[#27272A] text-[12px] font-mono-code text-[#71717A]">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div>
+          © 2025–2026 GETMORE.OS — ALL CUSTOMER DATA 100% YOURS
+        </div>
+        <div class="flex items-center gap-5">
+          <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer" class="hover:text-white">WhatsApp: +91-9738397933</a>
+          <a href="https://www.instagram.com/getmore.os/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-white">Instagram</a>
+          <a href="pitchfinder/index.html" class="text-emerald-400 hover:underline">PitchFinder</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- MOBILE STICKY BOTTOM BAR -->
+  <div class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#09090B]/95 backdrop-blur-md border-t border-[#27272A] px-4 py-2.5 flex items-center gap-2.5">
+    <a
+      href="https://wa.me/919738397933?text=Hi%20Getmore%20OS,%20I'd%20like%20to%20discuss%20growth."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex-1 py-2.5 rounded-full bg-[#18181B] border border-[#27272A] text-white font-mono-code text-[12px] font-bold text-center"
+    >
+      WhatsApp Us
+    </a>
+    <a
+      href="#discovery-call"
+      class="btn-solid flex-1 py-2.5 rounded-full text-[12px] font-bold text-center"
+    >
+      Book Call ↗
+    </a>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Calculator
+    const calcRev = document.getElementById('calcRev');
+    const calcRate = document.getElementById('calcRate');
+    const calcRevVal = document.getElementById('calcRevVal');
+    const calcRateVal = document.getElementById('calcRateVal');
+    const calcYearlyLoss = document.getElementById('calcYearlyLoss');
+    const calcMonthlyLoss = document.getElementById('calcMonthlyLoss');
+
+    function formatINR(val) {
+      return '₹' + Number(val).toLocaleString('en-IN');
+    }
+
+    function refreshCalc() {
+      const rev = Number(calcRev.value);
+      const rate = Number(calcRate.value);
+      const monthly = Math.round(rev * (rate / 100));
+      const yearly = monthly * 12;
+
+      calcRevVal.textContent = formatINR(rev);
+      calcRateVal.textContent = rate + '%';
+      calcYearlyLoss.textContent = formatINR(yearly);
+      calcMonthlyLoss.textContent = formatINR(monthly);
+    }
+
+    calcRev.addEventListener('input', refreshCalc);
+    calcRate.addEventListener('input', refreshCalc);
+    refreshCalc();
+
+    // Select Plan in Form
+    function setFormPlan(planName) {
+      const sel = document.getElementById('inputTier');
+      if (sel) {
+        for (let i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value.includes(planName.split(' ')[0])) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // Form submission
+    const callForm = document.getElementById('callForm');
+    const formSubmitted = document.getElementById('formSubmitted');
+
+    callForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('inputName').value;
+      const phone = document.getElementById('inputPhone').value;
+      const business = document.getElementById('inputBusiness').value;
+      const industry = document.getElementById('inputIndustry').value;
+      const tier = document.getElementById('inputTier').value;
+      const notes = document.getElementById('inputNotes').value || 'None';
+
+      const text = `*New Discovery Call Request - Getmore OS*%0A%0A` +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Phone:* ${encodeURIComponent(phone)}%0A` +
+        `*Business:* ${encodeURIComponent(business)}%0A` +
+        `*Industry:* ${encodeURIComponent(industry)}%0A` +
+        `*Tier:* ${encodeURIComponent(tier)}%0A` +
+        `*Notes:* ${encodeURIComponent(notes)}%0A%0A` +
+        `*Estimated Monthly Revenue:* ${encodeURIComponent(formatINR(calcRev.value))}%0A` +
+        `*Estimated Commission Leak:* ${encodeURIComponent(calcYearlyLoss.textContent)}/yr`;
+
+      callForm.classList.add('hidden');
+      formSubmitted.classList.remove('hidden');
+
+      window.open(`https://wa.me/919738397933?text=${text}`, '_blank');
+    });
+  </script>
+</body>
+
+</html>
