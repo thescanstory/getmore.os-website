@@ -1,0 +1,19 @@
+# robots.txt for Getmore OS
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Allow AI answer engines so ChatGPT, Perplexity, Claude and Gemini can cite you
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://getmoreos.in/sitemap.xml
