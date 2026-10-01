@@ -10431,23 +10431,25 @@ function generateWhatsAppPitch(b) {
   const rating = b.gmb_rating ? `★ ${b.gmb_rating}` : '★ 4.8';
   const isFood = b.category && (b.category.toLowerCase().includes('food') || b.category.toLowerCase().includes('biryani') || b.category.toLowerCase().includes('cafe') || b.category.toLowerCase().includes('dining') || b.category.toLowerCase().includes('restaurant'));
 
+  const footerLinks = `\n\n🌐 Website: https://getmoreos.in\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/`;
+
   // Angle 1: Has Google Maps with Reviews, but NO Direct Website
   if (!b.website_url) {
-    return `Hey *${cleanName}* team 👋\n\nFound your listing on Google Maps in *${area}* with *${reviewsCount} reviews (${rating})* — awesome local reputation!\n\nI noticed that when customers find you on Google Maps, there is no direct website or 1-tap booking link to take orders/appointments directly.\n\nWe build custom *1-Click WhatsApp Booking web apps* (from ₹9,999, 0% commission) so customers on Google Maps can book you in 4 seconds.\n\nCan I send a 30-sec demo preview we made for *${cleanName}*? 📱`;
+    return `Hey *${cleanName}* team 👋\n\nFound your listing on Google Maps in *${area}* with *${reviewsCount} reviews (${rating})* — awesome local reputation!\n\nI noticed that when customers find you on Google Maps, there is no direct website or 1-tap booking link to take orders/appointments directly.\n\nWe build custom *1-Click WhatsApp Booking web apps* (from ₹9,999, 0% commission) so customers on Google Maps can book you in 4 seconds.\n\nCan I send a 30-sec demo preview we made for *${cleanName}*? 📱${footerLinks}`;
   }
 
   // Angle 2: Food & Dining (0% Commission / Aggregator Tax)
   if (isFood) {
-    return `Hey *${cleanName}* team 👋\n\nSaw your huge popularity on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen local diners search your brand on Google Maps, are you still losing 20-25% commissions by sending repeat customers to Swiggy/Zomato?\n\nWe set up custom *0% Commission WhatsApp Direct Ordering Menus* from ₹9,999 so repeat customers from Google Maps order directly from you.\n\nCan I share a 1-tap demo menu link to test? 🍕`;
+    return `Hey *${cleanName}* team 👋\n\nSaw your huge popularity on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen local diners search your brand on Google Maps, are you still losing 20-25% commissions by sending repeat customers to Swiggy/Zomato?\n\nWe set up custom *0% Commission WhatsApp Direct Ordering Menus* from ₹9,999 so repeat customers from Google Maps order directly from you.\n\nCan I share a 1-tap demo menu link to test? 🍕${footerLinks}`;
   }
 
   // Angle 3: Slow Mobile Website
   if (b.mobile_pagespeed && b.mobile_pagespeed < 50) {
-    return `Hey *${cleanName}* team 👋\n\nSaw your Google Maps profile in *${area}* with *${reviewsCount} reviews*!\n\nI tested the website link from your Google Maps on mobile and it is loading slowly (*PageSpeed ${b.mobile_pagespeed}/100*). When people find you on Maps, ~40% drop off before the page loads.\n\nWe rebuild local websites into instant, sub-second Apple-grade PWAs with direct 1-tap WhatsApp booking in 48 hours.\n\nWould you like to see a quick 30-sec demo for *${cleanName}*? ⚡`;
+    return `Hey *${cleanName}* team 👋\n\nSaw your Google Maps profile in *${area}* with *${reviewsCount} reviews*!\n\nI tested the website link from your Google Maps on mobile and it is loading slowly (*PageSpeed ${b.mobile_pagespeed}/100*). When people find you on Maps, ~40% drop off before the page loads.\n\nWe rebuild local websites into instant, sub-second Apple-grade PWAs with direct 1-tap WhatsApp booking in 48 hours.\n\nWould you like to see a quick 30-sec demo for *${cleanName}*? ⚡${footerLinks}`;
   }
 
   // Angle 4: General Service Brands (After-Hours 24/7 AI Lead Capture)
-  return `Hey *${cleanName}* team 👋\n\nSaw your strong presence on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen customers find you on Google Maps after hours or during busy times, our *WhatsApp AI Assistant* answers their questions, shares service prices, and locks in the appointment in 30 seconds, 24/7.\n\nOpen to checking out a quick 30-sec demo tailored for *${cleanName}*? 🚀`;
+  return `Hey *${cleanName}* team 👋\n\nSaw your strong presence on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen customers find you on Google Maps after hours or during busy times, our *WhatsApp AI Assistant* answers their questions, shares service prices, and locks in the appointment in 30 seconds, 24/7.\n\nOpen to checking out a quick 30-sec demo tailored for *${cleanName}*? 🚀${footerLinks}`;
 }
 
 function generateColdCallHook(b) {
