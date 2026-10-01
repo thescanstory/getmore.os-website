@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://getmoreos.in/pitchfinder">
   <meta property="og:title" content="PitchFinder — Verified Real Google My Business Leads in Bangalore">
   <meta property="og:description" content="Discover verified real businesses from Google My Business in Bangalore with Apple Store clean white design, Google Maps ratings, tech stack detection, verified phone numbers, and custom pitch scripts.">
-  <meta property="og:image" content="../og-image.jpg">
+  <meta property="og:image" content="og-image.jpg">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -222,7 +222,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <!-- Left: Logo & Apple Title -->
       <div class="flex items-center gap-4">
-        <a href="../index.html" class="flex items-center gap-2 group text-[#1d1d1f] hover:opacity-80 transition-opacity">
+        <a href="index.html" class="flex items-center gap-2 group text-[#1d1d1f] hover:opacity-80 transition-opacity">
           <!-- Minimalist Apple Geometric Icon -->
           <div class="h-6 w-6 bg-[#1d1d1f] rounded-[5px] grid place-items-center transition-transform group-hover:scale-105 shadow-xs shrink-0">
             <div class="h-2.5 w-2.5 bg-white rounded-[2px]"></div>
@@ -236,7 +236,7 @@
         </div>
       </div>
 
-      <!-- Right: Status Pill, What to Pitch & Upgrade CTA -->
+      <!-- Right: Status Pill, Daily 50 Queue, What to Pitch & Upgrade CTA -->
       <div class="flex items-center gap-2 sm:gap-3">
         <!-- Daily 50 Queue Trigger Pill -->
         <button onclick="startDailyQueue()" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Ban-Safe 50 DMs / Day Focus Studio">
@@ -244,13 +244,14 @@
           <span>⚡ Daily 50 Queue</span>
           <span id="header-queue-counter" class="text-[10px] px-1.5 py-0.2 bg-emerald-600 text-white rounded-full font-mono">0/50</span>
         </button>
+
         <!-- What to Pitch Playbook Trigger Button -->
-        <button onclick="openPlaybookModal()" class="px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm">
+        <button onclick="openPlaybookModal()" class="hidden md:flex px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold items-center gap-1.5 transition-all shadow-sm">
           <span>📘 What Can We Pitch?</span>
           <span class="text-[10px] px-1.5 py-0.2 bg-[#0071e3] text-white rounded-full">6 Offers</span>
         </button>
 
-        <a href="../index.html#pricing" class="hidden sm:inline-flex apple-pill-dark px-4 py-1.5 text-xs font-semibold">
+        <a href="index.html#pricing" class="hidden sm:inline-flex apple-pill-dark px-4 py-1.5 text-xs font-semibold">
           <span>Setup ₹9,999</span>
         </a>
       </div>
@@ -10696,49 +10697,81 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+function quickSelectCategory(categoryName, cityName, el) {
+  // 1. Update visual active highlight on category chips
+  document.querySelectorAll('.apple-category-item').forEach(item => item.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  const queryInput = document.getElementById('query-input');
+  const catFilter = document.getElementById('filter-category');
+
+  if (categoryName === 'All') {
+    if (queryInput) queryInput.value = '';
+    if (catFilter) catFilter.value = 'All';
+    applyLocalFilters();
+  } else {
+    if (catFilter) {
+      let matched = false;
+      for (let i = 0; i < catFilter.options.length; i++) {
+        if (catFilter.options[i].value.toLowerCase() === categoryName.toLowerCase()) {
+          catFilter.value = catFilter.options[i].value;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        catFilter.value = 'All';
+        const searchInput = document.getElementById('live-filter-search');
+        if (searchInput) searchInput.value = categoryName;
+        handleInstantSearch(categoryName);
+        return;
+      }
+    }
+    applyLocalFilters();
+  }
+}
+
+function populateCategoryDropdown(leads, cleanCity) {
+  const catSelect = document.getElementById('filter-category');
+  if (!catSelect) return;
+  const currentVal = catSelect.value || 'All';
+  const categories = Array.from(new Set((leads || []).map(b => b.category).filter(Boolean))).sort();
+  
+  let optionsHtml = `<option value="All">All Categories (${leads.length})</option>`;
+  categories.forEach(cat => {
+    const count = leads.filter(b => b.category === cat).length;
+    optionsHtml += `<option value="${cat}">${cat} (${count})</option>`;
+  });
+  catSelect.innerHTML = optionsHtml;
+
+  if (categories.includes(currentVal)) {
+    catSelect.value = currentVal;
+  } else {
+    catSelect.value = 'All';
+  }
+}
+
 function executeDiscovery(query, city) {
   const startTime = Date.now();
   const btn = document.getElementById('discover-btn');
   const btnText = document.getElementById('btn-text');
 
-  const cleanQuery = (query !== undefined ? query : document.getElementById('query-input').value || '').trim();
-  const cleanCity = (city || document.getElementById('city-input').value || 'Bangalore').trim();
+  const cleanQuery = (query !== undefined ? query : (document.getElementById('query-input') ? document.getElementById('query-input').value : '') || '').trim();
+  const cleanCity = (city || (document.getElementById('city-input') ? document.getElementById('city-input').value : '') || 'Bangalore').trim();
 
-  document.getElementById('query-input').value = cleanQuery;
-  document.getElementById('city-input').value = cleanCity;
+  if (document.getElementById('query-input')) document.getElementById('query-input').value = cleanQuery;
+  if (document.getElementById('city-input')) document.getElementById('city-input').value = cleanCity;
   
-  if (btnText) btnText.textContent = `Filtering...`;
-  if (btn) btn.disabled = true;
-
-  setTimeout(() => {
+  try {
     let leads = generateUniversalLeads(cleanQuery, cleanCity);
-
-    const areaFilter = (document.getElementById('param-area').value || '').toLowerCase().trim();
-    const minRating = parseFloat(document.getElementById('param-min-rating').value) || 0;
-    const minReviews = parseInt(document.getElementById('param-min-reviews').value) || 0;
-    const websiteStatus = document.getElementById('param-website').value;
-
-    if (areaFilter) {
-      leads = leads.filter(b => b.area.toLowerCase().includes(areaFilter) || b.full_address.toLowerCase().includes(areaFilter));
-    }
-    if (minRating > 0) {
-      leads = leads.filter(b => b.gmb_rating >= minRating);
-    }
-    if (minReviews > 0) {
-      leads = leads.filter(b => b.gmb_reviews >= minReviews);
-    }
-    if (websiteStatus === 'no_website') {
-      leads = leads.filter(b => !b.website_url);
-    } else if (websiteStatus === 'has_website') {
-      leads = leads.filter(b => Boolean(b.website_url));
-    }
 
     rawDiscoveredBrands = leads;
     displayedBrands = [...leads];
     populateCategoryDropdown(leads, cleanCity);
 
     const latency = Date.now() - startTime;
-    document.getElementById('metric-latency').textContent = `${latency}ms`;
+    const latEl = document.getElementById('metric-latency');
+    if (latEl) latEl.textContent = `${latency}ms`;
 
     const badgeQuery = document.getElementById('badge-query');
     if (badgeQuery) badgeQuery.textContent = cleanQuery || 'All Categories';
@@ -10749,10 +10782,12 @@ function executeDiscovery(query, city) {
 
     applyLocalFilters();
     updateDailyProgressUI();
-
+  } catch (err) {
+    console.error('Discovery error:', err);
+  } finally {
     if (btnText) btnText.textContent = `Filter Leads`;
     if (btn) btn.disabled = false;
-  }, 50);
+  }
 }
 
 // Playbook Modal
@@ -10946,23 +10981,6 @@ function initPitchFinder() {
       executeDiscovery(query, city);
     });
   }
-
-  // Deep parameters input triggers
-  ['param-area', 'param-min-rating', 'param-min-reviews', 'param-website'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', () => {
-        const query = document.getElementById('query-input').value.trim();
-        const city = document.getElementById('city-input').value.trim() || 'Bangalore';
-        executeDiscovery(query, city);
-      });
-      el.addEventListener('change', () => {
-        const query = document.getElementById('query-input').value.trim();
-        const city = document.getElementById('city-input').value.trim() || 'Bangalore';
-        executeDiscovery(query, city);
-      });
-    }
-  });
 
   // Default initial discovery load: All Verified Leads in Bangalore
   executeDiscovery('', 'Bangalore');

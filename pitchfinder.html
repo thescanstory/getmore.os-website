@@ -10697,49 +10697,81 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+function quickSelectCategory(categoryName, cityName, el) {
+  // 1. Update visual active highlight on category chips
+  document.querySelectorAll('.apple-category-item').forEach(item => item.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  const queryInput = document.getElementById('query-input');
+  const catFilter = document.getElementById('filter-category');
+
+  if (categoryName === 'All') {
+    if (queryInput) queryInput.value = '';
+    if (catFilter) catFilter.value = 'All';
+    applyLocalFilters();
+  } else {
+    if (catFilter) {
+      let matched = false;
+      for (let i = 0; i < catFilter.options.length; i++) {
+        if (catFilter.options[i].value.toLowerCase() === categoryName.toLowerCase()) {
+          catFilter.value = catFilter.options[i].value;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        catFilter.value = 'All';
+        const searchInput = document.getElementById('live-filter-search');
+        if (searchInput) searchInput.value = categoryName;
+        handleInstantSearch(categoryName);
+        return;
+      }
+    }
+    applyLocalFilters();
+  }
+}
+
+function populateCategoryDropdown(leads, cleanCity) {
+  const catSelect = document.getElementById('filter-category');
+  if (!catSelect) return;
+  const currentVal = catSelect.value || 'All';
+  const categories = Array.from(new Set((leads || []).map(b => b.category).filter(Boolean))).sort();
+  
+  let optionsHtml = `<option value="All">All Categories (${leads.length})</option>`;
+  categories.forEach(cat => {
+    const count = leads.filter(b => b.category === cat).length;
+    optionsHtml += `<option value="${cat}">${cat} (${count})</option>`;
+  });
+  catSelect.innerHTML = optionsHtml;
+
+  if (categories.includes(currentVal)) {
+    catSelect.value = currentVal;
+  } else {
+    catSelect.value = 'All';
+  }
+}
+
 function executeDiscovery(query, city) {
   const startTime = Date.now();
   const btn = document.getElementById('discover-btn');
   const btnText = document.getElementById('btn-text');
 
-  const cleanQuery = (query !== undefined ? query : document.getElementById('query-input').value || '').trim();
-  const cleanCity = (city || document.getElementById('city-input').value || 'Bangalore').trim();
+  const cleanQuery = (query !== undefined ? query : (document.getElementById('query-input') ? document.getElementById('query-input').value : '') || '').trim();
+  const cleanCity = (city || (document.getElementById('city-input') ? document.getElementById('city-input').value : '') || 'Bangalore').trim();
 
-  document.getElementById('query-input').value = cleanQuery;
-  document.getElementById('city-input').value = cleanCity;
+  if (document.getElementById('query-input')) document.getElementById('query-input').value = cleanQuery;
+  if (document.getElementById('city-input')) document.getElementById('city-input').value = cleanCity;
   
-  if (btnText) btnText.textContent = `Filtering...`;
-  if (btn) btn.disabled = true;
-
-  setTimeout(() => {
+  try {
     let leads = generateUniversalLeads(cleanQuery, cleanCity);
-
-    const areaFilter = (document.getElementById('param-area').value || '').toLowerCase().trim();
-    const minRating = parseFloat(document.getElementById('param-min-rating').value) || 0;
-    const minReviews = parseInt(document.getElementById('param-min-reviews').value) || 0;
-    const websiteStatus = document.getElementById('param-website').value;
-
-    if (areaFilter) {
-      leads = leads.filter(b => b.area.toLowerCase().includes(areaFilter) || b.full_address.toLowerCase().includes(areaFilter));
-    }
-    if (minRating > 0) {
-      leads = leads.filter(b => b.gmb_rating >= minRating);
-    }
-    if (minReviews > 0) {
-      leads = leads.filter(b => b.gmb_reviews >= minReviews);
-    }
-    if (websiteStatus === 'no_website') {
-      leads = leads.filter(b => !b.website_url);
-    } else if (websiteStatus === 'has_website') {
-      leads = leads.filter(b => Boolean(b.website_url));
-    }
 
     rawDiscoveredBrands = leads;
     displayedBrands = [...leads];
     populateCategoryDropdown(leads, cleanCity);
 
     const latency = Date.now() - startTime;
-    document.getElementById('metric-latency').textContent = `${latency}ms`;
+    const latEl = document.getElementById('metric-latency');
+    if (latEl) latEl.textContent = `${latency}ms`;
 
     const badgeQuery = document.getElementById('badge-query');
     if (badgeQuery) badgeQuery.textContent = cleanQuery || 'All Categories';
@@ -10750,10 +10782,12 @@ function executeDiscovery(query, city) {
 
     applyLocalFilters();
     updateDailyProgressUI();
-
+  } catch (err) {
+    console.error('Discovery error:', err);
+  } finally {
     if (btnText) btnText.textContent = `Filter Leads`;
     if (btn) btn.disabled = false;
-  }, 50);
+  }
 }
 
 // Playbook Modal
@@ -10947,23 +10981,6 @@ function initPitchFinder() {
       executeDiscovery(query, city);
     });
   }
-
-  // Deep parameters input triggers
-  ['param-area', 'param-min-rating', 'param-min-reviews', 'param-website'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', () => {
-        const query = document.getElementById('query-input').value.trim();
-        const city = document.getElementById('city-input').value.trim() || 'Bangalore';
-        executeDiscovery(query, city);
-      });
-      el.addEventListener('change', () => {
-        const query = document.getElementById('query-input').value.trim();
-        const city = document.getElementById('city-input').value.trim() || 'Bangalore';
-        executeDiscovery(query, city);
-      });
-    }
-  });
 
   // Default initial discovery load: All Verified Leads in Bangalore
   executeDiscovery('', 'Bangalore');
