@@ -10702,32 +10702,25 @@ function quickSelectCategory(categoryName, cityName, el) {
   document.querySelectorAll('.apple-category-item').forEach(item => item.classList.remove('active'));
   if (el) el.classList.add('active');
 
-  const queryInput = document.getElementById('query-input');
-  const catFilter = document.getElementById('filter-category');
+  const query = (categoryName === 'All') ? '' : categoryName;
+  const city = cityName || 'Bangalore';
 
-  if (categoryName === 'All') {
-    if (queryInput) queryInput.value = '';
-    if (catFilter) catFilter.value = 'All';
-    applyLocalFilters();
-  } else {
-    if (catFilter) {
-      let matched = false;
-      for (let i = 0; i < catFilter.options.length; i++) {
-        if (catFilter.options[i].value.toLowerCase() === categoryName.toLowerCase()) {
-          catFilter.value = catFilter.options[i].value;
-          matched = true;
-          break;
-        }
-      }
-      if (!matched) {
-        catFilter.value = 'All';
-        const searchInput = document.getElementById('live-filter-search');
-        if (searchInput) searchInput.value = categoryName;
-        handleInstantSearch(categoryName);
-        return;
-      }
-    }
-    applyLocalFilters();
+  // Clear instant search input
+  const searchInput = document.getElementById('live-filter-search');
+  if (searchInput) searchInput.value = '';
+  instantSearchQuery = '';
+
+  // Reset dropdown filters
+  const catFilter = document.getElementById('filter-category');
+  if (catFilter) catFilter.value = 'All';
+
+  // Run discovery with category
+  executeDiscovery(query, city);
+
+  // Smooth scroll to results
+  const resultsEl = document.getElementById('results-container');
+  if (resultsEl && typeof resultsEl.scrollIntoView === 'function') {
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -10801,7 +10794,8 @@ function closePlaybookModal() {
 
 // Individual Pitch Modal Sheet
 function openPitchModal(brandId) {
-  const b = rawDiscoveredBrands.find(item => item.id === brandId);
+  const b = (rawDiscoveredBrands && rawDiscoveredBrands.find(item => item.id === brandId)) || 
+            (displayedBrands && displayedBrands.find(item => item.id === brandId));
   if (!b) return;
   selectedBrand = b;
 
