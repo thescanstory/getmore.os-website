@@ -998,7 +998,7 @@
               <span>Call</span>
             </a>
             
-            <a id="modal-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="apple-pill-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 bg-[#34c759] hover:bg-[#2eb34f] text-white">
+            <a id="modal-wa-btn" href="#" class="apple-pill-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 bg-[#34c759] hover:bg-[#2eb34f] text-white">
               <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               <span>WhatsApp Pitch</span>
             </a>
@@ -9516,7 +9516,7 @@ function getDirectWhatsAppUrl(b) {
   if (num.startsWith('0')) num = num.substring(1);
   if (num.length === 10) num = '91' + num;
   const msg = typeof generateWhatsAppPitch === 'function' ? generateWhatsAppPitch(b) : `Hi ${b.name}, I noticed your listing in ${b.area || 'Bangalore'}.`;
-  return `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+  return `whatsapp://send?phone=${num}&text=${encodeURIComponent(msg)}`;
 }
 
 function calculatePitchData(lead) {
@@ -9781,7 +9781,7 @@ function renderCardsView(brands) {
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </a>
 
-              <a href="https://wa.me/${b.whatsapp_number}?text=${encodeURIComponent(generateWhatsAppPitch(b))}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+              <a href="${getDirectWhatsAppUrl(b)}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
             </div>
@@ -9880,8 +9880,6 @@ function renderTableView(brands) {
                 <td class="py-3 px-3 align-middle">
                   <a 
                     href="${getDirectWhatsAppUrl(b)}" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
                     class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold font-mono shadow-2xs hover:shadow-xs transition-all w-full justify-between" 
                     title="Open WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})"
                   >
@@ -10009,13 +10007,9 @@ function renderListView(brands) {
               <div class="flex flex-wrap items-center gap-2 mb-1">
                 <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-tight truncate max-w-[320px] sm:max-w-md">${b.name}</h3>
                 <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.06]">${b.area}</span>
-                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Score: ${b.opportunity_score}/100</span>
-              </div>
-              <p class="text-xs text-[#6e6e73] truncate mb-2.5">${b.subcategory} • <span class="text-[#1d1d1f] font-medium">${b.full_address || b.area + ', ' + b.city}</span></p>
-              
-              <!-- Direct WhatsApp Number Button & Web Link -->
+                       <!-- Direct WhatsApp Number Button & Web Link -->
               <div class="flex flex-wrap items-center gap-2">
-                <a href="${getDirectWhatsAppUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 text-xs font-semibold font-mono border border-emerald-200/80 shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
+                <a href="${getDirectWhatsAppUrl(b)}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 text-xs font-semibold font-mono border border-emerald-200/80 shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
                   <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                   <span>${formatDisplayPhone(b.phone_number)}</span>
                   <span class="text-[9px] font-sans font-bold bg-emerald-200/70 text-emerald-900 px-1 py-0.2 rounded">WA ↗</span>
@@ -10060,14 +10054,14 @@ function renderListView(brands) {
               </a>
 
               <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-blue-50 text-[#0071e3] border border-black/[0.06] grid place-items-center transition-all" title="Visit Website">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
               </a>
 
               <a href="tel:${b.phone_number}" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-emerald-50 text-[#34c759] border border-black/[0.06] grid place-items-center transition-all" title="Call Business: ${b.phone_number}">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </a>
 
-              <a href="${getDirectWhatsAppUrl(b)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+              <a href="${getDirectWhatsAppUrl(b)}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
 
