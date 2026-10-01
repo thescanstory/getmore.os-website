@@ -524,12 +524,12 @@
         <div id="deep-params-panel" class="hidden pt-4 border-t border-black/[0.06] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           <div>
             <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Locality / Area Filter</label>
-            <input id="param-area" type="text" placeholder="e.g. Indiranagar, Koramangala, Bandra" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs" />
+            <input id="param-area" type="text" oninput="applyLocalFilters()" placeholder="e.g. Indiranagar, Koramangala, Bandra" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs" />
           </div>
 
           <div>
             <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Min GMB Rating</label>
-            <select id="param-min-rating" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
+            <select id="param-min-rating" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
               <option value="0">Any Rating</option>
               <option value="3.5">★ 3.5+</option>
               <option value="4.0">★ 4.0+</option>
@@ -540,7 +540,7 @@
 
           <div>
             <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Min Review Count</label>
-            <select id="param-min-reviews" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
+            <select id="param-min-reviews" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
               <option value="0">Any Volume</option>
               <option value="50">50+ Reviews</option>
               <option value="200">200+ Reviews</option>
@@ -551,7 +551,7 @@
 
           <div>
             <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Website Presence</label>
-            <select id="param-website" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
+            <select id="param-website" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
               <option value="all">All Listings</option>
               <option value="no_website">🚫 No Website (High Value)</option>
               <option value="has_website">🌐 Has Official Website</option>
@@ -676,13 +676,15 @@
 
         <!-- Pitch Filter -->
         <select id="filter-pitch" class="px-3.5 py-2 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-xs text-[#1d1d1f] font-medium focus:outline-none cursor-pointer" onchange="applyLocalFilters()">
-          <option value="all">All Pitches (6 Types)</option>
-          <option value="unclaimed_gmb">📍 Maps Top-3 Ranking</option>
-          <option value="pagespeed">⚡ Slow Speed Rebuild</option>
-          <option value="website">🌐 Missing Official Website</option>
-          <option value="whatsapp">💬 WhatsApp 0% Comm. Flow</option>
-          <option value="app">📱 Retargeting CRM</option>
-          <option value="gmb">⭐ 5-Star Review Funnel</option>
+          <option value="all">All Pitch Angles (All Strategies)</option>
+          <option value="reels">🎬 1. Influencer Reels &amp; Footfall</option>
+          <option value="website">🌐 2. Missing Official Website</option>
+          <option value="seo">📈 3. SEO Ranking &amp; AI Search</option>
+          <option value="whatsapp">💬 4. WhatsApp 0% Comm. Flow</option>
+          <option value="app">📱 5. App &amp; Retargeting CRM</option>
+          <option value="ads">🎯 6. Meta &amp; Google Local Ads</option>
+          <option value="gmb">⭐ 7. 5-Star Review Funnel</option>
+          <option value="pagespeed">⚡ 8. Slow Speed Rebuild</option>
         </select>
       </div>
 
@@ -10144,30 +10146,83 @@ function clearInstantSearch() {
 }
 
 function applyLocalFilters() {
-  currentRenderLimit = 60;
+  currentRenderLimit = 500;
   const selectedCat = document.getElementById('filter-category') ? document.getElementById('filter-category').value : 'All';
   const selectedPitch = document.getElementById('filter-pitch') ? document.getElementById('filter-pitch').value : 'all';
   const sortBy = currentSort || 'opportunity';
 
+  const areaFilter = document.getElementById('param-area') ? (document.getElementById('param-area').value || '').toLowerCase().trim() : '';
+  const minRating = document.getElementById('param-min-rating') ? (parseFloat(document.getElementById('param-min-rating').value) || 0) : 0;
+  const minReviews = document.getElementById('param-min-reviews') ? (parseInt(document.getElementById('param-min-reviews').value) || 0) : 0;
+  const websiteStatus = document.getElementById('param-website') ? document.getElementById('param-website').value : 'all';
+
   let filtered = [...rawDiscoveredBrands];
+
+  // 1. Instant Text Search Filter
   if (instantSearchQuery) {
     filtered = filtered.filter(b => 
-      b.name.toLowerCase().includes(instantSearchQuery) || 
+      (b.name && b.name.toLowerCase().includes(instantSearchQuery)) || 
       (b.area && b.area.toLowerCase().includes(instantSearchQuery)) || 
       (b.full_address && b.full_address.toLowerCase().includes(instantSearchQuery)) ||
       (b.category && b.category.toLowerCase().includes(instantSearchQuery)) ||
-      (b.subcategory && b.subcategory.toLowerCase().includes(instantSearchQuery))
+      (b.subcategory && b.subcategory.toLowerCase().includes(instantSearchQuery)) ||
+      (b.pitch_offer_name && b.pitch_offer_name.toLowerCase().includes(instantSearchQuery)) ||
+      (b.phone_number && b.phone_number.includes(instantSearchQuery))
     );
   }
 
+  // 2. Deep Intelligence: Locality / Area Filter
+  if (areaFilter) {
+    filtered = filtered.filter(b => 
+      (b.area && b.area.toLowerCase().includes(areaFilter)) || 
+      (b.full_address && b.full_address.toLowerCase().includes(areaFilter))
+    );
+  }
+
+  // 3. Deep Intelligence: Min Rating Filter
+  if (minRating > 0) {
+    filtered = filtered.filter(b => (b.gmb_rating || 0) >= minRating);
+  }
+
+  // 4. Deep Intelligence: Min Review Volume Filter
+  if (minReviews > 0) {
+    filtered = filtered.filter(b => (b.gmb_reviews || 0) >= minReviews);
+  }
+
+  // 5. Deep Intelligence: Website Presence Filter
+  if (websiteStatus === 'no_website') {
+    filtered = filtered.filter(b => !b.website_url);
+  } else if (websiteStatus === 'has_website') {
+    filtered = filtered.filter(b => Boolean(b.website_url));
+  }
+
+  // 6. Category Dropdown Filter
   if (selectedCat && selectedCat !== 'All') {
-    filtered = filtered.filter(b => b.category === selectedCat);
+    filtered = filtered.filter(b => 
+      b.category === selectedCat || 
+      (b.subcategory && b.subcategory.toLowerCase().includes(selectedCat.toLowerCase()))
+    );
   }
 
+  // 7. Pitch Angle / Strategy Filter
   if (selectedPitch && selectedPitch !== 'all') {
-    filtered = filtered.filter(b => b.primary_pitch_type === selectedPitch);
+    filtered = filtered.filter(b => {
+      if (selectedPitch === 'website') return !b.website_url || b.primary_pitch_type === 'website';
+      if (selectedPitch === 'whatsapp') return b.primary_pitch_type === 'whatsapp' || b.opportunity_score >= 90;
+      if (selectedPitch === 'seo') return (b.gmb_reviews >= 500) || b.primary_pitch_type === 'gmb' || b.primary_pitch_type === 'seo';
+      if (selectedPitch === 'app') return b.primary_pitch_type === 'app' || Boolean(b.website_url);
+      if (selectedPitch === 'reels') {
+        const cat = (b.category || '').toLowerCase() + ' ' + (b.subcategory || '').toLowerCase();
+        return cat.includes('food') || cat.includes('cafe') || cat.includes('salon') || cat.includes('fitness') || cat.includes('hotel') || cat.includes('bakery') || cat.includes('jewel') || cat.includes('dining');
+      }
+      if (selectedPitch === 'ads') return b.opportunity_score >= 85;
+      if (selectedPitch === 'gmb') return b.primary_pitch_type === 'gmb' || (b.gmb_rating && b.gmb_rating < 4.7);
+      if (selectedPitch === 'pagespeed') return b.primary_pitch_type === 'pagespeed' || Boolean(b.website_url);
+      return b.primary_pitch_type === selectedPitch;
+    });
   }
 
+  // 8. Sorting
   filtered.sort((a, b) => {
     switch (sortBy) {
       case 'reviews_desc':
@@ -10178,8 +10233,6 @@ function applyLocalFilters() {
         return (b.gmb_rating || 0) - (a.gmb_rating || 0);
       case 'rating_asc':
         return (a.gmb_rating || 0) - (b.gmb_rating || 0);
-      case 'pagespeed_asc':
-        return (a.mobile_pagespeed || 999) - (b.mobile_pagespeed || 999);
       case 'loss_desc':
         return (b.gmb_reviews || 0) - (a.gmb_reviews || 0);
       case 'name_asc':
