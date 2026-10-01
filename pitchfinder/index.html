@@ -688,13 +688,17 @@
 
       <!-- Right Action Tools (Segmented View Mode + Export) -->
       <div class="flex items-center gap-2.5">
-        <!-- iOS Style Segmented Control -->
+        <!-- iOS Style Segmented Control (Grid / List / Table) -->
         <div class="flex items-center bg-[#f5f5f7] border border-black/[0.06] rounded-xl p-1">
-          <button id="view-cards-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5" onclick="setViewMode('cards')">
+          <button id="view-cards-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5" onclick="setViewMode('cards')" title="Grid View">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             <span class="hidden sm:inline">Grid</span>
           </button>
-          <button id="view-table-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('table')">
+          <button id="view-list-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('list')" title="List View">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6" stroke-width="2"></line><line x1="3" y1="12" x2="21" y2="12" stroke-width="2"></line><line x1="3" y1="18" x2="21" y2="18" stroke-width="2"></line></svg>
+            <span class="hidden sm:inline">List</span>
+          </button>
+          <button id="view-table-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('table')" title="Table View">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
             <span class="hidden sm:inline">Table</span>
           </button>
@@ -9871,10 +9875,114 @@ function updateMetrics() {
   document.getElementById('metric-avg-rating').textContent = `★ ${avgRating}`;
 }
 
+function renderListView(brands) {
+  if (brands.length === 0) {
+    return `
+      <div class="text-center py-20 bg-white rounded-apple border border-black/[0.08] p-8 shadow-sm">
+        <div class="text-5xl mb-4">🔍</div>
+        <h3 class="text-xl font-bold text-[#1d1d1f] mb-2">No Matching Verified Leads Found</h3>
+        <p class="text-sm text-[#6e6e73]">Try clearing search filters or selecting another category.</p>
+      </div>
+    `;
+  }
+
+  const visible = brands.slice(0, currentRenderLimit);
+
+  return `
+    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between">
+      <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified businesses in List View</span>
+      <span class="text-emerald-600 font-bold flex items-center gap-1">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 1-Click Direct WhatsApp
+      </span>
+    </div>
+    <div class="space-y-3">
+      ${visible.map((b, idx) => `
+        <div class="bg-white rounded-2xl border border-black/[0.08] p-4 sm:p-5 hover:border-black/20 hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group">
+          <!-- Left: Details & Name -->
+          <div class="flex items-start gap-3.5 flex-1 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-[#1d1d1f] font-mono text-xs font-bold grid place-items-center shrink-0 group-hover:bg-[#0071e3]/10 group-hover:text-[#0071e3] transition-colors">
+              ${idx + 1}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <h3 class="font-bold text-[15px] sm:text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-tight truncate max-w-[320px] sm:max-w-md">${b.name}</h3>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.06]">${b.area}</span>
+              </div>
+              <p class="text-xs text-[#6e6e73] truncate mb-2">${b.subcategory} • <span class="text-[#1d1d1f] font-medium">${b.full_address || b.area + ', ' + b.city}</span></p>
+              
+              <!-- Direct WhatsApp Number Button & Web Link -->
+              <div class="flex flex-wrap items-center gap-2">
+                <a href="${getDirectWhatsAppUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 text-xs font-semibold font-mono border border-emerald-200/80 shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name}">
+                  <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  <span>${b.phone_number}</span>
+                  <span class="text-[9px] font-sans font-bold bg-emerald-200/70 text-emerald-900 px-1 py-0.2 rounded">WA ↗</span>
+                </a>
+
+                ${b.website_url ? `
+                  <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#0071e3] text-xs font-semibold border border-blue-200/80 transition-all max-w-[180px]" title="Visit Official Website">
+                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span class="truncate font-mono">${b.website_display || 'Website'}</span>
+                    <span class="text-[10px]">↗</span>
+                  </a>
+                ` : `
+                  <span class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 text-amber-800 text-[11px] font-medium border border-amber-200/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
+                    <span>No Website</span>
+                  </span>
+                `}
+
+                <span class="inline-flex items-center gap-1 text-xs text-[#6e6e73]">
+                  <span class="text-[#ff9500] font-bold">★ ${b.gmb_rating}</span>
+                  <span>(${(b.gmb_reviews || 0).toLocaleString()} reviews)</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Opportunity, Quick CTAs & Studio Trigger -->
+          <div class="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-black/[0.06] shrink-0">
+            <div class="flex items-center gap-2">
+              <div class="text-right hidden lg:block">
+                <div class="text-xs font-bold text-[#1d1d1f]">${b.pitch_offer_name || '0% Commission Flow'}</div>
+                <div class="text-[10px] text-emerald-700 font-medium">Direct Platform Setup</div>
+              </div>
+              <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+                <span>${b.opportunity_score}</span>
+                <span class="text-[10px] font-normal text-emerald-600">/100</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <a href="${createGoogleMapsUrl(b.name, b.city)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-rose-50 hover:text-rose-600 text-rose-500 border border-black/[0.06] grid place-items-center transition-all" title="View Real Listing on Google Maps">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </a>
+
+              <a href="tel:${b.phone_number}" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-emerald-50 text-[#34c759] border border-black/[0.06] grid place-items-center transition-all" title="Call Business: ${b.phone_number}">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </a>
+
+              <a href="${getDirectWhatsAppUrl(b)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              </a>
+
+              <button onclick="openPitchModal('${b.id}')" class="px-3.5 py-1.5 rounded-xl bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold transition-all flex items-center gap-1 shadow-xs cursor-pointer ml-1">
+                <span>Pitch Studio</span>
+                <span class="text-[10px]">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
 function renderResults() {
   const container = document.getElementById('results-container');
   if (currentViewMode === 'cards') {
     container.innerHTML = renderCardsView(displayedBrands);
+  } else if (currentViewMode === 'list') {
+    container.innerHTML = renderListView(displayedBrands);
   } else {
     container.innerHTML = renderTableView(displayedBrands);
   }
@@ -9884,15 +9992,16 @@ function renderResults() {
 function setViewMode(mode) {
   currentViewMode = mode;
   const cardsBtn = document.getElementById('view-cards-btn');
+  const listBtn = document.getElementById('view-list-btn');
   const tableBtn = document.getElementById('view-table-btn');
 
-  if (mode === 'cards') {
-    cardsBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5';
-    tableBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5';
-  } else {
-    tableBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5';
-    cardsBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5';
-  }
+  const activeClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5';
+  const inactiveClass = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5';
+
+  if (cardsBtn) cardsBtn.className = mode === 'cards' ? activeClass : inactiveClass;
+  if (listBtn) listBtn.className = mode === 'list' ? activeClass : inactiveClass;
+  if (tableBtn) tableBtn.className = mode === 'table' ? activeClass : inactiveClass;
+
   renderResults();
 }
 
