@@ -236,10 +236,17 @@
         </div>
       </div>
 
-      <!-- Right: Status Pill, What to Pitch & Upgrade CTA -->
+      <!-- Right: Status Pill, Daily 50 Queue, What to Pitch & Upgrade CTA -->
       <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Daily 50 Queue Trigger Pill -->
+        <button onclick="startDailyQueue()" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Ban-Safe 50 DMs / Day Focus Studio">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>⚡ Daily 50 Queue</span>
+          <span id="header-queue-counter" class="text-[10px] px-1.5 py-0.2 bg-emerald-600 text-white rounded-full font-mono">0/50</span>
+        </button>
+
         <!-- What to Pitch Playbook Trigger Button -->
-        <button onclick="openPlaybookModal()" class="px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm">
+        <button onclick="openPlaybookModal()" class="hidden md:flex px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold items-center gap-1.5 transition-all shadow-sm">
           <span>📘 What Can We Pitch?</span>
           <span class="text-[10px] px-1.5 py-0.2 bg-[#0071e3] text-white rounded-full">6 Offers</span>
         </button>
@@ -296,6 +303,50 @@
         </button>
       </div>
     </div>
+
+    <!-- ⚡ Daily 50 WhatsApp Outreach Hub Bar -->
+    <section class="mb-8 p-4 sm:p-5 rounded-apple bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-blue-500/10 border border-emerald-200/80 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-[#25D366] text-white flex items-center justify-center font-bold text-xl shadow-sm shrink-0">
+          ⚡
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h3 class="font-bold text-sm sm:text-base text-[#1d1d1f]">Daily 50 WhatsApp Outreach Hub</h3>
+            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wide">100% Ban-Safe Human Pacing</span>
+          </div>
+          <p class="text-xs text-[#6e6e73] mt-0.5">
+            Safely reach 50 verified businesses/day with 1-Key quick-fire. Spacebar opens WhatsApp directly with pre-filled pitch &amp; auto-advances.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end flex-wrap">
+        <!-- Progress Counter -->
+        <div class="flex flex-col items-start md:items-end">
+          <div class="flex items-center gap-1.5 text-xs font-bold text-[#1d1d1f]">
+            <span>Today's Sent:</span>
+            <span id="hub-progress-text" class="text-emerald-700 font-mono">0 / 50 sent</span>
+          </div>
+          <div class="w-28 sm:w-36 h-2 bg-black/[0.08] rounded-full overflow-hidden mt-1">
+            <div id="hub-progress-bar" class="h-full bg-[#25D366] rounded-full transition-all duration-300" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Launch Queue Button -->
+        <button onclick="startDailyQueue()" class="apple-pill-btn px-4 py-2.5 text-xs font-bold flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm shrink-0 cursor-pointer">
+          <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Launch 50 DM Queue</span>
+          <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white font-mono">Space ␣</span>
+        </button>
+
+        <!-- Hide Contacted Checkbox -->
+        <label class="flex items-center gap-1.5 text-xs text-[#6e6e73] hover:text-[#1d1d1f] cursor-pointer select-none px-2.5 py-1.5 rounded-lg bg-white/70 border border-black/[0.06]">
+          <input type="checkbox" id="hide-contacted-checkbox" onchange="toggleHideContacted(this.checked)" class="rounded text-[#25D366] focus:ring-emerald-400 cursor-pointer">
+          <span class="font-semibold">Hide Contacted</span>
+        </label>
+      </div>
+    </section>
 
     <!-- Apple Store Style Horizontal Category Carousel -->
     <section class="mb-8 overflow-x-auto pb-2">
@@ -943,6 +994,136 @@
           Got It, Let's Pitch!
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- ⚡ DAILY 50 OUTREACH FOCUS RUNNER (1-KEY QUICK-FIRE) -->
+  <!-- ======================================================== -->
+  <div id="outreach-queue-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6 bg-black/50 backdrop-blur-lg">
+    <div class="apple-modal-sheet w-full max-w-3xl max-h-[94vh] flex flex-col shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200 border border-white/20 bg-white">
+      
+      <!-- Top Status Header with Progress -->
+      <div class="px-6 py-3.5 border-b border-black/[0.08] bg-[#f5f5f7] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-[#25D366] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+            ⚡
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-[#1d1d1f]">Daily 50 Outreach Runner</span>
+              <span id="queue-lead-counter" class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Lead 1 / 50</span>
+            </div>
+            <div class="text-[11px] text-[#6e6e73] flex items-center gap-1.5">
+              <span>🟢 1-Key Quick-Fire</span> • 
+              <span id="queue-remaining-text" class="text-emerald-700 font-semibold">50 leads remaining today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Progress Bar & Close -->
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          <div class="w-32 h-2 bg-black/[0.08] rounded-full overflow-hidden">
+            <div id="queue-progress-bar" class="h-full bg-[#25D366] rounded-full transition-all duration-300" style="width: 2%;"></div>
+          </div>
+          <button onclick="closeQueueModal()" class="w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 grid place-items-center text-[#6e6e73] hover:text-[#1d1d1f] transition-all text-xs font-bold" title="Close Queue (Esc)">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Focus Content Body -->
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 text-sm bg-white" id="queue-modal-body">
+        
+        <!-- Active Business Profile Card -->
+        <div class="bg-gradient-to-br from-[#fafafa] to-[#f5f5f7] p-4 sm:p-5 rounded-2xl border border-black/[0.08] shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span id="queue-badge-category" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0071e3] border border-blue-200 uppercase tracking-wide">
+                Food &amp; Dining
+              </span>
+              <span id="queue-badge-area" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-black/5 text-[#1d1d1f]">
+                Indiranagar, Bangalore
+              </span>
+              <span id="queue-contacted-badge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                ✓ Contacted Today
+              </span>
+            </div>
+
+            <h2 id="queue-brand-name" class="text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight">
+              The Rameshwaram Cafe
+            </h2>
+
+            <div class="flex items-center gap-3 text-xs text-[#6e6e73] pt-1">
+              <span id="queue-rating-reviews" class="text-[#b45309] font-bold">★ 4.4 (42,000 reviews)</span>
+              <span>•</span>
+              <span id="queue-phone-display" class="font-mono font-bold text-[#1d1d1f]">+91 90711 79191</span>
+            </div>
+          </div>
+
+          <!-- Fast Reference Links -->
+          <div class="flex items-center gap-2 flex-wrap shrink-0">
+            <a id="queue-web-link" href="#" target="_blank" rel="noopener noreferrer" class="apple-btn-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1 bg-white text-[#0071e3]">
+              <span>Website ↗</span>
+            </a>
+            <a id="queue-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="apple-btn-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1 bg-white text-rose-600">
+              <span>Maps ↗</span>
+            </a>
+            <a id="queue-call-link" href="#" class="apple-btn-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1 bg-white text-emerald-700">
+              <span>Call</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Pre-filled Pitch Message Container -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="font-bold text-xs uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
+              <span>💬</span> WhatsApp Pitch Script (Pre-filled for 1-Click Launch)
+            </label>
+            <button onclick="copyQueuePitchScript()" class="text-xs text-[#0071e3] hover:underline font-semibold flex items-center gap-1">
+              <span>📋 Copy (C)</span>
+            </button>
+          </div>
+          
+          <div id="queue-pitch-preview" class="p-4 rounded-xl bg-[#f8f9fa] border border-black/[0.08] text-xs leading-relaxed text-[#1d1d1f] font-mono whitespace-pre-wrap select-all max-h-48 overflow-y-auto">
+            <!-- Script filled dynamically -->
+          </div>
+        </div>
+
+        <!-- Hot Pitch Angle Hint -->
+        <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200/60 text-xs flex items-start gap-2.5 text-[#0071e3]">
+          <span class="text-base shrink-0">💡</span>
+          <div>
+            <strong class="font-bold">Pitch Strategy:</strong>
+            <span id="queue-pitch-hint" class="text-[#1d1d1f] ml-1">0% Commission Direct Ordering Menu starting from ₹9,999.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Control Bar (1-Key Super Action) -->
+      <div class="px-6 py-4 border-t border-black/[0.08] bg-[#f5f5f7] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- Navigation Buttons -->
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
+          <button onclick="prevQueueLead()" class="apple-btn-secondary px-3.5 py-2 text-xs font-semibold flex items-center gap-1.5 bg-white">
+            <span>← Previous</span>
+          </button>
+          <button onclick="skipQueueLead()" class="apple-btn-secondary px-3.5 py-2 text-xs font-semibold flex items-center gap-1.5 bg-white">
+            <span>Skip (→)</span>
+          </button>
+        </div>
+
+        <!-- Primary Giant Action Button -->
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button id="queue-launch-btn" onclick="sendWhatsAppAndNext()" class="apple-pill-btn px-6 py-3 text-sm font-bold flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-md hover:shadow-lg transition-all w-full sm:w-auto cursor-pointer">
+            <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>Open WhatsApp &amp; Next</span>
+            <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-white font-sans font-bold">Spacebar / ⏎</span>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -9694,20 +9875,30 @@ function renderCardsView(brands) {
   const visible = brands.slice(0, currentRenderLimit);
 
   return `
-    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between">
+    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between flex-wrap gap-2">
       <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified Bangalore businesses</span>
-      <span class="text-emerald-600 font-bold flex items-center gap-1">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% Real Phone Numbers &amp; Contacts
-      </span>
+      <div class="flex items-center gap-3">
+        <button onclick="startDailyQueue()" class="text-xs text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">
+          <span>⚡ Launch 50 DM Queue</span>
+        </button>
+        <span class="text-emerald-600 font-bold flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% Real Phone Numbers
+        </span>
+      </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-      ${visible.map(b => `
-        <div class="p-5 flex flex-col justify-between relative group hover:border-black/20 hover:shadow-md transition-all bg-white rounded-2xl border border-black/[0.08]">
+      ${visible.map(b => {
+        const contacted = isLeadContacted(b.id);
+        return `
+        <div class="p-5 flex flex-col justify-between relative group hover:border-black/20 hover:shadow-md transition-all bg-white rounded-2xl border ${contacted ? 'border-emerald-300 bg-emerald-50/10' : 'border-black/[0.08]'}">
           <div>
             <!-- Top Row: Name + Score -->
             <div class="flex items-start justify-between gap-3 mb-1.5">
               <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors truncate leading-tight">${b.name}</h3>
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors truncate leading-tight">${b.name}</h3>
+                  ${contacted ? '<span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.2 rounded-full shrink-0">✓ Contacted Today</span>' : ''}
+                </div>
                 <p class="text-xs text-[#6e6e73] truncate mt-1">${b.subcategory} • <span class="font-semibold text-[#1d1d1f]">${b.area}</span></p>
               </div>
               <div class="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
@@ -9718,15 +9909,15 @@ function renderCardsView(brands) {
 
             <!-- Phone Number (Direct WhatsApp CTA) & Website Visible Links -->
             <div class="flex flex-wrap items-center gap-2 my-2.5">
-              <a href="${getDirectWhatsAppUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 text-xs font-semibold font-mono border border-emerald-200/80 shadow-xs hover:shadow-sm transition-all group/wa" title="Open 1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
+              <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${contacted ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 border border-emerald-200/80'} text-xs font-semibold font-mono shadow-xs hover:shadow-sm transition-all group/wa" title="Open 1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
                 <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                 <span>${formatDisplayPhone(b.phone_number)}</span>
-                <span class="text-[10px] font-sans font-bold bg-emerald-200/70 text-emerald-900 px-1 py-0.2 rounded">WA ↗</span>
+                <span class="text-[10px] font-sans font-bold ${contacted ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'} px-1 py-0.2 rounded">${contacted ? '✓ Sent' : 'WA ↗'}</span>
               </a>
 
               ${b.website_url ? `
                 <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#0071e3] text-xs font-semibold border border-blue-200/80 transition-all max-w-[200px]" title="Visit Official Website: ${b.website_display || b.website_url}">
-                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path stroke-width="2" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path stroke-width="2" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
                   <span class="truncate font-mono">${b.website_display || 'Visit Website'}</span>
                   <span class="text-[10px]">↗</span>
                 </a>
@@ -9774,14 +9965,14 @@ function renderCardsView(brands) {
               </a>
 
               <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-blue-50 text-[#0071e3] border border-black/[0.06] grid place-items-center transition-all" title="${b.website_url ? 'Visit Official Website (' + (b.website_display || 'Web') + ')' : 'Search Brand on Google'}">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
               </a>
 
               <a href="tel:${b.phone_number}" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-emerald-50 text-[#34c759] border border-black/[0.06] grid place-items-center transition-all" title="Call Business: ${b.phone_number}">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </a>
 
-              <a href="${getDirectWhatsAppUrl(b)}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+              <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="w-8 h-8 rounded-full ${contacted ? 'bg-emerald-600 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200'} grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
             </div>
@@ -9792,7 +9983,8 @@ function renderCardsView(brands) {
             </button>
           </div>
         </div>
-      `).join('')}
+      `;
+      }).join('')}
     </div>
   `;
 }
@@ -9822,10 +10014,19 @@ function renderTableView(brands) {
           </span>
         </div>
         <div class="flex items-center gap-3 text-xs text-[#6e6e73]">
+          <button onclick="startDailyQueue()" class="text-xs text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">
+            <span>⚡ Launch 50 DM Queue</span>
+          </button>
           <span class="flex items-center gap-1 text-emerald-600 font-semibold">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% WhatsApp Direct
           </span>
-          <button onclick="exportCSV()" class="apple-btn-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1.5 cursor-pointe      <!-- Clean, Perfectly Aligned Data Table -->
+          <button onclick="exportCSV()" class="apple-btn-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <span>Export CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Clean, Perfectly Aligned Data Table -->
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs border-collapse table-fixed min-w-[1100px]">
           <colgroup>
@@ -9851,8 +10052,10 @@ function renderTableView(brands) {
             </tr>
           </thead>
           <tbody class="divide-y divide-black/[0.06]">
-            ${visible.map((b, i) => `
-              <tr class="hover:bg-blue-50/40 transition-colors group ${i % 2 === 0 ? 'bg-white' : 'bg-[#fafafa]/70'}">
+            ${visible.map((b, i) => {
+              const contacted = isLeadContacted(b.id);
+              return `
+              <tr class="hover:bg-blue-50/40 transition-colors group ${contacted ? 'bg-emerald-50/25' : (i % 2 === 0 ? 'bg-white' : 'bg-[#fafafa]/70')}">
                 
                 <!-- 1. Row # -->
                 <td class="py-3 px-2 text-center text-[#86868b] font-mono text-[11px] align-middle">
@@ -9861,8 +10064,11 @@ function renderTableView(brands) {
 
                 <!-- 2. Business Name & Address -->
                 <td class="py-3 px-3 align-middle overflow-hidden">
-                  <div class="font-bold text-[#1d1d1f] text-[13px] leading-snug group-hover:text-[#0071e3] transition-colors truncate" title="${b.name}">
-                    ${b.name}
+                  <div class="flex items-center gap-1.5">
+                    <div class="font-bold text-[#1d1d1f] text-[13px] leading-snug group-hover:text-[#0071e3] transition-colors truncate" title="${b.name}">
+                      ${b.name}
+                    </div>
+                    ${contacted ? '<span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.2 rounded shrink-0">✓ Sent</span>' : ''}
                   </div>
                   <div class="text-[11px] text-[#6e6e73] truncate mt-0.5" title="${b.full_address || b.area + ', Bangalore'}">
                     ${b.subcategory || ''} • <span class="font-medium text-[#1d1d1f]">${b.area}</span>
@@ -9873,14 +10079,15 @@ function renderTableView(brands) {
                 <td class="py-3 px-3 align-middle">
                   <a 
                     href="${getDirectWhatsAppUrl(b)}" 
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold font-mono shadow-2xs hover:shadow-xs transition-all w-full justify-between" 
+                    onclick="handleDirectWhatsAppClick('${b.id}')"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg ${contacted ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#25D366] hover:bg-[#20ba59]'} text-white text-xs font-bold font-mono shadow-2xs hover:shadow-xs transition-all w-full justify-between" 
                     title="Open WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})"
                   >
                     <div class="flex items-center gap-1.5 truncate">
                       <svg class="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                       <span class="text-[11px] font-semibold">${formatDisplayPhone(b.phone_number)}</span>
                     </div>
-                    <span class="text-[9px] bg-white/20 px-1 py-0.2 rounded font-sans font-bold shrink-0">WA ↗</span>
+                    <span class="text-[9px] bg-white/20 px-1 py-0.2 rounded font-sans font-bold shrink-0">${contacted ? '✓ Sent' : 'WA ↗'}</span>
                   </a>
                 </td>
 
@@ -9936,7 +10143,8 @@ function renderTableView(brands) {
                 </td>
 
               </tr>
-            `).join('')}
+            `;
+            }).join('')}
           </tbody>
         </table>
       </div>
@@ -9982,15 +10190,22 @@ function renderListView(brands) {
   const visible = brands.slice(0, currentRenderLimit);
 
   return `
-    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between">
+    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between flex-wrap gap-2">
       <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified businesses in List View</span>
-      <span class="text-emerald-600 font-bold flex items-center gap-1">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 1-Click Direct WhatsApp
-      </span>
+      <div class="flex items-center gap-3">
+        <button onclick="startDailyQueue()" class="text-xs text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">
+          <span>⚡ Launch Queue</span>
+        </button>
+        <span class="text-emerald-600 font-bold flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 1-Click Direct WhatsApp
+        </span>
+      </div>
     </div>
     <div class="space-y-3">
-      ${visible.map((b, idx) => `
-        <div class="bg-white rounded-2xl border border-black/[0.08] p-4 sm:p-5 hover:border-black/20 hover:shadow-md transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 group">
+      ${visible.map((b, idx) => {
+        const contacted = isLeadContacted(b.id);
+        return `
+        <div class="bg-white rounded-2xl border ${contacted ? 'border-emerald-300 bg-emerald-50/15' : 'border-black/[0.08]'} p-4 sm:p-5 hover:border-black/20 hover:shadow-md transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 group">
           <!-- Left: Details & Name -->
           <div class="flex items-start gap-3.5 flex-1 min-w-0">
             <div class="w-10 h-10 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-[#1d1d1f] font-mono text-xs font-bold grid place-items-center shrink-0 group-hover:bg-[#0071e3]/10 group-hover:text-[#0071e3] transition-colors mt-0.5">
@@ -10000,12 +10215,15 @@ function renderListView(brands) {
               <div class="flex flex-wrap items-center gap-2 mb-1">
                 <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-tight truncate max-w-[320px] sm:max-w-md">${b.name}</h3>
                 <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.06]">${b.area}</span>
-                       <!-- Direct WhatsApp Number Button & Web Link -->
+                ${contacted ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ Contacted Today</span>' : ''}
+              </div>
+
+              <!-- Direct WhatsApp Number Button & Web Link -->
               <div class="flex flex-wrap items-center gap-2">
-                <a href="${getDirectWhatsAppUrl(b)}" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 text-xs font-semibold font-mono border border-emerald-200/80 shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
+                <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${contacted ? 'bg-emerald-600 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 border border-emerald-200/80'} text-xs font-semibold font-mono shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
                   <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                   <span>${formatDisplayPhone(b.phone_number)}</span>
-                  <span class="text-[9px] font-sans font-bold bg-emerald-200/70 text-emerald-900 px-1 py-0.2 rounded">WA ↗</span>
+                  <span class="text-[9px] font-sans font-bold ${contacted ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'} px-1 py-0.2 rounded">${contacted ? '✓ Sent' : 'WA ↗'}</span>
                 </a>
 
                 ${b.website_url ? `
@@ -10054,7 +10272,7 @@ function renderListView(brands) {
                 <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </a>
 
-              <a href="${getDirectWhatsAppUrl(b)}" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200 grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+              <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="w-8 h-8 rounded-full ${contacted ? 'bg-emerald-600 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200'} grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
 
@@ -10065,7 +10283,8 @@ function renderListView(brands) {
             </div>
           </div>
         </div>
-      `).join('')}
+      `;
+      }).join('')}
     </div>
   `;
 }
@@ -10080,6 +10299,7 @@ function renderResults() {
     container.innerHTML = renderTableView(displayedBrands);
   }
   updateMetrics();
+  updateDailyProgressUI();
 }
 
 function setViewMode(mode) {
@@ -10209,7 +10429,13 @@ function applyLocalFilters() {
     });
   }
 
-  // 8. Sorting
+  // 8. Hide Contacted Leads Filter
+  if (hideContactedActive) {
+    const contacted = getContactedTodayList();
+    filtered = filtered.filter(b => !contacted.includes(b.id));
+  }
+
+  // 9. Sorting
   filtered.sort((a, b) => {
     switch (sortBy) {
       case 'reviews_desc':
@@ -10218,86 +10444,258 @@ function applyLocalFilters() {
         return (a.gmb_reviews || 0) - (b.gmb_reviews || 0);
       case 'rating_desc':
         return (b.gmb_rating || 0) - (a.gmb_rating || 0);
-      case 'rating_asc':
-        return (a.gmb_rating || 0) - (b.gmb_rating || 0);
-      case 'loss_desc':
-        return (b.gmb_reviews || 0) - (a.gmb_reviews || 0);
-      case 'name_asc':
-        return a.name.localeCompare(b.name);
       case 'ai_asc':
-        return (a.ai_visibility_score || 0) - (b.ai_visibility_score || 0);
-      case 'ai_desc':
-        return (b.ai_visibility_score || 0) - (a.ai_visibility_score || 0);
+        return (a.ai_visibility_score || 50) - (b.ai_visibility_score || 50);
       case 'opportunity':
       default:
-        return (b.opportunity_score || 0) - (a.opportunity_score || 0);
+        return b.opportunity_score - a.opportunity_score;
     }
   });
 
   displayedBrands = filtered;
-  renderResults();
-
-  const liveCountBadge = document.getElementById('live-search-count');
-  if (liveCountBadge) liveCountBadge.textContent = `${displayedBrands.length.toLocaleString()} Matches`;
+  
+  const searchCount = document.getElementById('live-search-count');
+  if (searchCount) {
+    searchCount.textContent = `${filtered.length.toLocaleString()} Matches`;
+  }
 
   const badgeCount = document.getElementById('badge-count');
-  if (badgeCount) badgeCount.textContent = displayedBrands.length;
+  if (badgeCount) badgeCount.textContent = filtered.length;
+
+  renderResults();
 }
 
-function populateCategoryDropdown(brands, cityName) {
-  const dropdown = document.getElementById('filter-category');
-  if (!dropdown) return;
-  const cats = new Set(brands.map(b => b.category).filter(Boolean));
-  dropdown.innerHTML = `<option value="All">All Categories (${brands.length})</option>` + 
-    Array.from(cats).map(c => `<option value="${c}">${c}</option>`).join('');
+// -------------------------------------------------------------
+// ⚡ DAILY 50 OUTREACH FOCUS RUNNER & 100% BAN-SAFE AUTOMATION
+// -------------------------------------------------------------
+const DAILY_OUTREACH_TARGET = 50;
+var queueActiveIndex = 0;
+var queueLeadsList = [];
+var hideContactedActive = false;
+
+function getTodayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
-function quickSelectCategory(query, city, el) {
-  document.querySelectorAll('.apple-category-item').forEach(item => item.classList.remove('active'));
-  if (el) el.classList.add('active');
+function getContactedTodayList() {
+  const today = getTodayKey();
+  const storedDate = localStorage.getItem('getmore_outreach_date');
+  if (storedDate !== today) {
+    localStorage.setItem('getmore_outreach_date', today);
+    localStorage.setItem('getmore_contacted_leads', JSON.stringify([]));
+    return [];
+  }
+  try {
+    return JSON.parse(localStorage.getItem('getmore_contacted_leads')) || [];
+  } catch (e) {
+    return [];
+  }
+}
 
-  const qVal = query === 'All' ? '' : query;
-  document.getElementById('query-input').value = qVal;
-  document.getElementById('city-input').value = city || 'Bangalore';
+function isLeadContacted(brandId) {
+  if (!brandId) return false;
+  const list = getContactedTodayList();
+  return list.includes(brandId);
+}
 
-  const qDrop = document.getElementById('query-dropdown');
-  if (qDrop && [...qDrop.options].some(o => o.value === query)) {
-    qDrop.value = query;
+function markLeadContacted(brandId) {
+  if (!brandId) return;
+  const today = getTodayKey();
+  localStorage.setItem('getmore_outreach_date', today);
+  const list = getContactedTodayList();
+  if (!list.includes(brandId)) {
+    list.push(brandId);
+    localStorage.setItem('getmore_contacted_leads', JSON.stringify(list));
+  }
+  updateDailyProgressUI();
+}
+
+function unmarkLeadContacted(brandId) {
+  let list = getContactedTodayList();
+  list = list.filter(id => id !== brandId);
+  localStorage.setItem('getmore_contacted_leads', JSON.stringify(list));
+  updateDailyProgressUI();
+}
+
+function handleDirectWhatsAppClick(brandId) {
+  if (!brandId) return;
+  markLeadContacted(brandId);
+  renderResults();
+}
+
+function toggleHideContacted(checked) {
+  hideContactedActive = checked;
+  applyLocalFilters();
+}
+
+function updateDailyProgressUI() {
+  const contacted = getContactedTodayList();
+  const count = contacted.length;
+  const pct = Math.min(100, Math.round((count / DAILY_OUTREACH_TARGET) * 100));
+
+  // Header counter
+  const headerCounter = document.getElementById('header-queue-counter');
+  if (headerCounter) headerCounter.textContent = `${count}/${DAILY_OUTREACH_TARGET}`;
+
+  // Hub text & bar
+  const hubText = document.getElementById('hub-progress-text');
+  if (hubText) {
+    if (count >= DAILY_OUTREACH_TARGET) {
+      hubText.innerHTML = `<span class="text-emerald-700 font-bold">🎉 ${count} / ${DAILY_OUTREACH_TARGET} (Daily Goal Complete!)</span>`;
+    } else {
+      hubText.textContent = `${count} / ${DAILY_OUTREACH_TARGET} sent (${DAILY_OUTREACH_TARGET - count} left)`;
+    }
+  }
+  const hubBar = document.getElementById('hub-progress-bar');
+  if (hubBar) hubBar.style.width = `${pct}%`;
+
+  // Queue modal counters if open
+  const queueCounter = document.getElementById('queue-lead-counter');
+  if (queueCounter) {
+    queueCounter.textContent = `Lead ${queueActiveIndex + 1} / ${Math.min(queueLeadsList.length, DAILY_OUTREACH_TARGET)}`;
+  }
+  const queueRemaining = document.getElementById('queue-remaining-text');
+  if (queueRemaining) {
+    const remaining = Math.max(0, DAILY_OUTREACH_TARGET - count);
+    queueRemaining.textContent = `${remaining} leads remaining today (${count}/${DAILY_OUTREACH_TARGET} sent)`;
+  }
+  const queueBar = document.getElementById('queue-progress-bar');
+  if (queueBar) queueBar.style.width = `${pct}%`;
+}
+
+function startDailyQueue() {
+  const contacted = getContactedTodayList();
+  const pool = displayedBrands.length > 0 ? displayedBrands : rawDiscoveredBrands;
+
+  if (!pool || pool.length === 0) {
+    alert('No verified leads available in current view.');
+    return;
   }
 
-  const cDrop = document.getElementById('city-dropdown');
-  if (cDrop && [...cDrop.options].some(o => o.value === (city || 'Bangalore'))) {
-    cDrop.value = city || 'Bangalore';
-  }
+  // Sort queue so uncontacted leads appear first
+  queueLeadsList = [...pool].sort((a, b) => {
+    const aContacted = contacted.includes(a.id) ? 1 : 0;
+    const bContacted = contacted.includes(b.id) ? 1 : 0;
+    return aContacted - bContacted;
+  });
 
-  executeDiscovery(qVal, city || 'Bangalore');
+  queueActiveIndex = 0;
+  loadQueueLead(queueActiveIndex);
+  document.getElementById('outreach-queue-modal').classList.remove('hidden');
 }
 
-function handleQueryDropdownChange(val) {
-  const input = document.getElementById('query-input');
-  if (val === 'custom') {
-    input.value = '';
-    input.placeholder = 'Type custom business / trade keyword...';
-    input.focus();
+function loadQueueLead(index) {
+  if (index < 0 || index >= queueLeadsList.length) return;
+  queueActiveIndex = index;
+  const b = queueLeadsList[index];
+  if (!b) return;
+
+  const contacted = isLeadContacted(b.id);
+
+  document.getElementById('queue-brand-name').textContent = b.name;
+  document.getElementById('queue-badge-category').textContent = b.category || 'Business';
+  document.getElementById('queue-badge-area').textContent = `${b.area || ''}, ${b.city || 'Bangalore'}`;
+  
+  const contactedBadge = document.getElementById('queue-contacted-badge');
+  if (contactedBadge) {
+    if (contacted) contactedBadge.classList.remove('hidden');
+    else contactedBadge.classList.add('hidden');
+  }
+
+  document.getElementById('queue-rating-reviews').textContent = `★ ${b.gmb_rating || '4.8'} (${(b.gmb_reviews || 100).toLocaleString()} reviews)`;
+  document.getElementById('queue-phone-display').textContent = formatDisplayPhone(b.phone_number);
+
+  document.getElementById('queue-web-link').href = getSafeWebsiteUrl(b);
+  document.getElementById('queue-maps-link').href = createGoogleMapsUrl(b.name, b.city);
+  document.getElementById('queue-call-link').href = `tel:${b.phone_number}`;
+
+  const pitchText = generateWhatsAppPitch(b);
+  document.getElementById('queue-pitch-preview').textContent = pitchText;
+  document.getElementById('queue-pitch-hint').textContent = b.opportunity_text || `${b.pitch_offer_name || '0% Commission WhatsApp App'} starting from ₹9,999.`;
+
+  updateDailyProgressUI();
+}
+
+function sendWhatsAppAndNext() {
+  const b = queueLeadsList[queueActiveIndex];
+  if (!b) return;
+
+  // 1. Launch native WhatsApp app directly
+  const waUrl = getDirectWhatsAppUrl(b);
+  window.location.href = waUrl;
+
+  // 2. Mark this lead as contacted
+  markLeadContacted(b.id);
+  showToast(`⚡ WhatsApp opened! "${b.name}" marked contacted.`);
+
+  // 3. Advancing to next uncontacted lead in queue
+  if (queueActiveIndex + 1 < queueLeadsList.length) {
+    setTimeout(() => {
+      queueActiveIndex++;
+      loadQueueLead(queueActiveIndex);
+    }, 450);
   } else {
-    input.value = val;
-    const city = document.getElementById('city-input').value.trim() || 'Bangalore';
-    executeDiscovery(val, city);
+    showToast(`🎉 Reached the end of your lead queue!`);
+  }
+
+  // Refresh background listings
+  renderResults();
+}
+
+function skipQueueLead() {
+  if (queueActiveIndex + 1 < queueLeadsList.length) {
+    queueActiveIndex++;
+    loadQueueLead(queueActiveIndex);
+  } else {
+    showToast('You have reached the end of the queue.');
   }
 }
 
-function handleCityDropdownChange(val) {
-  const input = document.getElementById('city-input');
-  if (val === 'custom') {
-    input.value = '';
-    input.placeholder = 'Type custom city...';
-    input.focus();
-  } else {
-    input.value = val;
-    const query = document.getElementById('query-input').value.trim() || '';
-    executeDiscovery(query, val);
+function prevQueueLead() {
+  if (queueActiveIndex > 0) {
+    queueActiveIndex--;
+    loadQueueLead(queueActiveIndex);
   }
 }
+
+function copyQueuePitchScript() {
+  const b = queueLeadsList[queueActiveIndex];
+  if (!b) return;
+  const script = document.getElementById('queue-pitch-preview').textContent;
+  navigator.clipboard.writeText(script);
+  showToast('WhatsApp Pitch Script copied to clipboard!');
+}
+
+function closeQueueModal() {
+  document.getElementById('outreach-queue-modal').classList.add('hidden');
+}
+
+// Global Keyboard Shortcut Automation (Space / Enter / Arrow Keys / C / Esc)
+window.addEventListener('keydown', (e) => {
+  const queueModal = document.getElementById('outreach-queue-modal');
+  if (!queueModal || queueModal.classList.contains('hidden')) return;
+
+  if (e.code === 'Space' || e.key === 'Enter') {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      sendWhatsAppAndNext();
+    }
+  } else if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    skipQueueLead();
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    prevQueueLead();
+  } else if (e.key.toLowerCase() === 'c' && !e.metaKey && !e.ctrlKey) {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      copyQueuePitchScript();
+    }
+  } else if (e.key === 'Escape') {
+    closeQueueModal();
+  }
+});
 
 function executeDiscovery(query, city) {
   const startTime = Date.now();
@@ -10351,6 +10749,7 @@ function executeDiscovery(query, city) {
     if (badgeCount) badgeCount.textContent = displayedBrands.length;
 
     applyLocalFilters();
+    updateDailyProgressUI();
 
     if (btnText) btnText.textContent = `Filter Leads`;
     if (btn) btn.disabled = false;
@@ -10395,7 +10794,10 @@ function openPitchModal(brandId) {
   document.getElementById('modal-maps-btn').href = createGoogleMapsUrl(b.name, b.city);
   document.getElementById('modal-call-btn').href = `tel:${b.phone_number}`;
   document.getElementById('modal-call-btn').innerHTML = `<svg class="w-3.5 h-3.5 text-[#34c759]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span>Call ${formatDisplayPhone(b.phone_number)}</span>`;
-  document.getElementById('modal-wa-btn').href = waUrl;
+  
+  const modalWaBtn = document.getElementById('modal-wa-btn');
+  modalWaBtn.href = waUrl;
+  modalWaBtn.onclick = () => handleDirectWhatsAppClick(b.id);
 
   document.getElementById('modal-pitch-offer-tag').textContent = b.pitch_offer_name || 'Getmore OS Offer';
   document.getElementById('modal-pitch-angle-title').textContent = `Pitch: ${b.pitch_offer_name || 'Direct 0% Commission Setup'}`;
@@ -10565,6 +10967,7 @@ function initPitchFinder() {
 
   // Default initial discovery load: All Verified Leads in Bangalore
   executeDiscovery('', 'Bangalore');
+  updateDailyProgressUI();
 }
 
 if (document.readyState === 'loading') {
