@@ -10424,7 +10424,7 @@ function generateWhatsAppPitch(b) {
   const rating = b.gmb_rating ? `★ ${b.gmb_rating}` : '★ 4.8';
   const isFood = b.category && (b.category.toLowerCase().includes('food') || b.category.toLowerCase().includes('biryani') || b.category.toLowerCase().includes('cafe') || b.category.toLowerCase().includes('dining') || b.category.toLowerCase().includes('restaurant'));
 
-  const footerLinks = `\n\n🌐 Website: https://getmoreos.in\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/`;
+  const footerLinks = `\n\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/\n🌐 Website: https://getmoreos.in`;
 
   // Angle 1: Has Google Maps with Reviews, but NO Direct Website
   if (!b.website_url) {
