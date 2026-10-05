@@ -47,12 +47,12 @@
     content="Never miss another high-ticket appointment. 24/7 AI Receptionist, exclusive lead gen & AI automations from $500/mo.">
   <meta name="twitter:image" content="https://getmoreos.in/og-image.jpg">
 
-  <!-- Typography & Performance Preconnects -->
+  <!-- Typography & Performance Preconnects: Inter + Plus Jakarta Sans for maximum screen readability -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
@@ -62,22 +62,22 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-            display: ['"Syne"', 'system-ui', 'sans-serif'],
+            sans: ['"Inter"', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
             brand: {
-              black: '#070709',
-              carbon: '#0F0F13',
-              surface: '#15151A',
-              card: '#1A1A22',
-              border: '#262631',
-              borderHover: '#3F3F50',
-              muted: '#8E8E9F',
+              black: '#07080B',
+              carbon: '#0E1015',
+              surface: '#141720',
+              card: '#1A1E29',
+              border: '#232838',
+              borderHover: '#384058',
+              muted: '#94A3B8',
               accent: '#10B981',
               accentGlow: '#059669',
-              light: '#F4F4F6'
+              light: '#F8FAFC'
             }
           }
         }
@@ -257,15 +257,18 @@
 
     html,
     body {
-      background-color: #070709;
-      color: #F4F4F6;
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #07080B;
+      color: #F8FAFC;
+      font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.011em;
     }
 
     .font-display {
-      font-family: 'Syne', system-ui, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      letter-spacing: -0.025em;
     }
 
     .font-mono-code {
@@ -273,51 +276,52 @@
     }
 
     .editorial-card {
-      background-color: #0F0F13;
-      border: 1px solid #262631;
+      background-color: #0E1015;
+      border: 1px solid #232838;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .editorial-card:hover {
-      border-color: #3F3F50;
+      border-color: #384058;
       transform: translateY(-2px);
     }
 
     .badge-pill {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.06em;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       padding: 5px 14px;
       border-radius: 9999px;
-      border: 1px solid #262631;
-      background: rgba(255, 255, 255, 0.04);
-      color: #A1A1B2;
+      border: 1px solid #232838;
+      background: rgba(255, 255, 255, 0.05);
+      color: #CBD5E1;
     }
 
     .badge-emerald {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.1);
       color: #34D399;
     }
 
     /* Tactile buttons */
     .btn-solid {
       background: #FFFFFF;
-      color: #070709;
+      color: #07080B;
       font-weight: 700;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
     }
 
     .btn-solid:hover {
-      background: #E4E4E8;
+      background: #E2E8F0;
       transform: translateY(-2px);
       box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
     }
 
     .btn-emerald {
       background: #10B981;
-      color: #070709;
+      color: #07080B;
       font-weight: 700;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
@@ -330,15 +334,15 @@
     }
 
     .btn-outline {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid #262631;
-      color: #F4F4F6;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #232838;
+      color: #F8FAFC;
       transition: all 0.2s ease;
     }
 
     .btn-outline:hover {
-      background: #15151A;
-      border-color: #3F3F50;
+      background: #141720;
+      border-color: #384058;
       color: #FFFFFF;
     }
 
@@ -347,7 +351,7 @@
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
-      background: #262631;
+      background: #232838;
       height: 6px;
       border-radius: 9999px;
       outline: none;
@@ -386,62 +390,62 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #070709;
+      background: #07080B;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #262631;
+      background: #232838;
       border-radius: 3px;
     }
 
     .glow-bg {
-      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, rgba(7, 7, 9, 0) 70%);
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.14) 0%, rgba(7, 8, 11, 0) 70%);
     }
 
     .glow-card {
-      box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.15);
+      box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.18);
     }
   </style>
 </head>
 
-<body class="selection:bg-emerald-400 selection:text-black">
+<body class="selection:bg-emerald-400 selection:text-black text-slate-100">
 
   <!-- TOP INTERNATIONAL STATUS BAR -->
-  <div class="border-b border-[#262631] bg-[#0A0A0E] py-2 px-4 text-[11px] font-mono-code text-[#8E8E9F]">
+  <div class="border-b border-[#232838] bg-[#0A0C10] py-2.5 px-4 text-[12px] font-medium text-slate-400">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2.5">
         <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-white font-semibold tracking-wide">GETMORE.OS</span>
-        <span class="text-[#5F5F70] hidden md:inline">•</span>
-        <span class="text-[#A1A1B2] hidden md:inline">24/7 AI Receptionist • Lead Generation • Operational AI Automations</span>
+        <span class="text-white font-bold tracking-wide">GETMORE.OS</span>
+        <span class="text-slate-600 hidden md:inline">•</span>
+        <span class="text-slate-300 hidden md:inline">24/7 AI Receptionist • Lead Generation • Operational AI Automations</span>
       </div>
-      <div class="flex items-center gap-3 sm:gap-5 text-[11px]">
-        <span class="text-[#8E8E9F] flex items-center gap-1.5">
-          <span class="text-white font-medium">Serving:</span> 🇺🇸 US &bull; 🇬🇧 UK &bull; 🇦🇺 Australia &bull; 🇨🇦 Canada
+      <div class="flex items-center gap-3 sm:gap-5 text-[12px]">
+        <span class="text-slate-300 flex items-center gap-1.5">
+          <span class="text-white font-semibold">Serving:</span> 🇺🇸 US &bull; 🇬🇧 UK &bull; 🇦🇺 Australia &bull; 🇨🇦 Canada
         </span>
-        <a href="#calculator" class="text-emerald-400 hover:underline hidden sm:inline">Revenue Leak Calculator ↓</a>
+        <a href="#calculator" class="text-emerald-400 font-semibold hover:underline hidden sm:inline">Revenue Leak Calculator ↓</a>
       </div>
     </div>
   </div>
 
   <!-- STICKY NAVIGATION -->
-  <header class="sticky top-0 z-50 border-b border-[#262631] bg-[#070709]/90 backdrop-blur-md">
+  <header class="sticky top-0 z-50 border-b border-[#232838] bg-[#07080B]/92 backdrop-blur-md">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-3.5 sm:py-4">
 
       <!-- Brand Logo -->
       <a href="https://getmoreos.in/" class="flex items-center gap-2.5" title="Getmore OS Homepage">
         <div
-          class="h-8 w-8 rounded-lg bg-emerald-500 text-black font-display font-black text-[15px] grid place-items-center shadow-lg shadow-emerald-500/20">
+          class="h-8 w-8 rounded-lg bg-emerald-500 text-black font-display font-extrabold text-[16px] grid place-items-center shadow-lg shadow-emerald-500/20">
           G
         </div>
         <div class="flex items-baseline gap-1">
-          <span class="font-display text-[20px] font-bold tracking-tight text-white">getmore</span>
-          <span class="font-mono-code text-[12px] text-emerald-400 font-semibold">.os</span>
+          <span class="font-display text-[20px] font-extrabold tracking-tight text-white">getmore</span>
+          <span class="font-mono-code text-[12px] text-emerald-400 font-bold">.os</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7 text-[13px] font-medium text-[#8E8E9F]" aria-label="Main Navigation">
+      <nav class="hidden lg:flex items-center gap-7 text-[13.5px] font-semibold text-slate-300" aria-label="Main Navigation">
         <a href="#problem-breakdown" class="hover:text-white transition-colors">The Cost of Missed Calls</a>
         <a href="#services" class="hover:text-white transition-colors">3 Core Services</a>
         <a href="#calculator" class="hover:text-white transition-colors">Revenue Calculator</a>
@@ -454,9 +458,9 @@
       <!-- Action Button -->
       <div class="flex items-center gap-3">
         <a href="#discovery-call"
-          class="btn-emerald px-4 sm:px-5 py-2.5 rounded-full text-[12.5px] tracking-tight flex items-center gap-1.5">
+          class="btn-emerald px-4 sm:px-5 py-2.5 rounded-full text-[13px] tracking-tight flex items-center gap-1.5 font-bold">
           <span>Book Strategy Call</span>
-          <span class="text-black font-bold">↗</span>
+          <span class="text-black font-extrabold">↗</span>
         </a>
       </div>
 
@@ -466,8 +470,8 @@
   <!-- MAIN WRAPPER -->
   <main class="mx-auto max-w-7xl px-4 sm:px-8">
 
-    <!-- HERO SECTION (PAS HOOK WITH KEYWORDS) -->
-    <section class="pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-[#262631] relative">
+    <!-- HERO SECTION (PAS HOOK WITH HIGH READABILITY) -->
+    <section class="pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-[#232838] relative">
       <div class="glow-bg absolute -top-10 left-1/2 -translate-x-1/2 w-full h-[500px] pointer-events-none"></div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
@@ -480,38 +484,38 @@
           </div>
 
           <h1
-            class="text-[38px] sm:text-[54px] md:text-[62px] font-display font-black tracking-[-0.03em] leading-[1.05] text-white">
+            class="text-[36px] sm:text-[50px] md:text-[58px] font-display font-extrabold tracking-[-0.03em] leading-[1.08] text-white">
             Every missed call is money handed to your competitor. <br />
-            <span class="text-[#8E8E9F] font-extrabold">We turn every ring into a booked appointment.</span>
+            <span class="text-slate-400 font-bold">We turn every ring into a booked appointment.</span>
           </h1>
 
-          <p class="text-[16px] sm:text-[18px] text-[#A1A1B2] max-w-xl leading-relaxed font-normal">
+          <p class="text-[16px] sm:text-[18px] text-slate-300 max-w-xl leading-relaxed font-normal">
             When you're hands-on with a client, on a job, or closed after hours, your phone keeps ringing. <strong class="text-white font-semibold">62% of those callers hang up and call the next business on Google.</strong> We deploy 24/7 human-sounding AI Voice Receptionists, exclusive lead generation, and custom backend automations so you never lose another high-ticket job.
           </p>
 
           <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-            <a href="#discovery-call" class="btn-emerald px-8 py-4 rounded-full text-[14px] text-center font-bold">
+            <a href="#discovery-call" class="btn-emerald px-8 py-4 rounded-full text-[14.5px] text-center font-bold">
               Book Your 15-Min Live AI Demo ↗
             </a>
-            <a href="#calculator" class="btn-outline px-6 py-4 rounded-full text-[13px] text-center font-mono-code flex items-center justify-center gap-2">
+            <a href="#calculator" class="btn-outline px-6 py-4 rounded-full text-[13.5px] text-center font-medium flex items-center justify-center gap-2">
               <span>Calculate Revenue Bleed</span>
               <span class="text-emerald-400">↓</span>
             </a>
           </div>
 
           <!-- Proof Metrics Strip -->
-          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-[#262631] text-[12px] font-mono-code text-[#8E8E9F]">
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-[#232838] text-[13px] text-slate-300">
             <div>
-              <div class="text-[18px] font-display font-bold text-white">< 1s</div>
-              <div class="text-[#717182] text-[11px] mt-0.5">Instant Call Pickup</div>
+              <div class="text-[20px] font-display font-extrabold text-white">< 1s</div>
+              <div class="text-slate-400 text-[12px] mt-0.5">Instant Call Pickup</div>
             </div>
             <div>
-              <div class="text-[18px] font-display font-bold text-emerald-400">100%</div>
-              <div class="text-[#717182] text-[11px] mt-0.5">Inbound Capture</div>
+              <div class="text-[20px] font-display font-extrabold text-emerald-400">100%</div>
+              <div class="text-slate-400 text-[12px] mt-0.5">Inbound Capture</div>
             </div>
             <div>
-              <div class="text-[18px] font-display font-bold text-white">$500 - $2k</div>
-              <div class="text-[#717182] text-[11px] mt-0.5">Tailored Deployments</div>
+              <div class="text-[20px] font-display font-extrabold text-white">$500 - $2k</div>
+              <div class="text-slate-400 text-[12px] mt-0.5">Tailored Deployments</div>
             </div>
           </div>
         </div>
@@ -521,16 +525,16 @@
           <div class="editorial-card rounded-2xl p-6 sm:p-7 relative overflow-hidden glow-card border-emerald-500/30">
             
             <!-- Top Status Bar -->
-            <div class="flex items-center justify-between pb-4 border-b border-[#262631] mb-5">
+            <div class="flex items-center justify-between pb-4 border-b border-[#232838] mb-5">
               <div class="flex items-center gap-2.5">
                 <span id="callStatusIndicator" class="h-3 w-3 rounded-full bg-emerald-500 animate-ping"></span>
-                <span id="callStatusText" class="text-[12px] font-mono-code text-white font-bold tracking-wide">ACTIVE AI CALL IN PROGRESS</span>
+                <span id="callStatusText" class="text-[12.5px] font-display font-bold text-white tracking-wide">ACTIVE AI CALL IN PROGRESS</span>
               </div>
-              <span class="text-[11px] font-mono-code text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">24/7/365 ONLINE</span>
+              <span class="text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">24/7/365 ONLINE</span>
             </div>
 
             <!-- Audio Waveform Visualizer & Interactive Play Button -->
-            <div class="flex items-center justify-between gap-3 py-3 mb-4 bg-[#0A0A0E] rounded-xl border border-[#262631]/80 px-4">
+            <div class="flex items-center justify-between gap-3 py-3 mb-4 bg-[#0A0C10] rounded-xl border border-[#232838] px-4">
               <div class="flex items-center gap-1.5">
                 <div class="h-7 w-1 bg-emerald-400 rounded-full wave-bar" style="animation-delay: 0.1s;"></div>
                 <div class="h-5 w-1 bg-emerald-500 rounded-full wave-bar" style="animation-delay: 0.3s;"></div>
@@ -539,55 +543,55 @@
                 <div class="h-9 w-1 bg-emerald-200 rounded-full wave-bar" style="animation-delay: 0.15s;"></div>
               </div>
               <button id="btnPlayVoiceSample" onclick="playLiveVoiceSample()"
-                class="btn-emerald text-[11px] font-mono-code px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md shadow-emerald-500/20">
+                class="btn-emerald text-[12px] font-semibold px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md shadow-emerald-500/20">
                 <span id="playIcon">▶</span>
                 <span id="playBtnText">Listen to AI Voice Live</span>
               </button>
             </div>
 
             <!-- Dialogue Simulation Flow -->
-            <div class="space-y-3 font-mono-code text-[12px]">
+            <div class="space-y-3 text-[13px]">
 
               <!-- Inbound Customer Dialogue -->
-              <div class="p-3.5 rounded-xl bg-[#15151A] border border-[#262631] text-[#A1A1B2]">
-                <div class="flex items-center justify-between text-[10px] text-[#717182] mb-1 font-semibold">
+              <div class="p-3.5 rounded-xl bg-[#141720] border border-[#232838] text-slate-300">
+                <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1 font-semibold">
                   <span>CALLER (HIGH-INTENT PROSPECT):</span>
                   <span>00:04</span>
                 </div>
-                <p class="text-white text-[12.5px] leading-relaxed">
+                <p class="text-white text-[13.5px] leading-relaxed">
                   "Hi, I need a comprehensive appointment booked for this Friday afternoon if you have an opening. What are your rates and can I get locked in today?"
                 </p>
               </div>
 
               <!-- AI Receptionist Response -->
-              <div class="p-4 rounded-xl bg-[#0D1A14] border border-emerald-500/40 text-emerald-300 space-y-2.5">
-                <div class="flex items-center justify-between text-[10px] text-emerald-400 font-bold">
+              <div class="p-4 rounded-xl bg-[#0D1813] border border-emerald-500/40 text-emerald-300 space-y-2.5">
+                <div class="flex items-center justify-between text-[11px] text-emerald-400 font-bold">
                   <span class="flex items-center gap-1.5">
                     <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
                     GETMORE AI RECEPTIONIST:
                   </span>
-                  <span class="text-emerald-500/80">LATENCY: 420ms</span>
+                  <span class="text-emerald-400 font-mono text-[10px]">LATENCY: 420ms</span>
                 </div>
-                <p id="aiSpeechText" class="text-[12.5px] text-emerald-100 leading-relaxed font-sans">
+                <p id="aiSpeechText" class="text-[13.5px] text-emerald-100 leading-relaxed">
                   "I can absolutely get you locked in! We have an opening this Friday at <strong>2:30 PM</strong> and <strong>4:00 PM</strong> with our lead specialist. Our diagnostic & full-service package begins at $450 with zero upfront deposit required. Which time works best for your schedule?"
                 </p>
-                <div class="pt-2 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono-code border-t border-emerald-900/50">
-                  <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
+                <div class="pt-2 flex flex-wrap items-center justify-between gap-2 text-[12px] border-t border-emerald-900/50">
+                  <span class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold flex items-center gap-1">
                     <span>✓</span> Calendar Slot Synced
                   </span>
-                  <span class="text-[#A1A1B2]">SMS Confirmation Sent</span>
+                  <span class="text-slate-300">SMS Confirmation Sent</span>
                 </div>
               </div>
 
               <!-- Automated Dispatch Bottom Metrics -->
-              <div class="grid grid-cols-2 gap-2.5 pt-1 text-center font-mono-code">
-                <div class="p-3 rounded-xl bg-[#15151A] border border-[#262631]">
+              <div class="grid grid-cols-2 gap-2.5 pt-1 text-center">
+                <div class="p-3 rounded-xl bg-[#141720] border border-[#232838]">
                   <div class="text-[18px] font-bold text-emerald-400 font-display">0 Missed Leads</div>
-                  <div class="text-[10px] text-[#717182] mt-0.5">Answers Every Call on Ring 1</div>
+                  <div class="text-[11.5px] text-slate-400 mt-0.5">Answers Every Call on Ring 1</div>
                 </div>
-                <div class="p-3 rounded-xl bg-[#15151A] border border-[#262631]">
+                <div class="p-3 rounded-xl bg-[#141720] border border-[#232838]">
                   <div class="text-[18px] font-bold text-white font-display">Direct Into CRM</div>
-                  <div class="text-[10px] text-[#717182] mt-0.5">Zero Manual Data Entry</div>
+                  <div class="text-[11.5px] text-slate-400 mt-0.5">Zero Manual Data Entry</div>
                 </div>
               </div>
 
@@ -600,14 +604,14 @@
     </section>
 
     <!-- SECTION 2: THE PAS FRAMEWORK (PROBLEM - AGITATE - SOLUTION) -->
-    <section id="problem-breakdown" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="problem-breakdown" class="py-16 sm:py-24 border-b border-[#232838]">
       
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
         <div class="badge-pill inline-block">THE HIDDEN REVENUE TRAP</div>
-        <h2 class="text-[30px] sm:text-[44px] font-display font-black text-white tracking-tight leading-tight">
+        <h2 class="text-[30px] sm:text-[44px] font-display font-extrabold text-white tracking-tight leading-tight">
           You are losing thousands every week not because of your work, but because of your phone.
         </h2>
-        <p class="text-[15px] sm:text-[16px] text-[#8E8E9F] leading-relaxed">
+        <p class="text-[15px] sm:text-[17px] text-slate-300 leading-relaxed">
           High-ticket service businesses don't have a service delivery problem. They have an inbound response bottleneck.
         </p>
       </div>
@@ -615,36 +619,36 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- 1. The Problem -->
-        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-red-500/20 bg-[#110D0F]">
+        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-red-500/20 bg-[#120D10]">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-[11px] font-mono-code text-red-400 font-bold uppercase tracking-wider">01 // THE PROBLEM</span>
+              <span class="text-[12px] font-bold text-red-400 uppercase tracking-wider">01 // THE PROBLEM</span>
               <span class="h-6 w-6 rounded-full bg-red-500/10 text-red-400 text-[12px] font-bold grid place-items-center">✕</span>
             </div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">You Can't Be In Two Places At Once</h3>
-            <p class="text-[14px] text-[#A1A1B2] leading-relaxed">
+            <p class="text-[14.5px] text-slate-300 leading-relaxed">
               When you or your team are with a customer, executing a high-value job, or operating during evening and weekend hours, the phone rings out. Hiring a full-time receptionist costs $3,500–$5,000/mo, and they still only work 40 hours a week with sick days and lunch breaks.
             </p>
           </div>
-          <div class="pt-6 border-t border-[#262631] mt-6 text-[12px] font-mono-code text-red-300/80 space-y-1">
+          <div class="pt-6 border-t border-[#232838] mt-6 text-[13px] text-red-300 space-y-1 font-medium">
             <div>• 62% of inbound service calls go unanswered</div>
             <div>• Unanswered after-hours inquiries go dead</div>
           </div>
         </div>
 
         <!-- 2. The Agitation -->
-        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-amber-500/20 bg-[#12100A]">
+        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-amber-500/20 bg-[#14120B]">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-[11px] font-mono-code text-amber-400 font-bold uppercase tracking-wider">02 // THE AGITATION</span>
+              <span class="text-[12px] font-bold text-amber-400 uppercase tracking-wider">02 // THE AGITATION</span>
               <span class="h-6 w-6 rounded-full bg-amber-500/10 text-amber-400 text-[12px] font-bold grid place-items-center">⚠</span>
             </div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">Prospects Don't Leave Voicemails. They Call Your Competitor.</h3>
-            <p class="text-[14px] text-[#A1A1B2] leading-relaxed">
+            <p class="text-[14.5px] text-slate-300 leading-relaxed">
               In high-intent local markets across the US, UK, Australia, and Canada, speed-to-lead is everything. 85% of callers who hit a voicemail hang up immediately. Every dropped call is a $500 to $2,500 ticket walking straight into the pocket of the competitor 2 miles away.
             </p>
           </div>
-          <div class="pt-6 border-t border-[#262631] mt-6 text-[12px] font-mono-code text-amber-300/80 space-y-1">
+          <div class="pt-6 border-t border-[#232838] mt-6 text-[13px] text-amber-300 space-y-1 font-medium">
             <div>• Wasted marketing ad spend & PPC budget</div>
             <div>• Manual scheduling chaos & high no-show rates</div>
           </div>
@@ -654,15 +658,15 @@
         <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-emerald-500/30 bg-[#0C1510]">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-[11px] font-mono-code text-emerald-400 font-bold uppercase tracking-wider">03 // THE SOLUTION</span>
+              <span class="text-[12px] font-bold text-emerald-400 uppercase tracking-wider">03 // THE SOLUTION</span>
               <span class="h-6 w-6 rounded-full bg-emerald-500/20 text-emerald-400 text-[12px] font-bold grid place-items-center">✓</span>
             </div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">The Getmore Autonomous OS</h3>
-            <p class="text-[14px] text-emerald-100/85 leading-relaxed">
+            <p class="text-[14.5px] text-emerald-100 leading-relaxed">
               We deploy an intelligent 24/7 AI Receptionist that answers on the first ring, answers specific business questions, qualifies high-ticket prospects, and schedules confirmed bookings directly into your calendar — paired with high-intent lead generation and automated operational workflows.
             </p>
           </div>
-          <div class="pt-6 border-t border-emerald-900/50 mt-6 text-[12px] font-mono-code text-emerald-300 space-y-1">
+          <div class="pt-6 border-t border-emerald-900/50 mt-6 text-[13px] text-emerald-300 space-y-1 font-medium">
             <div>• 100% of calls answered in < 1 second</div>
             <div>• Predictable calendar bookings on autopilot</div>
           </div>
@@ -673,13 +677,13 @@
     </section>
 
     <!-- SECTION 3: INTERACTIVE MISSED REVENUE CALCULATOR (USD $) -->
-    <section id="calculator" class="py-16 sm:py-20 border-b border-[#262631]">
+    <section id="calculator" class="py-16 sm:py-20 border-b border-[#232838]">
       <div class="max-w-2xl mb-10">
         <div class="badge-pill inline-block mb-3">FINANCIAL AUDIT TOOL (USD)</div>
-        <h2 class="text-[28px] sm:text-[40px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[28px] sm:text-[40px] font-display font-extrabold text-white tracking-tight">
           How much revenue is leaking through your phone lines?
         </h2>
-        <p class="text-[14px] sm:text-[15px] text-[#8E8E9F] mt-2">
+        <p class="text-[15px] text-slate-300 mt-2">
           Adjust the sliders to match your monthly volume, average ticket size, and estimated missed call rate.
         </p>
       </div>
@@ -693,11 +697,11 @@
             <!-- Slider 1: Inbound Calls -->
             <div>
               <div class="flex justify-between items-baseline mb-2.5">
-                <label class="text-[12px] font-mono-code text-[#A1A1B2] uppercase font-semibold">Monthly Inbound Calls / Inquiries</label>
-                <span id="calcCallsVal" class="text-[22px] font-display font-bold text-white">150 Calls</span>
+                <label class="text-[13px] text-slate-300 font-semibold uppercase tracking-wider">Monthly Inbound Calls / Inquiries</label>
+                <span id="calcCallsVal" class="text-[24px] font-display font-extrabold text-white">150 Calls</span>
               </div>
               <input id="calcCalls" type="range" min="30" max="1000" step="10" value="150" />
-              <div class="flex justify-between text-[11px] font-mono-code text-[#717182] mt-1.5">
+              <div class="flex justify-between text-[12px] text-slate-400 mt-1.5 font-medium">
                 <span>30 calls/mo</span>
                 <span>500 calls/mo</span>
                 <span>1,000+ calls/mo</span>
@@ -707,12 +711,12 @@
             <!-- Slider 2: Average Job / Customer Value -->
             <div>
               <div class="flex justify-between items-baseline mb-2.5">
-                <label class="text-[12px] font-mono-code text-[#A1A1B2] uppercase font-semibold">Average Customer / Job Value</label>
-                <span id="calcTicketVal" class="text-[22px] font-display font-bold text-emerald-400">$650</span>
+                <label class="text-[13px] text-slate-300 font-semibold uppercase tracking-wider">Average Customer / Job Value</label>
+                <span id="calcTicketVal" class="text-[24px] font-display font-extrabold text-emerald-400">$650</span>
               </div>
               <input id="calcTicket" type="range" min="150" max="3500" step="50" value="650" />
-              <div class="flex justify-between text-[11px] font-mono-code text-[#717182] mt-1.5">
-                <span>$150 (Maintenance/Quick Service)</span>
+              <div class="flex justify-between text-[12px] text-slate-400 mt-1.5 font-medium">
+                <span>$150 (Quick Service)</span>
                 <span>$1,500 (Standard)</span>
                 <span>$3,500+ (High-Ticket)</span>
               </div>
@@ -721,35 +725,35 @@
             <!-- Slider 3: Missed Call Rate -->
             <div>
               <div class="flex justify-between items-baseline mb-2.5">
-                <label class="text-[12px] font-mono-code text-[#A1A1B2] uppercase font-semibold">Estimated Unanswered / Missed Call Rate</label>
-                <span id="calcMissedRateVal" class="text-[22px] font-display font-bold text-red-400">25%</span>
+                <label class="text-[13px] text-slate-300 font-semibold uppercase tracking-wider">Estimated Unanswered / Missed Call Rate</label>
+                <span id="calcMissedRateVal" class="text-[24px] font-display font-extrabold text-red-400">25%</span>
               </div>
               <input id="calcMissedRate" type="range" min="10" max="50" step="5" value="25" />
-              <div class="flex justify-between text-[11px] font-mono-code text-[#717182] mt-1.5">
+              <div class="flex justify-between text-[12px] text-slate-400 mt-1.5 font-medium">
                 <span>10% (Low)</span>
                 <span>25% (Industry Average)</span>
                 <span>50% (High / After-Hours)</span>
               </div>
             </div>
 
-            <div class="p-4 rounded-xl bg-[#15151A] border border-[#262631] text-[12px] text-[#A1A1B2] font-mono-code">
-              💡 <strong>Industry Benchmark:</strong> Even capturing an extra 5 missed high-ticket appointments per month generates <strong>$3,000 to $15,000+</strong> in pure bottom-line profit.
+            <div class="p-4 rounded-xl bg-[#141720] border border-[#232838] text-[13px] text-slate-300">
+              💡 <strong>Industry Benchmark:</strong> Even capturing an extra 5 missed high-ticket appointments per month generates <strong class="text-white">$3,000 to $15,000+</strong> in pure bottom-line profit.
             </div>
           </div>
 
           <!-- Output Box Right Column -->
-          <div class="lg:col-span-5 bg-[#15151A] border border-[#262631] rounded-2xl p-6 sm:p-8 space-y-6">
+          <div class="lg:col-span-5 bg-[#141720] border border-[#232838] rounded-2xl p-6 sm:p-8 space-y-6">
             <div>
-              <div class="text-[11px] font-mono-code text-red-400 font-bold mb-1 tracking-wider uppercase">ESTIMATED ANNUAL REVENUE LEAK:</div>
-              <div id="calcAnnualLoss" class="text-[36px] sm:text-[44px] font-display font-black text-white tracking-tight">
+              <div class="text-[12px] text-red-400 font-bold mb-1 tracking-wider uppercase">ESTIMATED ANNUAL REVENUE LEAK:</div>
+              <div id="calcAnnualLoss" class="text-[38px] sm:text-[46px] font-display font-extrabold text-white tracking-tight">
                 $117,000
               </div>
-              <div class="text-[13px] text-[#8E8E9F] mt-1.5">
-                That is <span id="calcMonthlyLoss" class="text-white font-bold">$9,750</span> walking to competitors every single month.
+              <div class="text-[14px] text-slate-300 mt-1.5">
+                That is <span id="calcMonthlyLoss" class="text-white font-extrabold">$9,750</span> walking to competitors every single month.
               </div>
             </div>
 
-            <div class="pt-5 border-t border-[#262631] space-y-2.5 text-[12.5px] font-mono-code text-[#A1A1B2]">
+            <div class="pt-5 border-t border-[#232838] space-y-2.5 text-[13px] text-slate-300 font-medium">
               <div class="flex items-center gap-2">
                 <span class="text-emerald-400 font-bold">✓</span> 
                 <span>Missed calls recaptured: <strong id="calcMissedCount" class="text-white">38 calls/mo</strong></span>
@@ -764,7 +768,7 @@
               </div>
             </div>
 
-            <a href="#discovery-call" class="btn-emerald block text-center py-4 rounded-xl text-[13.5px] font-bold tracking-tight">
+            <a href="#discovery-call" class="btn-emerald block text-center py-4 rounded-xl text-[14px] font-bold tracking-tight">
               Plug This Leak — Book Demo Call →
             </a>
           </div>
@@ -774,16 +778,16 @@
     </section>
 
     <!-- SECTION 4: THE 3 CORE SERVICES (KEYWORD-ENRICHED) -->
-    <section id="services" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="services" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
         <div>
           <div class="badge-pill inline-block mb-3">OUR 3 CORE CAPABILITIES</div>
-          <h2 class="text-[30px] sm:text-[42px] font-display font-black text-white tracking-tight">
+          <h2 class="text-[30px] sm:text-[42px] font-display font-extrabold text-white tracking-tight">
             Engineered to drive appointments and streamline operations.
           </h2>
         </div>
-        <p class="text-[14px] text-[#8E8E9F] max-w-md leading-relaxed">
-          Choose any service individually starting at <strong>$500/mo</strong> or bundle them into a comprehensive growth OS up to <strong>$2,000/mo</strong>. 100% custom-tailored to your exact business.
+        <p class="text-[15px] text-slate-300 max-w-md leading-relaxed">
+          Choose any service individually starting at <strong class="text-white">$500/mo</strong> or bundle them into a comprehensive growth OS up to <strong class="text-white">$2,000/mo</strong>. 100% custom-tailored to your exact business.
         </p>
       </div>
 
@@ -791,61 +795,61 @@
 
         <!-- Service 1: AI Receptionist -->
         <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-emerald-500/30 relative">
-          <div class="absolute top-4 right-4 text-[10px] font-mono-code px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+          <div class="absolute top-4 right-4 text-[11px] font-bold px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300">
             SERVICE 01
           </div>
           <div>
-            <div class="text-[11px] font-mono-code text-emerald-400 mb-2 font-semibold">24/7 INBOUND CONVERSION</div>
+            <div class="text-[12px] font-bold text-emerald-400 mb-2 uppercase tracking-wide">24/7 INBOUND CONVERSION</div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">AI Voice Receptionist</h3>
-            <p class="text-[13.5px] text-[#A1A1B2] leading-relaxed mb-6">
+            <p class="text-[14px] text-slate-300 leading-relaxed mb-6">
               A hyper-realistic, human-sounding AI phone assistant trained on your exact service catalog, pricing rules, and scheduling availability. It answers on Ring 1, answers prospect questions, qualifies buyers, and schedules appointments directly into your calendar.
             </p>
           </div>
-          <div class="pt-6 border-t border-[#262631] space-y-2 text-[12px] font-mono-code text-[#A1A1B2]">
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Instant Ring 1 pickup (24/7/365)</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Real-time calendar slot booking</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Instant missed-call text back</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Full audio recordings & transcripts</div>
+          <div class="pt-6 border-t border-[#232838] space-y-2 text-[13px] text-slate-300">
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Instant Ring 1 pickup (24/7/365)</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Real-time calendar slot booking</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Instant missed-call text back</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Full audio recordings & transcripts</div>
           </div>
         </div>
 
         <!-- Service 2: Lead Generation -->
-        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-[#262631] relative">
-          <div class="absolute top-4 right-4 text-[10px] font-mono-code px-2.5 py-1 rounded bg-white/10 text-white font-bold">
+        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-[#232838] relative">
+          <div class="absolute top-4 right-4 text-[11px] font-bold px-2.5 py-1 rounded bg-white/10 text-white">
             SERVICE 02
           </div>
           <div>
-            <div class="text-[11px] font-mono-code text-white mb-2 font-semibold">EXCLUSIVE PIPELINE</div>
+            <div class="text-[12px] font-bold text-white mb-2 uppercase tracking-wide">EXCLUSIVE PIPELINE</div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">High-Intent Lead Generation</h3>
-            <p class="text-[13.5px] text-[#A1A1B2] leading-relaxed mb-6">
+            <p class="text-[14px] text-slate-300 leading-relaxed mb-6">
               Stop relying on shared lead marketplaces where you fight 5 competitors for tire-kickers. We build targeted local acquisition funnels delivering high-intent, exclusive inbound inquiries and calls straight to your business.
             </p>
           </div>
-          <div class="pt-6 border-t border-[#262631] space-y-2 text-[12px] font-mono-code text-[#A1A1B2]">
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 100% exclusive local buyer leads</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> High-converting landing pages</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Instant speed-to-lead routing</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Targeted by high-ticket service radius</div>
+          <div class="pt-6 border-t border-[#232838] space-y-2 text-[13px] text-slate-300">
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 100% exclusive local buyer leads</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> High-converting landing pages</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Instant speed-to-lead routing</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Targeted by high-ticket service radius</div>
           </div>
         </div>
 
         <!-- Service 3: AI Automations -->
-        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-[#262631] relative">
-          <div class="absolute top-4 right-4 text-[10px] font-mono-code px-2.5 py-1 rounded bg-white/10 text-white font-bold">
+        <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-[#232838] relative">
+          <div class="absolute top-4 right-4 text-[11px] font-bold px-2.5 py-1 rounded bg-white/10 text-white">
             SERVICE 03
           </div>
           <div>
-            <div class="text-[11px] font-mono-code text-white mb-2 font-semibold">FRICTIONLESS BACKEND</div>
+            <div class="text-[12px] font-bold text-white mb-2 uppercase tracking-wide">FRICTIONLESS BACKEND</div>
             <h3 class="text-[22px] font-display font-bold text-white mb-3">Operational AI Automations</h3>
-            <p class="text-[13.5px] text-[#A1A1B2] leading-relaxed mb-6">
+            <p class="text-[14px] text-slate-300 leading-relaxed mb-6">
               Reclaim 15–20 hours a week lost to admin friction. We build custom automated workflows for 2-way SMS appointment reminders, quote follow-up sequences, no-show win-backs, 5-star review generation, and CRM database synchronization.
             </p>
           </div>
-          <div class="pt-6 border-t border-[#262631] space-y-2 text-[12px] font-mono-code text-[#A1A1B2]">
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Automated 2-way SMS reminders (slash no-shows)</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Quote-to-close automated follow-ups</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Automated 5-Star Google review booster</div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Custom CRM & software synchronization</div>
+          <div class="pt-6 border-t border-[#232838] space-y-2 text-[13px] text-slate-300">
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated 2-way SMS reminders (slash no-shows)</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Quote-to-close automated follow-ups</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated 5-Star Google review booster</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom CRM & software synchronization</div>
           </div>
         </div>
 
@@ -853,13 +857,13 @@
     </section>
 
     <!-- SECTION 5: GLOBAL MARKETS & LOCAL COMPLIANCE (TARGETED SEO SECTION) -->
-    <section id="global-markets" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="global-markets" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="max-w-3xl mb-12">
         <div class="badge-pill inline-block mb-3">GLOBAL LOCALIZATION</div>
-        <h2 class="text-[28px] sm:text-[40px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[28px] sm:text-[40px] font-display font-extrabold text-white tracking-tight">
           Built for High-Ticket Service Operators in 4 Key Markets
         </h2>
-        <p class="text-[14px] text-[#8E8E9F] mt-2">
+        <p class="text-[15px] text-slate-300 mt-2">
           Localized phone infrastructure, natural native accents, and calendar integrations tailored to your region.
         </p>
       </div>
@@ -870,10 +874,10 @@
         <div class="editorial-card rounded-2xl p-6 space-y-4">
           <div class="text-[28px]">🇺🇸</div>
           <div>
-            <h3 class="text-[18px] font-display font-bold text-white">United States</h3>
-            <p class="text-[12.5px] text-[#8E8E9F] mt-1">EST, CST, MST, PST Coverage</p>
+            <h3 class="text-[19px] font-display font-bold text-white">United States</h3>
+            <p class="text-[13px] text-slate-400 mt-1">EST, CST, MST, PST Coverage</p>
           </div>
-          <ul class="text-[12px] font-mono-code text-[#A1A1B2] space-y-2 pt-2 border-t border-[#262631]">
+          <ul class="text-[13px] text-slate-300 space-y-2 pt-2 border-t border-[#232838]">
             <li>• US local area code numbers</li>
             <li>• ServiceTitan, Jobber, Calendly</li>
             <li>• TCPA & HIPAA safe call routing</li>
@@ -884,10 +888,10 @@
         <div class="editorial-card rounded-2xl p-6 space-y-4">
           <div class="text-[28px]">🇬🇧</div>
           <div>
-            <h3 class="text-[18px] font-display font-bold text-white">United Kingdom</h3>
-            <p class="text-[12.5px] text-[#8E8E9F] mt-1">GMT / BST Nationwide</p>
+            <h3 class="text-[19px] font-display font-bold text-white">United Kingdom</h3>
+            <p class="text-[13px] text-slate-400 mt-1">GMT / BST Nationwide</p>
           </div>
-          <ul class="text-[12px] font-mono-code text-[#A1A1B2] space-y-2 pt-2 border-t border-[#262631]">
+          <ul class="text-[13px] text-slate-300 space-y-2 pt-2 border-t border-[#232838]">
             <li>• UK 01/02 & 0800 phone routes</li>
             <li>• Natural British English Voice AI</li>
             <li>• GDPR compliant lead processing</li>
@@ -898,10 +902,10 @@
         <div class="editorial-card rounded-2xl p-6 space-y-4">
           <div class="text-[28px]">🇦🇺</div>
           <div>
-            <h3 class="text-[18px] font-display font-bold text-white">Australia</h3>
-            <p class="text-[12.5px] text-[#8E8E9F] mt-1">AEST, ACST, AWST Support</p>
+            <h3 class="text-[19px] font-display font-bold text-white">Australia</h3>
+            <p class="text-[13px] text-slate-400 mt-1">AEST, ACST, AWST Support</p>
           </div>
-          <ul class="text-[12px] font-mono-code text-[#A1A1B2] space-y-2 pt-2 border-t border-[#262631]">
+          <ul class="text-[13px] text-slate-300 space-y-2 pt-2 border-t border-[#232838]">
             <li>• +61 Australian landline & mobile</li>
             <li>• Cliniko, Timely & Acuity sync</li>
             <li>• Aussie tone & phrasing engine</li>
@@ -912,10 +916,10 @@
         <div class="editorial-card rounded-2xl p-6 space-y-4">
           <div class="text-[28px]">🇨🇦</div>
           <div>
-            <h3 class="text-[18px] font-display font-bold text-white">Canada</h3>
-            <p class="text-[12.5px] text-[#8E8E9F] mt-1">Coast-to-Coast Timezones</p>
+            <h3 class="text-[19px] font-display font-bold text-white">Canada</h3>
+            <p class="text-[13px] text-slate-400 mt-1">Coast-to-Coast Timezones</p>
           </div>
-          <ul class="text-[12px] font-mono-code text-[#A1A1B2] space-y-2 pt-2 border-t border-[#262631]">
+          <ul class="text-[13px] text-slate-300 space-y-2 pt-2 border-t border-[#232838]">
             <li>• Canadian regional area codes</li>
             <li>• Jane App, Google & Outlook</li>
             <li>• PIPEDA privacy compliant</li>
@@ -926,52 +930,52 @@
     </section>
 
     <!-- SECTION 6: FEATURED COMPARISON MATRIX (SEO RICH SNIPPET ASSET) -->
-    <section id="comparison" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="comparison" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="max-w-3xl mb-12">
         <div class="badge-pill inline-block mb-3">DIRECT COMPARISON</div>
-        <h2 class="text-[28px] sm:text-[40px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[28px] sm:text-[40px] font-display font-extrabold text-white tracking-tight">
           Traditional Front-Desk vs. Getmore Autonomous OS
         </h2>
-        <p class="text-[14px] text-[#8E8E9F] mt-2">
+        <p class="text-[15px] text-slate-300 mt-2">
           Why leading operators in the US, UK, Australia, and Canada are switching to AI-driven voice reception and operations.
         </p>
       </div>
 
-      <div class="editorial-card rounded-2xl overflow-hidden border-[#262631]">
+      <div class="editorial-card rounded-2xl overflow-hidden border-[#232838]">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-[13px] font-mono-code">
+          <table class="w-full text-left text-[13.5px]">
             <thead>
-              <tr class="border-b border-[#262631] bg-[#15151A] text-[#A1A1B2]">
+              <tr class="border-b border-[#232838] bg-[#141720] text-slate-300 font-semibold">
                 <th class="py-4 px-5 sm:px-6">Feature / Capability</th>
-                <th class="py-4 px-5 sm:px-6 text-red-400">Traditional Receptionist / Answering Service</th>
+                <th class="py-4 px-5 sm:px-6 text-red-400">Traditional Receptionist / Call Center</th>
                 <th class="py-4 px-5 sm:px-6 text-emerald-400 bg-emerald-950/20 font-bold">Getmore Autonomous OS</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-[#262631]">
-              <tr class="hover:bg-[#15151A]/50">
-                <td class="py-3.5 px-5 sm:px-6 text-white font-semibold">Availability</td>
-                <td class="py-3.5 px-5 sm:px-6 text-[#8E8E9F]">40 hrs/week (Mon-Fri 9-5)</td>
-                <td class="py-3.5 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">24/7/365 (Nights, Weekends & Holidays)</td>
+            <tbody class="divide-y divide-[#232838]">
+              <tr class="hover:bg-[#141720]/50">
+                <td class="py-4 px-5 sm:px-6 text-white font-semibold">Availability</td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">40 hrs/week (Mon-Fri 9-5)</td>
+                <td class="py-4 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">24/7/365 (Nights, Weekends & Holidays)</td>
               </tr>
-              <tr class="hover:bg-[#15151A]/50">
-                <td class="py-3.5 px-5 sm:px-6 text-white font-semibold">Response Speed</td>
-                <td class="py-3.5 px-5 sm:px-6 text-[#8E8E9F]">3–6 rings (or goes to voicemail)</td>
-                <td class="py-3.5 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Ring 1 (&lt; 500ms pickup)</td>
+              <tr class="hover:bg-[#141720]/50">
+                <td class="py-4 px-5 sm:px-6 text-white font-semibold">Response Speed</td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">3–6 rings (or goes to voicemail)</td>
+                <td class="py-4 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Ring 1 (&lt; 500ms pickup)</td>
               </tr>
-              <tr class="hover:bg-[#15151A]/50">
-                <td class="py-3.5 px-5 sm:px-6 text-white font-semibold">Concurrent Calls</td>
-                <td class="py-3.5 px-5 sm:px-6 text-[#8E8E9F]">1 call at a time (others get busy tone)</td>
-                <td class="py-3.5 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Unlimited simultaneous callers</td>
+              <tr class="hover:bg-[#141720]/50">
+                <td class="py-4 px-5 sm:px-6 text-white font-semibold">Concurrent Calls</td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">1 call at a time (others get busy tone)</td>
+                <td class="py-4 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Unlimited simultaneous callers</td>
               </tr>
-              <tr class="hover:bg-[#15151A]/50">
-                <td class="py-3.5 px-5 sm:px-6 text-white font-semibold">Live Calendar Booking</td>
-                <td class="py-3.5 px-5 sm:px-6 text-[#8E8E9F]">Manual scheduling ping-pong</td>
-                <td class="py-3.5 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Instant direct calendar lock + SMS</td>
+              <tr class="hover:bg-[#141720]/50">
+                <td class="py-4 px-5 sm:px-6 text-white font-semibold">Live Calendar Booking</td>
+                <td class="py-4 px-5 sm:px-6 text-slate-400">Manual scheduling ping-pong</td>
+                <td class="py-4 px-5 sm:px-6 text-emerald-300 bg-emerald-950/10 font-semibold">Instant direct calendar lock + SMS</td>
               </tr>
-              <tr class="hover:bg-[#15151A]/50">
-                <td class="py-3.5 px-5 sm:px-6 text-white font-semibold">Monthly Cost</td>
-                <td class="py-3.5 px-5 sm:px-6 text-red-400 font-bold">$3,500 – $5,000 + taxes & benefits</td>
-                <td class="py-3.5 px-5 sm:px-6 text-emerald-400 bg-emerald-950/10 font-bold">$500 – $2,000 flat (zero overhead)</td>
+              <tr class="hover:bg-[#141720]/50">
+                <td class="py-4 px-5 sm:px-6 text-white font-semibold">Monthly Cost</td>
+                <td class="py-4 px-5 sm:px-6 text-red-400 font-bold">$3,500 – $5,000 + taxes & benefits</td>
+                <td class="py-4 px-5 sm:px-6 text-emerald-400 bg-emerald-950/10 font-bold">$500 – $2,000 flat (zero overhead)</td>
               </tr>
             </tbody>
           </table>
@@ -980,13 +984,13 @@
     </section>
 
     <!-- SECTION 7: HOW IT WORKS (ROADMAP / HOWTO SCHEMA) -->
-    <section id="process" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="process" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="max-w-2xl mb-14">
         <div class="badge-pill inline-block mb-3">DEPLOYMENT PROCESS</div>
-        <h2 class="text-[28px] sm:text-[40px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[28px] sm:text-[40px] font-display font-extrabold text-white tracking-tight">
           From audit to live autonomous system in 7–14 days.
         </h2>
-        <p class="text-[14px] text-[#8E8E9F] mt-2">
+        <p class="text-[15px] text-slate-300 mt-2">
           We handle 100% of the technical build, AI prompting, testing, and software integrations.
         </p>
       </div>
@@ -994,33 +998,33 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
         <div class="editorial-card rounded-2xl p-6 relative">
-          <div class="text-[32px] font-display font-extrabold text-[#3F3F50] mb-3">01</div>
-          <h3 class="text-[17px] font-display font-bold text-white mb-2">Discovery & Funnel Audit</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <div class="text-[32px] font-display font-extrabold text-slate-600 mb-3">01</div>
+          <h3 class="text-[18px] font-display font-bold text-white mb-2">Discovery & Funnel Audit</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             We review your current call flow, booking software, lead sources, and missed-call bottlenecks to design your custom OS.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 relative">
-          <div class="text-[32px] font-display font-extrabold text-[#3F3F50] mb-3">02</div>
-          <h3 class="text-[17px] font-display font-bold text-white mb-2">Custom AI Knowledge Training</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <div class="text-[32px] font-display font-extrabold text-slate-600 mb-3">02</div>
+          <h3 class="text-[18px] font-display font-bold text-white mb-2">Custom AI Knowledge Training</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             We train your AI receptionist on your specific service menus, pricing thresholds, tone of voice, and qualification criteria.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 relative">
-          <div class="text-[32px] font-display font-extrabold text-[#3F3F50] mb-3">03</div>
-          <h3 class="text-[17px] font-display font-bold text-white mb-2">Calendar & Tech Integration</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <div class="text-[32px] font-display font-extrabold text-slate-600 mb-3">03</div>
+          <h3 class="text-[18px] font-display font-bold text-white mb-2">Calendar & Tech Integration</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             We connect the AI directly to your phone lines, calendar (Google, Outlook, Calendly, Acuity, etc.), and CRM systems.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 relative">
           <div class="text-[32px] font-display font-extrabold text-emerald-500 mb-3">04</div>
-          <h3 class="text-[17px] font-display font-bold text-white mb-2">Live Launch & Growth</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[18px] font-display font-bold text-white mb-2">Live Launch & Growth</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             Your system goes live. Inbound calls are answered 24/7, appointments are booked automatically, and operations run hands-free.
           </p>
         </div>
@@ -1029,14 +1033,14 @@
     </section>
 
     <!-- SECTION 8: PACKAGES & PRICING ($500 TO $2,000) -->
-    <section id="pricing" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="pricing" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
         <div class="badge-pill inline-block">TRANSPARENT PACKAGES</div>
-        <h2 class="text-[32px] sm:text-[44px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[32px] sm:text-[44px] font-display font-extrabold text-white tracking-tight">
           Transparent pricing. High ROI.
         </h2>
-        <p class="text-[15px] text-[#8E8E9F] leading-relaxed">
-          Individual standalone services start at <span class="text-white font-semibold">$500/mo</span>. All packages are 100% custom-tailored to your exact business requirements, booking software, and volume.
+        <p class="text-[15px] text-slate-300 leading-relaxed">
+          Individual standalone services start at <span class="text-white font-bold">$500/mo</span>. All packages are 100% custom-tailored to your exact business requirements, booking software, and volume.
         </p>
       </div>
 
@@ -1045,17 +1049,17 @@
         <!-- Package 1: AI Receptionist OS -->
         <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="text-[11px] font-mono-code text-[#8E8E9F] mb-2 font-bold uppercase">PACKAGE 01 // CAPTURE EXISTING FLOW</div>
+            <div class="text-[12px] text-slate-400 mb-2 font-bold uppercase tracking-wider">PACKAGE 01 // CAPTURE EXISTING FLOW</div>
             <h3 class="text-[24px] font-display font-bold text-white">AI Receptionist OS</h3>
-            <p class="text-[13px] text-[#A1A1B2] mt-1 mb-6">
+            <p class="text-[14px] text-slate-300 mt-1 mb-6">
               Ideal for service businesses with existing inbound call volume who are leaking revenue from unanswered calls & after-hours inquiries.
             </p>
-            <div class="py-4 border-y border-[#262631] mb-6 flex items-baseline gap-1.5">
-              <span class="text-[38px] font-display font-black text-white">$500</span>
-              <span class="text-[13px] font-mono-code text-[#8E8E9F]">/month</span>
+            <div class="py-4 border-y border-[#232838] mb-6 flex items-baseline gap-1.5">
+              <span class="text-[40px] font-display font-extrabold text-white">$500</span>
+              <span class="text-[14px] text-slate-400 font-semibold">/month</span>
             </div>
-            <div class="space-y-3 text-[13px] text-[#A1A1B2]">
-              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong>24/7 Human-Sounding AI Voice Receptionist</strong></span></div>
+            <div class="space-y-3 text-[13.5px] text-slate-300">
+              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong class="text-white">24/7 Human-Sounding AI Voice Receptionist</strong></span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Answers on Ring 1 (Zero dropped calls)</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Direct Calendar Booking & Rescheduling</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Instant Missed-Call Smart SMS Auto-Responder</span></div>
@@ -1064,9 +1068,9 @@
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>1 Dedicated Phone Number Line Integration</span></div>
             </div>
           </div>
-          <div class="pt-6 mt-8 border-t border-[#262631]">
+          <div class="pt-6 mt-8 border-t border-[#232838]">
             <a href="#discovery-call" onclick="setFormPlan('Package 1: AI Receptionist OS ($500/mo)')"
-              class="btn-outline block text-center py-3.5 rounded-full text-[13px] font-bold">
+              class="btn-outline block text-center py-3.5 rounded-full text-[13.5px] font-bold">
               Choose AI Receptionist OS →
             </a>
           </div>
@@ -1074,25 +1078,25 @@
 
         <!-- Package 2: Growth OS (Lead Gen + AI Receptionist) - RECOMMENDED -->
         <div
-          class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-emerald-500/60 bg-[#0E1612] lg:-translate-y-2 relative glow-card">
+          class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border-emerald-500/60 bg-[#0E1713] lg:-translate-y-2 relative glow-card">
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
-            <span class="text-[10px] font-mono-code px-3.5 py-1 rounded-full bg-emerald-500 text-black font-extrabold tracking-wide uppercase shadow-lg shadow-emerald-500/30">
+            <span class="text-[11px] px-3.5 py-1 rounded-full bg-emerald-500 text-black font-extrabold tracking-wide uppercase shadow-lg shadow-emerald-500/30">
               MOST POPULAR FOR GROWTH
             </span>
           </div>
           <div>
-            <div class="text-[11px] font-mono-code text-emerald-400 mb-2 font-bold uppercase mt-1">PACKAGE 02 // ACQUIRE & CONVERT</div>
+            <div class="text-[12px] text-emerald-400 mb-2 font-bold uppercase tracking-wider mt-1">PACKAGE 02 // ACQUIRE & CONVERT</div>
             <h3 class="text-[24px] font-display font-bold text-white">Growth OS</h3>
-            <p class="text-[13px] text-emerald-200/70 mt-1 mb-6">
+            <p class="text-[14px] text-emerald-100 mt-1 mb-6">
               Lead Generation + AI Receptionist. The complete front-of-house growth engine to fill your calendar with booked high-ticket jobs.
             </p>
             <div class="py-4 border-y border-emerald-900/50 mb-6 flex items-baseline gap-1.5">
-              <span class="text-[38px] font-display font-black text-white">$1,250</span>
-              <span class="text-[13px] font-mono-code text-emerald-400/70">/month</span>
+              <span class="text-[40px] font-display font-extrabold text-white">$1,250</span>
+              <span class="text-[14px] text-emerald-300/80 font-semibold">/month</span>
             </div>
-            <div class="space-y-3 text-[13px] text-emerald-100/90">
-              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong>Everything in AI Receptionist OS</strong></span></div>
-              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong>Exclusive High-Intent Local Lead Generation Campaign</strong></span></div>
+            <div class="space-y-3 text-[13.5px] text-emerald-100">
+              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong class="text-white">Everything in AI Receptionist OS</strong></span></div>
+              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong class="text-white">Exclusive High-Intent Local Lead Generation Campaign</strong></span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Custom High-Converting Appointment Landing Page</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Sub-60s Speed-to-Lead Instant AI Callback</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Targeted Service Radius & Demographic Filtering</span></div>
@@ -1102,7 +1106,7 @@
           </div>
           <div class="pt-6 mt-8 border-t border-emerald-900/50">
             <a href="#discovery-call" onclick="setFormPlan('Package 2: Growth OS ($1,250/mo)')"
-              class="btn-emerald block text-center py-3.5 rounded-full text-[13px] font-bold">
+              class="btn-emerald block text-center py-3.5 rounded-full text-[13.5px] font-bold">
               Get Growth OS (Recommended) →
             </a>
           </div>
@@ -1111,18 +1115,18 @@
         <!-- Package 3: Autonomous Scale OS (Lead Gen + AI Receptionist + Full Automations) -->
         <div class="editorial-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between">
           <div>
-            <div class="text-[11px] font-mono-code text-[#8E8E9F] mb-2 font-bold uppercase">PACKAGE 03 // FULL OPERATIONAL SUITE</div>
+            <div class="text-[12px] text-slate-400 mb-2 font-bold uppercase tracking-wider">PACKAGE 03 // FULL OPERATIONAL SUITE</div>
             <h3 class="text-[24px] font-display font-bold text-white">Autonomous Scale OS</h3>
-            <p class="text-[13px] text-[#A1A1B2] mt-1 mb-6">
+            <p class="text-[14px] text-slate-300 mt-1 mb-6">
               Lead Gen + AI Receptionist + Full AI Automation Suite. For market leaders who want predictable pipeline and hands-free operations.
             </p>
-            <div class="py-4 border-y border-[#262631] mb-6 flex items-baseline gap-1.5">
-              <span class="text-[38px] font-display font-black text-white">$2,000</span>
-              <span class="text-[13px] font-mono-code text-[#8E8E9F]">/month</span>
+            <div class="py-4 border-y border-[#232838] mb-6 flex items-baseline gap-1.5">
+              <span class="text-[40px] font-display font-extrabold text-white">$2,000</span>
+              <span class="text-[14px] text-slate-400 font-semibold">/month</span>
             </div>
-            <div class="space-y-3 text-[13px] text-[#A1A1B2]">
-              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong>Everything in Growth OS</strong></span></div>
-              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong>Custom Operational AI Automations Suite</strong></span></div>
+            <div class="space-y-3 text-[13.5px] text-slate-300">
+              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong class="text-white">Everything in Growth OS</strong></span></div>
+              <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span><strong class="text-white">Custom Operational AI Automations Suite</strong></span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Automated 2-Way SMS Appointment Reminder Engine</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Quote Follow-Up Sequences (Converts cold quotes)</span></div>
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>No-Show Reactivation & Database Win-Back Engine</span></div>
@@ -1131,9 +1135,9 @@
               <div class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span>Dedicated AI Systems Architect & VIP Support</span></div>
             </div>
           </div>
-          <div class="pt-6 mt-8 border-t border-[#262631]">
+          <div class="pt-6 mt-8 border-t border-[#232838]">
             <a href="#discovery-call" onclick="setFormPlan('Package 3: Autonomous Scale OS ($2,000/mo)')"
-              class="btn-solid block text-center py-3.5 rounded-full text-[13px] font-bold">
+              class="btn-solid block text-center py-3.5 rounded-full text-[13.5px] font-bold">
               Choose Scale OS ($2,000) →
             </a>
           </div>
@@ -1142,16 +1146,16 @@
       </div>
 
       <!-- Customization Note Banner -->
-      <div class="mt-10 p-5 rounded-2xl bg-[#0F0F13] border border-[#262631] text-center max-w-2xl mx-auto text-[13px] text-[#A1A1B2]">
-        <span class="text-emerald-400 font-mono-code font-bold">100% TAILORED:</span> Need a standalone service (like just AI automations or custom lead gen) or have multiple locations? Individual services start at <strong>$500</strong>. We build custom quotes on your discovery call.
+      <div class="mt-10 p-5 rounded-2xl bg-[#0E1015] border border-[#232838] text-center max-w-2xl mx-auto text-[14px] text-slate-300">
+        <span class="text-emerald-400 font-bold">100% TAILORED:</span> Need a standalone service (like just AI automations or custom lead gen) or have multiple locations? Individual services start at <strong class="text-white">$500</strong>. We build custom quotes on your discovery call.
       </div>
     </section>
 
     <!-- SECTION 9: PROVEN RESULTS / CASE STUDIES (PAS ORIENTED) -->
-    <section id="results" class="py-16 sm:py-24 border-b border-[#262631]">
+    <section id="results" class="py-16 sm:py-24 border-b border-[#232838]">
       <div class="max-w-2xl mb-14">
         <div class="badge-pill inline-block mb-3">MEASURABLE IMPACT</div>
-        <h2 class="text-[30px] sm:text-[40px] font-display font-black text-white tracking-tight">
+        <h2 class="text-[30px] sm:text-[40px] font-display font-extrabold text-white tracking-tight">
           Real service operators. Zero missed opportunities.
         </h2>
       </div>
@@ -1163,30 +1167,30 @@
           <div>
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[11px] font-mono-code text-emerald-400 font-bold">HIGH-TICKET LOCAL SERVICE OPERATOR</span>
+                <span class="text-[12px] font-bold text-emerald-400 uppercase tracking-wide">HIGH-TICKET LOCAL SERVICE OPERATOR</span>
                 <h3 class="text-[22px] font-display font-bold text-white mt-1">Precision Specialty Studio</h3>
               </div>
-              <span class="text-[11px] font-mono-code text-[#717182] bg-[#15151A] px-2.5 py-1 rounded">TEXAS, USA</span>
+              <span class="text-[12px] font-semibold text-slate-300 bg-[#141720] px-2.5 py-1 rounded">TEXAS, USA</span>
             </div>
-            <p class="text-[13.5px] text-[#A1A1B2] mt-3 leading-relaxed">
+            <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
               <strong class="text-white">Problem:</strong> Owners were spending 8 hours a day on physical jobs, missing 15–20 phone inquiries every week with an average ticket of $1,200.<br />
-              <strong class="text-emerald-400">Solution:</strong> Deployed AI Receptionist OS + automated SMS booking confirmation.<br />
+              <strong class="text-emerald-400 font-semibold">Solution:</strong> Deployed AI Receptionist OS + automated SMS booking confirmation.<br />
               <strong class="text-white">Result:</strong> Recaptured $26,400/mo in previously lost appointments with zero added staff.
             </p>
           </div>
 
-          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#262631] text-center font-mono-code">
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-white">100%</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">Calls Answered</div>
+          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#232838] text-center">
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-white">100%</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">Calls Answered</div>
             </div>
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-emerald-400">+$26.4k</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">Monthly Revenue</div>
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-emerald-400">+$26.4k</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">Monthly Revenue</div>
             </div>
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-white">45s</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">Booking Speed</div>
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-white">45s</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">Booking Speed</div>
             </div>
           </div>
         </div>
@@ -1196,30 +1200,30 @@
           <div>
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[11px] font-mono-code text-emerald-400 font-bold">APPOINTMENT-BASED HEALTH & WELLNESS</span>
+                <span class="text-[12px] font-bold text-emerald-400 uppercase tracking-wide">APPOINTMENT-BASED HEALTH & WELLNESS</span>
                 <h3 class="text-[22px] font-display font-bold text-white mt-1">Apex Clinical Care</h3>
               </div>
-              <span class="text-[11px] font-mono-code text-[#717182] bg-[#15151A] px-2.5 py-1 rounded">LONDON & SYDNEY</span>
+              <span class="text-[12px] font-semibold text-slate-300 bg-[#141720] px-2.5 py-1 rounded">LONDON & SYDNEY</span>
             </div>
-            <p class="text-[13.5px] text-[#A1A1B2] mt-3 leading-relaxed">
+            <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
               <strong class="text-white">Problem:</strong> Front desk was overwhelmed with basic scheduling questions while after-hours patient inquiries went cold, plus suffering a 21% no-show rate.<br />
-              <strong class="text-emerald-400">Solution:</strong> Deployed Autonomous Scale OS with 24/7 AI Receptionist & 2-way SMS reminder flows.<br />
+              <strong class="text-emerald-400 font-semibold">Solution:</strong> Deployed Autonomous Scale OS with 24/7 AI Receptionist & 2-way SMS reminder flows.<br />
               <strong class="text-white">Result:</strong> No-show rate slashed to 3.8%, front-desk phone hours reduced by 70%.
             </p>
           </div>
 
-          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#262631] text-center font-mono-code">
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-white">3.8%</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">No-Show Rate</div>
+          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-[#232838] text-center">
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-white">3.8%</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">No-Show Rate</div>
             </div>
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-emerald-400">+58</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">Monthly Bookings</div>
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-emerald-400">+58</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">Monthly Bookings</div>
             </div>
-            <div class="p-3 bg-[#15151A] rounded-xl">
-              <div class="text-[19px] font-display font-bold text-white">18 hrs</div>
-              <div class="text-[10px] text-[#717182] mt-0.5">Saved / Week</div>
+            <div class="p-3 bg-[#141720] rounded-xl">
+              <div class="text-[20px] font-display font-extrabold text-white">18 hrs</div>
+              <div class="text-[11.5px] text-slate-400 mt-0.5">Saved / Week</div>
             </div>
           </div>
         </div>
@@ -1236,14 +1240,14 @@
           <!-- Left Brief -->
           <div class="lg:col-span-5 space-y-6">
             <div class="badge-pill badge-emerald inline-block">FREE 15-MINUTE LIVE DEMO</div>
-            <h3 class="text-[30px] sm:text-[42px] font-display font-black text-white tracking-tight leading-[1.1]">
+            <h3 class="text-[30px] sm:text-[42px] font-display font-extrabold text-white tracking-tight leading-[1.1]">
               See your custom AI Receptionist in action.
             </h3>
-            <p class="text-[14.5px] text-[#A1A1B2] leading-relaxed">
+            <p class="text-[15px] text-slate-300 leading-relaxed">
               Book a 15-minute live strategy call. We will audit your current response bottlenecks, calculate your exact revenue leak, and let you test an AI voice agent customized for your business in real time.
             </p>
 
-            <div class="space-y-3 pt-2 font-mono-code text-[12.5px] text-[#A1A1B2]">
+            <div class="space-y-3 pt-2 text-[13.5px] text-slate-300">
               <div class="flex items-center gap-2.5">
                 <span class="text-emerald-400 font-bold">✓</span>
                 <span>Live Interactive Voice AI Simulation for your business</span>
@@ -1258,18 +1262,18 @@
               </div>
             </div>
 
-            <div class="p-4 rounded-xl bg-[#15151A] border border-[#262631] space-y-1 font-mono-code text-[12px]">
+            <div class="p-4 rounded-xl bg-[#141720] border border-[#232838] space-y-1 text-[13px]">
               <div class="text-white font-semibold flex items-center gap-2">
                 <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
                 <span>International Client Support:</span>
               </div>
-              <div class="text-emerald-400 font-bold text-[13px]">US &bull; UK &bull; Australia &bull; Canada</div>
-              <div class="text-[#717182] text-[11px]">All timezones accommodated via Zoom / Google Meet</div>
+              <div class="text-emerald-400 font-bold text-[14px]">US &bull; UK &bull; Australia &bull; Canada</div>
+              <div class="text-slate-400 text-[12px]">All timezones accommodated via Zoom / Google Meet</div>
             </div>
           </div>
 
           <!-- Right Form -->
-          <div class="lg:col-span-7 bg-[#15151A] border border-[#262631] rounded-2xl p-6 sm:p-8">
+          <div class="lg:col-span-7 bg-[#141720] border border-[#232838] rounded-2xl p-6 sm:p-8">
 
             <div id="formSubmitted" class="hidden text-center py-10 space-y-4">
               <div
@@ -1277,10 +1281,10 @@
                 ✓
               </div>
               <h4 class="text-[24px] font-display font-bold text-white">Strategy Demo Call Confirmed!</h4>
-              <p class="text-[14px] text-[#A1A1B2] max-w-md mx-auto leading-relaxed">
+              <p class="text-[15px] text-slate-300 max-w-md mx-auto leading-relaxed">
                 Thank you! We've received your business brief. Our AI systems specialist will prepare your live demo and send meeting details directly to your email and phone.
               </p>
-              <div class="p-4 rounded-xl bg-[#0F0F13] border border-[#262631] text-[12px] font-mono-code text-emerald-300 max-w-sm mx-auto">
+              <div class="p-4 rounded-xl bg-[#0E1015] border border-[#232838] text-[13px] text-emerald-300 max-w-sm mx-auto font-medium">
                 Priority confirmation has been generated. Check your inbox momentarily.
               </div>
             </div>
@@ -1289,35 +1293,35 @@
               
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Your Full Name *</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Your Full Name *</label>
                   <input id="inputName" type="text" required placeholder="e.g. Michael Vance"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13.5px] placeholder-[#5F5F70] focus:border-emerald-400 focus:outline-none" />
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[14px] placeholder-slate-500 focus:border-emerald-400 focus:outline-none" />
                 </div>
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Work Email *</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Work Email *</label>
                   <input id="inputEmail" type="email" required placeholder="michael@yourbusiness.com"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13.5px] placeholder-[#5F5F70] focus:border-emerald-400 focus:outline-none" />
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[14px] placeholder-slate-500 focus:border-emerald-400 focus:outline-none" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Phone Number (with Country Code) *</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Phone Number (with Country Code) *</label>
                   <input id="inputPhone" type="tel" required placeholder="+1 (555) 000-0000"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13.5px] placeholder-[#5F5F70] focus:border-emerald-400 focus:outline-none" />
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[14px] placeholder-slate-500 focus:border-emerald-400 focus:outline-none" />
                 </div>
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Business Name *</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Business Name *</label>
                   <input id="inputBusiness" type="text" required placeholder="e.g. Apex Detailing / Precision Clinic"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13.5px] placeholder-[#5F5F70] focus:border-emerald-400 focus:outline-none" />
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[14px] placeholder-slate-500 focus:border-emerald-400 focus:outline-none" />
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Country / Region *</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Country / Region *</label>
                   <select id="inputCountry"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13px] focus:border-emerald-400 focus:outline-none">
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[13.5px] focus:border-emerald-400 focus:outline-none">
                     <option value="United States">🇺🇸 United States</option>
                     <option value="United Kingdom">🇬🇧 United Kingdom</option>
                     <option value="Australia">🇦🇺 Australia</option>
@@ -1326,9 +1330,9 @@
                   </select>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">Primary Package of Interest</label>
+                  <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">Primary Package of Interest</label>
                   <select id="inputTier"
-                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13px] focus:border-emerald-400 focus:outline-none">
+                    class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[13.5px] focus:border-emerald-400 focus:outline-none">
                     <option value="Package 1: AI Receptionist OS ($500/mo)">Package 1: AI Receptionist OS ($500/mo)</option>
                     <option value="Package 2: Growth OS ($1,250/mo)" selected>Package 2: Growth OS ($1,250/mo - Recommended)</option>
                     <option value="Package 3: Autonomous Scale OS ($2,000/mo)">Package 3: Scale OS ($2,000/mo)</option>
@@ -1338,16 +1342,16 @@
               </div>
 
               <div>
-                <label class="block text-[11px] font-mono-code text-[#A1A1B2] uppercase font-semibold mb-1">What is your biggest operational bottleneck right now?</label>
+                <label class="block text-[12px] text-slate-300 uppercase font-semibold mb-1">What is your biggest operational bottleneck right now?</label>
                 <textarea id="inputNotes" rows="2" placeholder="e.g. Missing after-hours calls, need more exclusive leads, spending too much time answering repetitive questions and booking manually..."
-                  class="w-full px-3.5 py-2.5 rounded-lg bg-[#0F0F13] border border-[#262631] text-white text-[13px] placeholder-[#5F5F70] focus:border-emerald-400 focus:outline-none resize-none"></textarea>
+                  class="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1015] border border-[#232838] text-white text-[13.5px] placeholder-slate-500 focus:border-emerald-400 focus:outline-none resize-none"></textarea>
               </div>
 
-              <button type="submit" class="btn-emerald w-full py-4 rounded-xl text-[14px] font-bold tracking-tight shadow-xl shadow-emerald-500/20">
+              <button type="submit" class="btn-emerald w-full py-4 rounded-xl text-[14.5px] font-bold tracking-tight shadow-xl shadow-emerald-500/20">
                 Schedule My 15-Minute Live AI Demo Call →
               </button>
 
-              <div class="text-center text-[11px] font-mono-code text-[#717182]">
+              <div class="text-center text-[12px] text-slate-400 font-medium">
                 🔒 100% Confidential • Instant Confirmation • Zero Obligation
               </div>
             </form>
@@ -1359,10 +1363,10 @@
     </section>
 
     <!-- SECTION 11: FREQUENTLY ASKED QUESTIONS (FAQ SCHEMA OPTIMIZED) -->
-    <section id="faq" class="py-16 sm:py-20 border-b border-[#262631]">
+    <section id="faq" class="py-16 sm:py-20 border-b border-[#232838]">
       <div class="max-w-2xl mb-12">
         <div class="badge-pill inline-block mb-3">FAQ</div>
-        <h2 class="text-[28px] sm:text-[38px] font-display font-bold text-white tracking-tight">
+        <h2 class="text-[28px] sm:text-[38px] font-display font-extrabold text-white tracking-tight">
           Frequently asked questions.
         </h2>
       </div>
@@ -1370,43 +1374,43 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">Does the AI receptionist sound like a robotic IVR or a real human?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">Does the AI receptionist sound like a robotic IVR or a real human?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             It sounds completely natural and conversational with ultra-low sub-500ms response latency, natural pauses, and human-like inflection. Most callers never realize they are speaking to an AI agent.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">How does it integrate with our existing calendar and phone system?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">How does it integrate with our existing calendar and phone system?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             We integrate seamlessly with your existing phone provider via conditional call forwarding (or a dedicated business line) and sync directly with Google Calendar, Outlook, Calendly, Acuity, ServiceTitan, Jobber, Jane, Boulevard, and more.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">Can I buy just one service (like AI Receptionist) for $500?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">Can I buy just one service (like AI Receptionist) for $500?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             Yes! All three services (AI Receptionist, Lead Generation, or AI Automations) are available standalone starting at $500/mo. You can start with what solves your most urgent bottleneck and scale up whenever you are ready.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">What happens when a caller asks a complex question the AI doesn't know?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">What happens when a caller asks a complex question the AI doesn't know?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             The AI is trained on your exact business policies. If a question falls outside its scope, it politely captures the caller's details, takes a detailed message, and instantly notifies you or transfers the live call directly to your cell.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">Do you support businesses across US, UK, Australia, and Canada?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">Do you support businesses across US, UK, Australia, and Canada?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             Yes. We deploy localized phone numbers, native accents, and time-zone compliant answering 24/7 across North America, the UK, and Australasia.
           </p>
         </div>
 
         <div class="editorial-card rounded-2xl p-6 space-y-2">
-          <h3 class="text-[16px] font-display font-bold text-white">How long does implementation take?</h3>
-          <p class="text-[13px] text-[#A1A1B2] leading-relaxed">
+          <h3 class="text-[17px] font-display font-bold text-white">How long does implementation take?</h3>
+          <p class="text-[14px] text-slate-300 leading-relaxed">
             From your discovery call to full live deployment takes 7 to 14 days. We handle all custom prompting, audio configuration, calendar wiring, and stress testing for you.
           </p>
         </div>
@@ -1415,23 +1419,23 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 text-[12px] font-mono-code text-[#717182]">
+    <footer class="py-12 text-[13px] text-slate-400">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
         <div>
           <div class="flex items-center justify-center sm:justify-start gap-2 mb-1">
-            <span class="text-white font-bold font-display text-[14px]">GETMORE.OS</span>
+            <span class="text-white font-bold font-display text-[15px]">GETMORE.OS</span>
             <span>&bull;</span>
-            <span class="text-emerald-400">Autonomous Revenue Systems</span>
+            <span class="text-emerald-400 font-semibold">Autonomous Revenue Systems</span>
           </div>
           <div>
             &copy; 2025–2026 GETMORE OS. All client data and platforms 100% owned by you.
           </div>
         </div>
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-6 font-medium">
           <a href="#problem-breakdown" class="hover:text-white transition-colors">Why Getmore OS</a>
           <a href="#services" class="hover:text-white transition-colors">Services</a>
           <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
-          <a href="#discovery-call" class="text-emerald-400 hover:underline">Book Demo Call ↗</a>
+          <a href="#discovery-call" class="text-emerald-400 font-semibold hover:underline">Book Demo Call ↗</a>
         </div>
       </div>
     </footer>
@@ -1440,12 +1444,12 @@
 
   <!-- MOBILE STICKY BOTTOM BAR -->
   <div
-    class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#070709]/95 backdrop-blur-md border-t border-[#262631] px-4 py-3 flex items-center gap-3">
+    class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#07080B]/95 backdrop-blur-md border-t border-[#232838] px-4 py-3 flex items-center gap-3">
     <a href="#calculator"
-      class="flex-1 py-2.5 rounded-full bg-[#15151A] border border-[#262631] text-white font-mono-code text-[12px] font-bold text-center">
+      class="flex-1 py-2.5 rounded-full bg-[#141720] border border-[#232838] text-white text-[13px] font-bold text-center">
       Calculator ↓
     </a>
-    <a href="#discovery-call" class="btn-emerald flex-1 py-2.5 rounded-full text-[12px] font-bold text-center">
+    <a href="#discovery-call" class="btn-emerald flex-1 py-2.5 rounded-full text-[13px] font-bold text-center">
       Book Demo Call ↗
     </a>
   </div>
