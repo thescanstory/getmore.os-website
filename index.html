@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  
+
   <!-- Primary SEO Meta Tags -->
   <title>Getmore OS — Direct Booking Operating System for Local Enterprises | 4 Pillars</title>
   <meta name="title" content="Getmore OS — Direct Booking Operating System for Local Enterprises | 4 Pillars">
@@ -19,7 +19,7 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  
+
   <!-- Geographic Targeting -->
   <meta name="geo.region" content="IN-KA">
   <meta name="geo.placename" content="Bengaluru">
@@ -54,34 +54,8 @@
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
-            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-            mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
-          },
-          colors: {
-            brand: {
-              black: '#050507',
-              dark: '#0A0A0E',
-              surface: '#0F1016',
-              card: '#13141C',
-              cardBorder: 'rgba(255, 255, 255, 0.08)',
-              accent: '#10B981',
-              accentLight: '#34D399',
-              indigoGlow: '#6366F1',
-              blueGlow: '#3B82F6'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Static Production Stylesheet (Pre-compiled, Zero FOUC, Adblock immune) -->
+  <link rel="stylesheet" href="./style.css">
 
   <!-- Complete Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -129,8 +103,17 @@
 
     /* Ambient Aurora Glow */
     @keyframes aurora-float {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
-      50% { transform: translate(-30px, 40px) scale(1.15); opacity: 0.55; }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.35;
+      }
+
+      50% {
+        transform: translate(-30px, 40px) scale(1.15);
+        opacity: 0.55;
+      }
     }
 
     .aurora-spray {
@@ -408,7 +391,8 @@
   </div>
 
   <!-- TOP GLOBAL STATUS STRIP -->
-  <aside class="border-b border-white/[0.08] bg-[#07080A]/90 py-2.5 px-4 text-center text-[11px] font-mono text-slate-400 relative z-50">
+  <aside
+    class="border-b border-white/[0.08] bg-[#07080A]/90 py-2.5 px-4 text-center text-[11px] font-mono text-slate-400 relative z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
         <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -426,54 +410,94 @@
   </aside>
 
   <!-- VANI-STYLE GLASS NAVIGATION -->
-  <header class="sticky top-0 z-40 border-b border-white/[0.08] bg-[#050507]/80 backdrop-blur-xl">
+  <header class="sticky top-0 z-40 border-b border-white/[0.08] bg-[#050507]/90 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-3.5">
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 group">
-        <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-emerald-500 to-indigo-500 p-[1px] shadow-lg shadow-emerald-500/20">
+        <div
+          class="h-8 w-8 rounded-full bg-gradient-to-tr from-emerald-500 to-indigo-500 p-[1px] shadow-lg shadow-emerald-500/20" aria-hidden="true">
           <div class="h-full w-full bg-[#07080A] rounded-full grid place-items-center text-white font-bold text-[13px]">
             G
           </div>
         </div>
-        <div class="flex items-baseline gap-1">
+        <div class="flex items-baseline gap-0.5">
           <span class="font-sans text-[18px] font-extrabold tracking-tight text-white">getmore</span>
           <span class="font-mono text-[11px] text-emerald-400 font-bold">.os</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7 text-[13px] font-medium text-slate-300" aria-label="Main Navigation">
-        <a href="#pillars" class="hover:text-white transition-colors">The 4 Pillars</a>
+      <!-- Desktop Navigation Links (Clean, readable, non-wrapping) -->
+      <nav class="hidden xl:flex items-center gap-6 text-[13px] font-medium text-slate-300"
+        aria-label="Main Navigation">
+        <a href="#pillars" class="hover:text-white transition-colors">4 Pillars</a>
         <a href="#calculator" class="hover:text-white transition-colors">Leak Audit</a>
-        <a href="#comparison" class="hover:text-white transition-colors">Rented Land vs OS</a>
-        <a href="#process" class="hover:text-white transition-colors">4-Week Process</a>
+        <a href="#comparison" class="hover:text-white transition-colors">Why OS</a>
+        <a href="#process" class="hover:text-white transition-colors">Process</a>
         <a href="#work" class="hover:text-white transition-colors">Case Studies</a>
         <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
       </nav>
 
-      <!-- Action Button (Vani Signature Pill) -->
+      <!-- Action Buttons + Mobile Hamburger -->
       <div class="flex items-center gap-3">
         <a href="https://wa.me/919738397933?text=Hi%20Getmore%20OS%2C%20I'd%20like%20to%20discuss%20deploying%20the%204%20pillars%20for%20my%20business."
           target="_blank" rel="noopener noreferrer"
-          class="hidden sm:inline-flex items-center gap-2 text-[12px] font-mono text-slate-400 hover:text-white px-3 py-1.5 rounded-full border border-white/[0.1] hover:border-white/20 transition-colors">
+          class="hidden md:inline-flex items-center gap-2 text-[12px] font-mono text-slate-400 hover:text-white px-3 py-1.5 rounded-full border border-white/[0.1] hover:border-white/20 transition-colors">
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
           <span>+91-9738397933</span>
         </a>
 
-        <a href="#discovery-call" class="vani-btn">
+        <a href="#discovery-call" class="vani-btn hidden sm:inline-flex">
           <div class="vani-btn-inner">
-            <div class="vani-btn-avatars">
+            <div class="vani-btn-avatars" aria-hidden="true">
               <div class="vani-btn-avatar-circle">G</div>
               <div class="vani-btn-avatar-circle">⚡</div>
             </div>
             <span>Book Discovery Call</span>
-            <div class="vani-btn-icon">↗</div>
+            <div class="vani-btn-icon" aria-hidden="true">↗</div>
           </div>
         </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" type="button" class="xl:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-white/[0.12] bg-white/[0.04] text-slate-200 hover:text-white hover:bg-white/[0.08] transition-colors focus:outline-none" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <svg id="hamburger-icon" class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+          <svg id="close-icon" class="w-5 h-5 fill-none stroke-current hidden" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
 
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden xl:hidden border-t border-white/[0.08] bg-[#07080A]/95 backdrop-blur-2xl px-4 py-5 space-y-4">
+      <nav class="flex flex-col space-y-2 text-[14px] font-medium text-slate-300">
+        <a href="#pillars" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">The 4 Pillars</a>
+        <a href="#calculator" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">Commission Leak Audit</a>
+        <a href="#comparison" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">Rented Land vs OS</a>
+        <a href="#process" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">4-Week Process</a>
+        <a href="#work" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">Case Studies</a>
+        <a href="#pricing" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">Pricing Packages</a>
+        <a href="#faq" class="mobile-nav-link hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.05] transition-colors">FAQ</a>
+      </nav>
+
+      <div class="pt-3 border-t border-white/[0.08] space-y-2.5">
+        <a href="https://wa.me/919738397933?text=Hi%20Getmore%20OS%2C%20I'd%20like%20to%20discuss%20deploying%20the%204%20pillars%20for%20my%20business."
+          target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2 text-[12px] font-mono text-emerald-400 w-full py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>WhatsApp: +91-9738397933</span>
+        </a>
+        <a href="#discovery-call" class="mobile-nav-link block text-center w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-600 text-white font-bold text-[13px] shadow-lg shadow-emerald-500/25">
+          Book Discovery Call ↗
+        </a>
+      </div>
     </div>
   </header>
 
@@ -494,14 +518,18 @@
             </div>
           </div>
 
-          <h1 class="text-[44px] sm:text-[60px] md:text-[76px] font-sans font-black tracking-[-0.04em] leading-[1.0] text-white">
+          <h1
+            class="text-[44px] sm:text-[60px] md:text-[76px] font-sans font-black tracking-[-0.04em] leading-[1.0] text-white">
             Own your platform. <br />
             <span class="font-serif italic font-normal text-emerald-300">Own your customer.</span> <br />
             <span class="text-white/80">Own your growth.</span>
           </h1>
 
           <p class="text-[16px] sm:text-[18px] text-slate-300 max-w-xl leading-relaxed font-normal">
-            Aggregators and marketplace apps charge you <strong class="text-white font-semibold">20% to 30%</strong> on repeat customers who already know and trust your business. We build and deploy the complete <strong class="text-white font-semibold">4-pillar operating system</strong>: bespoke zero-commission web apps, Google Maps 3-Pack rank, automated WhatsApp AI booking, and direct influencer retention.
+            Aggregators and marketplace apps charge you <strong class="text-white font-semibold">20% to 30%</strong> on
+            repeat customers who already know and trust your business. We build and deploy the complete <strong
+              class="text-white font-semibold">4-pillar operating system</strong>: bespoke zero-commission web apps,
+            Google Maps 3-Pack rank, automated WhatsApp AI booking, and direct influencer retention.
           </p>
 
           <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
@@ -516,7 +544,8 @@
               </div>
             </a>
 
-            <a href="#calculator" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/[0.1] bg-white/[0.03] text-slate-200 hover:text-white hover:bg-white/[0.06] text-[13px] font-medium transition-all">
+            <a href="#calculator"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/[0.1] bg-white/[0.03] text-slate-200 hover:text-white hover:bg-white/[0.06] text-[13px] font-medium transition-all">
               <span>Calculate Commission Leaks</span>
               <span class="text-emerald-400">↓</span>
             </a>
@@ -541,13 +570,16 @@
 
         <!-- Right Column: Live Simulator Card -->
         <div class="lg:col-span-5">
-          <div class="value-card border-emerald-500/30 p-6 sm:p-7 relative overflow-hidden shadow-2xl shadow-emerald-500/10">
+          <div
+            class="value-card border-emerald-500/30 p-6 sm:p-7 relative overflow-hidden shadow-2xl shadow-emerald-500/10">
             <div class="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
               <div class="flex items-center gap-2">
                 <span class="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span class="text-[12px] font-mono text-white font-semibold">LIVE DIRECT BOOKING ENGINE</span>
               </div>
-              <span class="text-[10.5px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">SUB-60s CONVERSION</span>
+              <span
+                class="text-[10.5px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">SUB-60s
+                CONVERSION</span>
             </div>
 
             <div class="space-y-3 font-mono text-[12.5px]">
@@ -570,10 +602,14 @@
                   <span class="text-emerald-400 font-mono text-[10px]">RESPONSE IN 8s</span>
                 </div>
                 <p class="text-[13px] font-sans text-emerald-100 leading-relaxed">
-                  "Hi Priya! 4:00 PM with Master Specialist Arjun is available. Direct price is <strong>₹2,499</strong> with <strong class="underline decoration-emerald-400">0% booking fee</strong>. Tap below to lock in your appointment."
+                  "Hi Priya! 4:00 PM with Master Specialist Arjun is available. Direct price is <strong>₹2,499</strong>
+                  with <strong class="underline decoration-emerald-400">0% booking fee</strong>. Tap below to lock in
+                  your appointment."
                 </p>
-                <div class="pt-2 flex flex-wrap items-center justify-between gap-2 text-[11px] border-t border-emerald-900/50">
-                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
+                <div
+                  class="pt-2 flex flex-wrap items-center justify-between gap-2 text-[11px] border-t border-emerald-900/50">
+                  <span
+                    class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold flex items-center gap-1">
                     <span>✓</span> 1-Click Slot Reserved
                   </span>
                   <span class="text-slate-300">UPI Confirmation Sent</span>
@@ -616,7 +652,8 @@
         </div>
         <div class="space-y-1">
           <div class="text-[34px] sm:text-[42px] font-black font-sans text-indigo-400">4 Weeks</div>
-          <div class="text-[12px] font-mono text-slate-400 uppercase tracking-wider">Audit to Live Operating System</div>
+          <div class="text-[12px] font-mono text-slate-400 uppercase tracking-wider">Audit to Live Operating System
+          </div>
         </div>
       </div>
     </section>
@@ -637,7 +674,8 @@
           </h2>
         </div>
         <p class="text-[14.5px] text-slate-300 max-w-md leading-relaxed">
-          Four interconnected layers engineered to turn borrowed attention into owned revenue assets, eliminate middleman commissions, and scale direct customer acquisition.
+          Four interconnected layers engineered to turn borrowed attention into owned revenue assets, eliminate
+          middleman commissions, and scale direct customer acquisition.
         </p>
       </div>
 
@@ -651,7 +689,8 @@
               <div class="value-icon-l1">
                 <div class="value-icon-frame">
                   <div class="value-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="w-full h-full">
                       <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                       <line x1="8" y1="21" x2="16" y2="21"></line>
                       <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -664,10 +703,12 @@
             </div>
           </div>
           <div class="value-card-bottom">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">OWN YOUR PLATFORM</div>
+            <div class="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">OWN YOUR PLATFORM
+            </div>
             <h3 class="text-[20px] font-sans font-bold text-white">Bespoke Web Applications</h3>
             <p class="text-[13px] text-slate-300 leading-relaxed">
-              Fast, high-contrast mobile web apps. Zero template clutter, sub-1s load times on smartphones, luxury treatment menus, and 0% commission forever.
+              Fast, high-contrast mobile web apps. Zero template clutter, sub-1s load times on smartphones, luxury
+              treatment menus, and 0% commission forever.
             </p>
             <div class="pt-4 border-t border-white/[0.08] space-y-1.5 text-[11.5px] font-mono text-slate-300">
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Custom Domain & UX</div>
@@ -685,7 +726,8 @@
               <div class="value-icon-l1">
                 <div class="value-icon-frame">
                   <div class="value-icon text-indigo-400">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="w-full h-full">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                       <path d="M12 2v2M2 12h2M20 12h2"></path>
@@ -696,10 +738,12 @@
             </div>
           </div>
           <div class="value-card-bottom">
-            <div class="text-[11px] font-mono text-indigo-400 font-bold uppercase tracking-wider">SEARCH & DOMINANCE</div>
+            <div class="text-[11px] font-mono text-indigo-400 font-bold uppercase tracking-wider">SEARCH & DOMINANCE
+            </div>
             <h3 class="text-[20px] font-sans font-bold text-white">Google Maps & AI Discovery</h3>
             <p class="text-[13px] text-slate-300 leading-relaxed">
-              Over 68% of clicks go to the top 3 map pins. We engineer your profile for the Google Maps 3-Pack and train AI answer engines (ChatGPT, Gemini) to rank you first.
+              Over 68% of clicks go to the top 3 map pins. We engineer your profile for the Google Maps 3-Pack and train
+              AI answer engines (ChatGPT, Gemini) to rank you first.
             </p>
             <div class="pt-4 border-t border-white/[0.08] space-y-1.5 text-[11.5px] font-mono text-slate-300">
               <div class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Google Maps 3-Pack Rank</div>
@@ -717,8 +761,11 @@
               <div class="value-icon-l1">
                 <div class="value-icon-frame">
                   <div class="value-icon text-emerald-400">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="w-full h-full">
+                      <path
+                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                      </path>
                       <path d="M9 10h.01M15 10h.01M12 14h.01"></path>
                     </svg>
                   </div>
@@ -727,10 +774,12 @@
             </div>
           </div>
           <div class="value-card-bottom">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">SPEED & CONVERSION</div>
+            <div class="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">SPEED & CONVERSION
+            </div>
             <h3 class="text-[20px] font-sans font-bold text-white">WhatsApp & AI Automations</h3>
             <p class="text-[13px] text-slate-300 leading-relaxed">
-              In India, 90%+ of bookings close on WhatsApp. Automated appointment scheduling, instant staff allocation, UPI links, 2-way reminders, and 5-star review collection.
+              In India, 90%+ of bookings close on WhatsApp. Automated appointment scheduling, instant staff allocation,
+              UPI links, 2-way reminders, and 5-star review collection.
             </p>
             <div class="pt-4 border-t border-white/[0.08] space-y-1.5 text-[11.5px] font-mono text-slate-300">
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Sub-60s Inquiry Reply</div>
@@ -748,8 +797,11 @@
               <div class="value-icon-l1">
                 <div class="value-icon-frame">
                   <div class="value-icon text-cyan-400">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" class="w-full h-full">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
                     </svg>
                   </div>
                 </div>
@@ -760,10 +812,12 @@
             <div class="text-[11px] font-mono text-cyan-400 font-bold uppercase tracking-wider">ATTENTION TO ASSET</div>
             <h3 class="text-[20px] font-sans font-bold text-white">Influencer & Direct Growth</h3>
             <p class="text-[13px] text-slate-300 leading-relaxed">
-              Followers on Instagram are rented reach. Route influencer collaborations directly to your owned platform, capture WhatsApp contacts, and trigger repeat re-booking loops.
+              Followers on Instagram are rented reach. Route influencer collaborations directly to your owned platform,
+              capture WhatsApp contacts, and trigger repeat re-booking loops.
             </p>
             <div class="pt-4 border-t border-white/[0.08] space-y-1.5 text-[11.5px] font-mono text-slate-300">
-              <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Creator Traffic to Owned App</div>
+              <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Creator Traffic to Owned App
+              </div>
               <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> WhatsApp VIP Broadcasts</div>
               <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Lifetime Client Retention</div>
             </div>
@@ -787,7 +841,8 @@
           How much profit is leaking to aggregators?
         </h2>
         <p class="text-[15px] text-slate-300 mt-2">
-          When you rely on marketplace apps, you pay 20% to 30% on every transaction. Adjust the sliders below to calculate your annual financial loss.
+          When you rely on marketplace apps, you pay 20% to 30% on every transaction. Adjust the sliders below to
+          calculate your annual financial loss.
         </p>
       </div>
 
@@ -796,11 +851,12 @@
 
           <!-- Sliders Left Column -->
           <div class="lg:col-span-7 space-y-7">
-            
+
             <!-- Slider 1: Revenue -->
             <div>
               <div class="flex justify-between items-baseline mb-2.5">
-                <label class="text-[12.5px] font-mono text-slate-300 font-semibold uppercase tracking-wider">Your Monthly Revenue</label>
+                <label class="text-[12.5px] font-mono text-slate-300 font-semibold uppercase tracking-wider">Your
+                  Monthly Revenue</label>
                 <span id="calcRevVal" class="text-[24px] font-sans font-black text-white">₹5,00,000</span>
               </div>
               <input id="calcRev" type="range" min="100000" max="3000000" step="50000" value="500000" />
@@ -814,7 +870,8 @@
             <!-- Slider 2: Rate -->
             <div>
               <div class="flex justify-between items-baseline mb-2.5">
-                <label class="text-[12.5px] font-mono text-slate-300 font-semibold uppercase tracking-wider">Aggregator / Marketplace Cut</label>
+                <label class="text-[12.5px] font-mono text-slate-300 font-semibold uppercase tracking-wider">Aggregator
+                  / Marketplace Cut</label>
                 <span id="calcRateVal" class="text-[24px] font-sans font-black text-emerald-400">25%</span>
               </div>
               <input id="calcRate" type="range" min="10" max="35" step="1" value="25" />
@@ -826,33 +883,38 @@
             </div>
 
             <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] text-[13px] text-slate-300">
-              💡 <strong>The Getmore Shift:</strong> Why pay commission on repeat clients you earned through your own hard work? Getmore OS gives you complete digital ownership with <strong class="text-white font-semibold">0% ongoing cuts</strong> on your bookings.
+              💡 <strong>The Getmore Shift:</strong> Why pay commission on repeat clients you earned through your own
+              hard work? Getmore OS gives you complete digital ownership with <strong
+                class="text-white font-semibold">0% ongoing cuts</strong> on your bookings.
             </div>
           </div>
 
           <!-- Output Box Right Column -->
           <div class="lg:col-span-5 bg-black/60 border border-white/[0.08] rounded-2xl p-6 sm:p-8 space-y-6">
             <div>
-              <div class="text-[11.5px] font-mono text-red-400 font-bold mb-1 tracking-wider uppercase">ANNUAL REVENUE LOST FOREVER:</div>
-              <div id="calcYearlyLoss" class="text-[38px] sm:text-[46px] font-sans font-black text-white tracking-tight">
+              <div class="text-[11.5px] font-mono text-red-400 font-bold mb-1 tracking-wider uppercase">ANNUAL REVENUE
+                LOST FOREVER:</div>
+              <div id="calcYearlyLoss"
+                class="text-[38px] sm:text-[46px] font-sans font-black text-white tracking-tight">
                 ₹15,00,000
               </div>
               <div class="text-[13.5px] text-slate-300 mt-1.5">
-                Equal to <span id="calcMonthlyLoss" class="text-white font-black">₹1,25,000</span> paid to aggregators every single month.
+                Equal to <span id="calcMonthlyLoss" class="text-white font-black">₹1,25,000</span> paid to aggregators
+                every single month.
               </div>
             </div>
 
             <div class="pt-5 border-t border-white/[0.08] space-y-2.5 text-[12.5px] text-slate-300 font-mono">
               <div class="flex items-center gap-2">
-                <span class="text-emerald-400 font-bold">✓</span> 
+                <span class="text-emerald-400 font-bold">✓</span>
                 <span>100% direct customer contact database</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-emerald-400 font-bold">✓</span> 
+                <span class="text-emerald-400 font-bold">✓</span>
                 <span>Automated re-booking reminders on WhatsApp</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-emerald-400 font-bold">✓</span> 
+                <span class="text-emerald-400 font-bold">✓</span>
                 <span>Zero fees on repeat appointments</span>
               </div>
             </div>
@@ -883,16 +945,18 @@
           Building on Rented Land <span class="font-serif italic font-normal text-slate-400">vs</span> Your Owned OS
         </h2>
         <p class="text-[14.5px] text-slate-300 mt-2">
-          Compare the fundamental difference between renting your business from aggregators versus owning your customer stack.
+          Compare the fundamental difference between renting your business from aggregators versus owning your customer
+          stack.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         <!-- Column 1: Rented Land -->
         <div class="value-card border-red-500/20 bg-[#0F0A0B] p-7 space-y-5">
           <div class="flex items-center justify-between pb-3 border-b border-red-500/20">
-            <span class="text-[12px] font-mono text-red-400 font-bold tracking-wider uppercase">RENTED LAND (AGGREGATORS & APPS)</span>
+            <span class="text-[12px] font-mono text-red-400 font-bold tracking-wider uppercase">RENTED LAND (AGGREGATORS
+              & APPS)</span>
             <span class="text-[18px]">❌</span>
           </div>
           <ul class="space-y-3.5 text-[13.5px] text-slate-300">
@@ -902,7 +966,8 @@
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-red-400 font-bold mt-0.5">•</span>
-              <span><strong>They own the customer phone number</strong> and mask client data. You cannot remarket directly.</span>
+              <span><strong>They own the customer phone number</strong> and mask client data. You cannot remarket
+                directly.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-red-400 font-bold mt-0.5">•</span>
@@ -910,7 +975,8 @@
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-red-400 font-bold mt-0.5">•</span>
-              <span>Instagram & algorithms own your reach; 1 shadowban or feed change wipes out your daily footfall.</span>
+              <span>Instagram & algorithms own your reach; 1 shadowban or feed change wipes out your daily
+                footfall.</span>
             </li>
           </ul>
         </div>
@@ -918,17 +984,20 @@
         <!-- Column 2: Owned Land (Getmore OS) -->
         <div class="value-card border-emerald-500/40 bg-[#08120C] p-7 space-y-5 shadow-2xl shadow-emerald-500/10">
           <div class="flex items-center justify-between pb-3 border-b border-emerald-500/30">
-            <span class="text-[12px] font-mono text-emerald-400 font-bold tracking-wider uppercase">OWNED LAND (GETMORE OS)</span>
+            <span class="text-[12px] font-mono text-emerald-400 font-bold tracking-wider uppercase">OWNED LAND (GETMORE
+              OS)</span>
             <span class="text-[18px]">✅</span>
           </div>
           <ul class="space-y-3.5 text-[13.5px] text-emerald-100">
             <li class="flex items-start gap-2.5">
               <span class="text-emerald-400 font-bold mt-0.5">•</span>
-              <span><strong>0% commission forever</strong> on bookings and appointments. Every rupee goes straight to you.</span>
+              <span><strong>0% commission forever</strong> on bookings and appointments. Every rupee goes straight to
+                you.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-emerald-400 font-bold mt-0.5">•</span>
-              <span><strong>100% verified WhatsApp database</strong> and booking history safely stored in your own CRM.</span>
+              <span><strong>100% verified WhatsApp database</strong> and booking history safely stored in your own
+                CRM.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-emerald-400 font-bold mt-0.5">•</span>
@@ -936,7 +1005,8 @@
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-emerald-400 font-bold mt-0.5">•</span>
-              <span>Direct WhatsApp broadcasts with 98% open rates for VIP offers and re-booking reminders at ₹0 ad cost.</span>
+              <span>Direct WhatsApp broadcasts with 98% open rates for VIP offers and re-booking reminders at ₹0 ad
+                cost.</span>
             </li>
           </ul>
         </div>
@@ -966,45 +1036,57 @@
 
         <div class="value-card p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK 01</span>
+            <span
+              class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK
+              01</span>
             <span class="text-[26px] font-sans font-black text-slate-600">01</span>
           </div>
           <h4 class="text-[18px] font-sans font-bold text-white">Funnel & Leak Audit</h4>
           <p class="text-[13px] text-slate-300 leading-relaxed">
-            We map your customer journey, calculate exact aggregator commission bleed, and identify booking drop-off points.
+            We map your customer journey, calculate exact aggregator commission bleed, and identify booking drop-off
+            points.
           </p>
         </div>
 
         <div class="value-card p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK 02</span>
+            <span
+              class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK
+              02</span>
             <span class="text-[26px] font-sans font-black text-slate-600">02</span>
           </div>
           <h4 class="text-[18px] font-sans font-bold text-white">Design & Web App Build</h4>
           <p class="text-[13px] text-slate-300 leading-relaxed">
-            We architect your bespoke web application, high-converting service catalog, and mobile-first WhatsApp booking flow.
+            We architect your bespoke web application, high-converting service catalog, and mobile-first WhatsApp
+            booking flow.
           </p>
         </div>
 
         <div class="value-card p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK 03</span>
+            <span
+              class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK
+              03</span>
             <span class="text-[26px] font-sans font-black text-slate-600">03</span>
           </div>
           <h4 class="text-[18px] font-sans font-bold text-white">Full-Stack Deployment</h4>
           <p class="text-[13px] text-slate-300 leading-relaxed">
-            We connect your WhatsApp Business API, configure automated slot confirmations, and wire your direct CRM database.
+            We connect your WhatsApp Business API, configure automated slot confirmations, and wire your direct CRM
+            database.
           </p>
         </div>
 
         <div class="value-card p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK 04</span>
+            <span
+              class="text-[11px] font-mono text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">WEEK
+              04</span>
             <span class="text-[26px] font-sans font-black text-slate-600">04</span>
           </div>
           <h4 class="text-[18px] font-sans font-bold text-white">Search & Growth Launch</h4>
           <p class="text-[13px] text-slate-300 leading-relaxed">
-            We calibrate your Google Maps Local 3-Pack presence and deploy automated 5-star review loops to scale recurring footfall.
+            We calibrate your Google Maps Local 3-Pack presence and deploy automated 5-star review loops to scale
+            recurring footfall.
           </p>
         </div>
 
@@ -1042,7 +1124,8 @@
               <span class="text-[11px] font-mono text-slate-400 px-2 py-1 rounded bg-white/[0.04]">BANGALORE</span>
             </div>
             <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-              Paying ₹2.2L+ monthly in aggregator commissions on high-ticket skin and body treatments. We migrated 85% of bookings to their direct WhatsApp OS.
+              Paying ₹2.2L+ monthly in aggregator commissions on high-ticket skin and body treatments. We migrated 85%
+              of bookings to their direct WhatsApp OS.
             </p>
           </div>
 
@@ -1073,7 +1156,8 @@
               <span class="text-[11px] font-mono text-slate-400 px-2 py-1 rounded bg-white/[0.04]">INDIRANAGAR</span>
             </div>
             <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-              Suffered from 75% lead drop-off on trial bookings. Deployed automated 1-click WhatsApp confirmations and localized Google 3-Pack authority.
+              Suffered from 75% lead drop-off on trial bookings. Deployed automated 1-click WhatsApp confirmations and
+              localized Google 3-Pack authority.
             </p>
           </div>
 
@@ -1129,11 +1213,16 @@
               <span class="text-[12px] font-mono text-slate-400">/one-time</span>
             </div>
             <div class="space-y-3 text-[13px] text-slate-300">
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom Web Application</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Direct WhatsApp Booking Wire</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 0% Booking Commission Architecture</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Google Maps Search Setup</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 14-Day Delivery Guarantee</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom Web
+                Application</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Direct WhatsApp
+                Booking Wire</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 0% Booking
+                Commission Architecture</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Google Maps Search
+                Setup</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 14-Day Delivery
+                Guarantee</div>
             </div>
           </div>
           <div class="pt-6 mt-6 border-t border-white/[0.08]">
@@ -1145,11 +1234,13 @@
         </div>
 
         <!-- Tier 2 -->
-        <div class="value-card p-7 flex flex-col justify-between border-emerald-500/60 bg-[#0B150F] lg:-translate-y-2 shadow-2xl shadow-emerald-500/20">
+        <div
+          class="value-card p-7 flex flex-col justify-between border-emerald-500/60 bg-[#0B150F] lg:-translate-y-2 shadow-2xl shadow-emerald-500/20">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="text-[11px] font-mono text-emerald-400 font-bold">RECOMMENDED STACK</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500 text-black font-extrabold">POPULAR</span>
+              <span
+                class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500 text-black font-extrabold">POPULAR</span>
             </div>
             <h3 class="text-[22px] font-sans font-bold text-white">Growth OS</h3>
             <p class="text-[13px] text-emerald-200/80 mt-1 mb-6">
@@ -1160,16 +1251,23 @@
               <span class="text-[12px] font-mono text-emerald-400/80">/full-stack</span>
             </div>
             <div class="space-y-3 text-[13px] text-emerald-100">
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>Everything in Launchpad OS</strong></div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated Sub-60s WhatsApp Booking AI</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> ChatGPT & AI Search Engine Indexing (GEO/AEO)</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated 5-Star Review Generator</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Customer Broadcast & Re-engagement Loops</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 30-Day Founder Growth Support</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>Everything
+                  in Launchpad OS</strong></div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated Sub-60s
+                WhatsApp Booking AI</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> ChatGPT & AI Search
+                Engine Indexing (GEO/AEO)</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Automated 5-Star
+                Review Generator</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Customer Broadcast
+                & Re-engagement Loops</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 30-Day Founder
+                Growth Support</div>
             </div>
           </div>
           <div class="pt-6 mt-6 border-t border-emerald-900/50">
-            <a href="#discovery-call" onclick="setFormPlan('Growth OS (₹24,999)')" class="vani-btn w-full block text-center">
+            <a href="#discovery-call" onclick="setFormPlan('Growth OS (₹24,999)')"
+              class="vani-btn w-full block text-center">
               <div class="vani-btn-inner justify-center py-3.5 text-[13px]">
                 <span>Get Growth OS (Recommended)</span>
                 <div class="vani-btn-icon">→</div>
@@ -1191,11 +1289,16 @@
               <span class="text-[12px] font-mono text-slate-400">/tailored</span>
             </div>
             <div class="space-y-3 text-[13px] text-slate-300">
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Centralized Multi-Location Booking Hub</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom CRM / POS Integration</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated AI Concierge Agents</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Multi-Branch Analytics Dashboard</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated Growth Engineer</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Centralized
+                Multi-Location Booking Hub</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom CRM / POS
+                Integration</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated AI
+                Concierge Agents</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Multi-Branch
+                Analytics Dashboard</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated Growth
+                Engineer</div>
             </div>
           </div>
           <div class="pt-6 mt-6 border-t border-white/[0.08]">
@@ -1211,14 +1314,16 @@
 
     <!-- SECTION 8: PITCHFINDER SCANNER BANNER -->
     <section class="py-12 border-b border-white/[0.08]">
-      <div class="value-card p-6 sm:p-8 bg-[#0B0C12] border-white/[0.1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div
+        class="value-card p-6 sm:p-8 bg-[#0B0C12] border-white/[0.1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
           <div class="flex items-center gap-2 text-emerald-400 font-mono text-[11px] font-bold mb-1">
             <span>⚡ SCANNER PRODUCT</span>
           </div>
           <h3 class="text-[20px] font-sans font-bold text-white">PitchFinder Lead OS</h3>
           <p class="text-[13.5px] text-slate-300 mt-0.5 max-w-md">
-            Scan 500+ verified Bangalore businesses with calculated commission leaks and untapped local search potential in real-time.
+            Scan 500+ verified Bangalore businesses with calculated commission leaks and untapped local search potential
+            in real-time.
           </p>
         </div>
         <a href="pitchfinder/index.html" class="vani-btn shrink-0">
@@ -1248,7 +1353,8 @@
               Let's audit your customer acquisition.
             </h3>
             <p class="text-[14px] text-slate-300 leading-relaxed">
-              We will calculate your commission leaks, review your booking flow, and show you how a custom Getmore OS will accelerate your direct revenue and customer retention.
+              We will calculate your commission leaks, review your booking flow, and show you how a custom Getmore OS
+              will accelerate your direct revenue and customer retention.
             </p>
 
             <div class="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] space-y-1 font-mono text-[12.5px]">
@@ -1262,14 +1368,16 @@
           <div class="lg:col-span-7 bg-black/60 border border-white/[0.08] rounded-2xl p-6 sm:p-8">
 
             <div id="formSubmitted" class="hidden text-center py-8 space-y-3">
-              <div class="h-12 w-12 bg-emerald-400 text-black font-bold rounded-full grid place-items-center mx-auto text-[22px]">
+              <div
+                class="h-12 w-12 bg-emerald-400 text-black font-bold rounded-full grid place-items-center mx-auto text-[22px]">
                 ✓
               </div>
               <h4 class="text-[20px] font-sans font-bold text-white">Discovery Call Requested</h4>
               <p class="text-[13.5px] text-slate-300 max-w-sm mx-auto">
                 WhatsApp has been launched with your brief. Our founder team will connect shortly.
               </p>
-              <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer" class="vani-btn inline-block mt-3">
+              <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer"
+                class="vani-btn inline-block mt-3">
                 <div class="vani-btn-inner py-3 px-6 text-[13px]">
                   <span>Open WhatsApp (+91-9738397933)</span>
                   <div class="vani-btn-icon">→</div>
@@ -1358,44 +1466,56 @@
       </div>
 
       <div class="max-w-3xl space-y-4">
-        
+
         <details class="value-card p-5 group" open>
-          <summary class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
+          <summary
+            class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
             <span>What are the 4 pillars of Getmore OS?</span>
             <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-            The 4 pillars are: <strong>1. Bespoke Web Applications</strong> (0% commission, sub-1s load speed), <strong>2. Google Maps & AI Discovery</strong> (Local 3-Pack rank + ChatGPT/Gemini AEO), <strong>3. WhatsApp & AI Automations</strong> (sub-60s instant replies, slot confirmations & 5-star review loops), and <strong>4. Influencer & Direct Growth Engine</strong> (converting rented social views into permanent customer CRM equity).
+            The 4 pillars are: <strong>1. Bespoke Web Applications</strong> (0% commission, sub-1s load speed),
+            <strong>2. Google Maps & AI Discovery</strong> (Local 3-Pack rank + ChatGPT/Gemini AEO), <strong>3. WhatsApp
+              & AI Automations</strong> (sub-60s instant replies, slot confirmations & 5-star review loops), and
+            <strong>4. Influencer & Direct Growth Engine</strong> (converting rented social views into permanent
+            customer CRM equity).
           </p>
         </details>
 
         <details class="value-card p-5 group">
-          <summary class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
+          <summary
+            class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
             <span>How does this eliminate aggregator cuts?</span>
             <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-            Aggregators take 20% to 30% from every appointment or order. We give your business its own direct ordering/booking web application connected directly to your WhatsApp hotline. Your clients book with 1 tap, and you keep 100% of the revenue.
+            Aggregators take 20% to 30% from every appointment or order. We give your business its own direct
+            ordering/booking web application connected directly to your WhatsApp hotline. Your clients book with 1 tap,
+            and you keep 100% of the revenue.
           </p>
         </details>
 
         <details class="value-card p-5 group">
-          <summary class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
+          <summary
+            class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
             <span>How long does full deployment take?</span>
             <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-            Our Launchpad OS goes live in 14 days. Full-stack Growth OS deployments take between 2 to 4 weeks from audit to search indexing and automated WhatsApp routing.
+            Our Launchpad OS goes live in 14 days. Full-stack Growth OS deployments take between 2 to 4 weeks from audit
+            to search indexing and automated WhatsApp routing.
           </p>
         </details>
 
         <details class="value-card p-5 group">
-          <summary class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
+          <summary
+            class="font-sans font-bold text-white text-[16px] flex items-center justify-between cursor-pointer list-none">
             <span>Do we own 100% of the customer database?</span>
             <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
           </summary>
           <p class="text-[14px] text-slate-300 mt-3 leading-relaxed">
-            Yes. Unlike aggregator platforms that withhold customer phone numbers, all client contact details and booking histories go directly into your private CRM database.
+            Yes. Unlike aggregator platforms that withhold customer phone numbers, all client contact details and
+            booking histories go directly into your private CRM database.
           </p>
         </details>
 
@@ -1410,8 +1530,10 @@
           #343, 9th Main, 22nd Cross, HSR Layout 7th Sector, Bengaluru, Karnataka, 560102
         </div>
         <div class="flex flex-wrap items-center justify-center gap-5">
-          <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp: +91-9738397933</a>
-          <a href="https://www.instagram.com/getmore.os/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+          <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer"
+            class="hover:text-white transition-colors">WhatsApp: +91-9738397933</a>
+          <a href="https://www.instagram.com/getmore.os/?hl=en" target="_blank" rel="noopener noreferrer"
+            class="hover:text-white transition-colors">Instagram</a>
           <a href="pitchfinder/index.html" class="text-emerald-400 hover:underline">PitchFinder Lead OS</a>
           <a href="posters.html" class="text-slate-400 hover:text-white transition-colors">Posters</a>
         </div>
@@ -1421,9 +1543,10 @@
   </main>
 
   <!-- MOBILE STICKY BOTTOM BAR -->
-  <aside class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050507]/95 backdrop-blur-xl border-t border-white/[0.08] px-4 py-3 flex items-center gap-2.5">
-    <a href="https://wa.me/919738397933?text=Hi%20Getmore%20OS%2C%20I'd%20like%20to%20discuss%20deploying%20the%204%20pillars%20for%20my%20business." target="_blank"
-      rel="noopener noreferrer"
+  <aside
+    class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050507]/95 backdrop-blur-xl border-t border-white/[0.08] px-4 py-3 flex items-center gap-2.5">
+    <a href="https://wa.me/919738397933?text=Hi%20Getmore%20OS%2C%20I'd%20like%20to%20discuss%20deploying%20the%204%20pillars%20for%20my%20business."
+      target="_blank" rel="noopener noreferrer"
       class="flex-1 py-3 rounded-full bg-white/[0.05] border border-white/[0.1] text-white font-mono text-[12px] font-bold text-center">
       💬 WhatsApp Us
     </a>
@@ -1506,6 +1629,38 @@
 
       window.open(`https://wa.me/919738397933?text=${text}`, '_blank');
     });
+
+    // Mobile Navigation Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', function() {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   </script>
 </body>
 
