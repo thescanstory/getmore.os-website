@@ -100,19 +100,63 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Ambient Glow Behind Hero (Soft & restrained) */
-    .ambient-glow {
-      position: absolute;
-      width: 600px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
-      filter: blur(100px);
-      pointer-events: none;
-      z-index: 0;
+    /* Ambient Breathing Aurora Animations */
+    @keyframes aurora-drift-1 {
+      0%, 100% {
+        transform: translate(-50%, -20%) scale(1) rotate(0deg);
+        opacity: 0.16;
+      }
+      50% {
+        transform: translate(-45%, -10%) scale(1.18) rotate(12deg);
+        opacity: 0.28;
+      }
     }
 
-    /* Clean Vani-style Pill Button */
+    @keyframes aurora-drift-2 {
+      0%, 100% {
+        transform: translate(20%, 30%) scale(1.05) rotate(0deg);
+        opacity: 0.12;
+      }
+      50% {
+        transform: translate(15%, 15%) scale(0.92) rotate(-18deg);
+        opacity: 0.24;
+      }
+    }
+
+    .ambient-glow-1 {
+      position: absolute;
+      width: 750px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(59, 130, 246, 0.1) 45%, transparent 70%);
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      animation: aurora-drift-1 16s ease-in-out infinite;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      width: 650px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.08) 50%, transparent 70%);
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+      animation: aurora-drift-2 20s ease-in-out infinite;
+    }
+
+    /* Shimmer Button Sweep */
+    @keyframes button-sweep {
+      0% {
+        transform: translateX(-150%) skewX(-20deg);
+      }
+      50%, 100% {
+        transform: translateX(250%) skewX(-20deg);
+      }
+    }
+
     .pill-btn {
       display: inline-flex;
       align-items: center;
@@ -122,8 +166,10 @@
       font-size: 0.875rem;
       font-weight: 600;
       letter-spacing: -0.01em;
-      transition: all 0.25s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
     }
 
     .pill-btn-primary {
@@ -132,10 +178,22 @@
       box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
     }
 
+    .pill-btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+      animation: button-sweep 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
     .pill-btn-primary:hover {
       background: #F1F5F9;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.25);
     }
 
     .pill-btn-secondary {
@@ -146,22 +204,118 @@
 
     .pill-btn-secondary:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
     }
 
-    /* Clean Card */
-    .glass-card {
+    /* Radar Beacon Pulse */
+    @keyframes radar-beacon-wave {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 9px rgba(16, 185, 129, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    .radar-beacon {
+      animation: radar-beacon-wave 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    /* Text Shimmer Gradient */
+    @keyframes gradient-shimmer-flow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(135deg, #E2E8F0 0%, #FFFFFF 25%, #6EE7B7 50%, #93C5FD 75%, #E2E8F0 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-shimmer-flow 7s ease infinite;
+    }
+
+    /* Interactive Spotlight Card (Cursor-Following Radial Light) */
+    .spotlight-card {
+      position: relative;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 20px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
     }
 
-    .glass-card:hover {
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, -150%);
+      left: var(--mouse-x, -150%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle 160px at center, rgba(16, 185, 129, 0.12), transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    .spotlight-card:hover {
       background: rgba(255, 255, 255, 0.035);
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
+      border-color: rgba(16, 185, 129, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -12px rgba(16, 185, 129, 0.15);
+    }
+
+    /* Scroll Reveal Animation System */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+    .delay-4 { transition-delay: 0.32s; }
+
+    /* Floating Micro-Bob */
+    @keyframes gentle-float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    .gentle-float {
+      animation: gentle-float 4.5s ease-in-out infinite;
     }
 
     /* Slider Styling */
@@ -183,13 +337,34 @@
       border-radius: 50%;
       background: #10B981;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
       border: 2px solid #FFFFFF;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+      transform: scale(1.2);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.9);
+    }
+
+    /* Calculator Result Flash */
+    @keyframes number-pop {
+      0% {
+        transform: scale(0.96);
+        color: #F87171;
+      }
+      50% {
+        transform: scale(1.03);
+        color: #EF4444;
+      }
+      100% {
+        transform: scale(1);
+        color: #F87171;
+      }
+    }
+
+    .calc-pop {
+      animation: number-pop 0.3s ease;
     }
   </style>
 </head>
@@ -200,15 +375,15 @@
   <div class="border-b border-white/[0.06] bg-[#07080A] py-2 px-4 text-center text-[11.5px] font-mono text-slate-400">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-        <span class="text-white font-semibold">GETMORE.OS</span>
+        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
+        <span class="text-white font-semibold tracking-wide">GETMORE.OS</span>
         <span class="hidden sm:inline text-slate-500">• Direct Booking Operating System</span>
       </div>
       <div class="flex items-center gap-4">
         <a href="#calculator" class="hover:text-white transition-colors">Commission Leak Audit</a>
         <a href="pitchfinder/index.html" class="text-emerald-400 font-semibold hover:underline flex items-center gap-1">
           <span>PitchFinder Lead OS</span>
-          <span>⚡</span>
+          <span class="animate-pulse">⚡</span>
         </a>
       </div>
     </div>
@@ -219,12 +394,12 @@
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5">
-        <div class="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-[13px]" aria-hidden="true">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-[13px] group-hover:border-emerald-400 group-hover:scale-105 transition-all" aria-hidden="true">
           G
         </div>
         <div class="flex items-baseline gap-0.5">
-          <span class="font-sans text-[17px] font-extrabold tracking-tight text-white">getmore</span>
+          <span class="font-sans text-[17px] font-extrabold tracking-tight text-white group-hover:text-emerald-300 transition-colors">getmore</span>
           <span class="font-mono text-[11px] text-emerald-400 font-semibold">.os</span>
         </div>
       </a>
@@ -244,13 +419,13 @@
         <a href="https://wa.me/919738397933?text=Hi%20Getmore%20OS%2C%20I'd%20like%20to%20discuss%20deploying%20the%204%20pillars%20for%20my%20business."
           target="_blank" rel="noopener noreferrer"
           class="hidden lg:inline-flex items-center gap-2 text-[12px] font-mono text-slate-400 hover:text-white px-3 py-1.5 rounded-full border border-white/[0.08] hover:border-white/20 transition-colors">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
           <span>+91-9738397933</span>
         </a>
 
         <a href="#discovery-call" class="pill-btn pill-btn-primary py-2 px-4 text-[13px]">
           <span>Book Call</span>
-          <span>↗</span>
+          <span class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
         </a>
 
         <!-- Mobile Menu Toggle Button -->
@@ -294,21 +469,22 @@
 
     <!-- HERO SECTION (CLEAN, MONUMENTAL & BREATHABLE) -->
     <section class="relative pt-20 sm:pt-32 pb-20 sm:pb-28 px-4 sm:px-6 border-b border-white/[0.06] overflow-hidden">
-      <!-- Soft ambient backdrop -->
-      <div class="ambient-glow top-0 left-1/2 -translate-x-1/2"></div>
+      <!-- Soft ambient backdrop orbs with gentle drift -->
+      <div class="ambient-glow-1 top-0 left-1/2 -translate-x-1/2"></div>
+      <div class="ambient-glow-2 top-48 right-10"></div>
 
-      <div class="max-w-4xl mx-auto text-center relative z-10 space-y-7">
+      <div class="max-w-4xl mx-auto text-center relative z-10 space-y-7 reveal">
 
         <!-- Eyebrow Tag -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] text-[12px] font-mono text-slate-300">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] text-[12px] font-mono text-slate-300 gentle-float">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
           <span>THE DIRECT OPERATING SYSTEM FOR LOCAL ENTERPRISES</span>
         </div>
 
         <!-- Headline -->
         <h1 class="text-[40px] sm:text-[62px] md:text-[74px] font-extrabold tracking-[-0.04em] leading-[1.05] text-white">
           Stop building on rented land. <br />
-          <span class="text-slate-400 font-normal">Own your platform & growth.</span>
+          <span class="shimmer-text font-normal">Own your platform & growth.</span>
         </h1>
 
         <!-- Subheading -->
@@ -330,21 +506,21 @@
         </div>
 
         <!-- Clean Metric Strip -->
-        <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/[0.06] text-center max-w-3xl mx-auto">
-          <div>
-            <div class="text-[26px] font-bold text-white tracking-tight">0%</div>
+        <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/[0.06] text-center max-w-3xl mx-auto reveal delay-2">
+          <div class="group">
+            <div class="text-[28px] font-bold text-white tracking-tight group-hover:scale-105 transition-transform">0%</div>
             <div class="text-slate-400 text-[12px] mt-0.5">Platform Commission</div>
           </div>
-          <div>
-            <div class="text-[26px] font-bold text-emerald-400 tracking-tight">&lt;60s</div>
+          <div class="group">
+            <div class="text-[28px] font-bold text-emerald-400 tracking-tight group-hover:scale-105 transition-transform">&lt;60s</div>
             <div class="text-slate-400 text-[12px] mt-0.5">WhatsApp Reply Time</div>
           </div>
-          <div>
-            <div class="text-[26px] font-bold text-white tracking-tight">100%</div>
+          <div class="group">
+            <div class="text-[28px] font-bold text-white tracking-tight group-hover:scale-105 transition-transform">100%</div>
             <div class="text-slate-400 text-[12px] mt-0.5">Owned Customer CRM</div>
           </div>
-          <div>
-            <div class="text-[26px] font-bold text-indigo-400 tracking-tight">14–28d</div>
+          <div class="group">
+            <div class="text-[28px] font-bold text-indigo-400 tracking-tight group-hover:scale-105 transition-transform">14–28d</div>
             <div class="text-slate-400 text-[12px] mt-0.5">Audit to Go-Live</div>
           </div>
         </div>
@@ -353,13 +529,16 @@
     </section>
 
     <!-- SECTION 1: THE 4 PILLARS OF GETMORE OS -->
-    <section id="pillars" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
-      <div class="max-w-6xl mx-auto">
+    <section id="pillars" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
+      <div class="ambient-glow-2 top-20 -left-20"></div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
 
         <!-- Section Header -->
-        <div class="max-w-2xl mb-14 space-y-3">
-          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
-            System Architecture
+        <div class="max-w-2xl mb-14 space-y-3 reveal">
+          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
+            <span>System Architecture</span>
           </div>
           <h2 class="text-[32px] sm:text-[44px] font-bold text-white tracking-[-0.03em]">
             The 4 Pillars of GETMORE OS
@@ -369,22 +548,22 @@
           </p>
         </div>
 
-        <!-- 4 Cards Grid -->
+        <!-- 4 Cards Grid with Spotlight Cursor Hover -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
 
           <!-- Pillar 01 -->
-          <div class="glass-card p-6 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-6 flex flex-col justify-between space-y-6 reveal delay-1">
+            <div class="space-y-4 relative z-10">
               <div class="flex items-center justify-between">
                 <span class="text-[11px] font-mono text-emerald-400 font-bold tracking-wider">PILLAR 01</span>
-                <span class="text-[11px] font-mono text-slate-500">0% CUT</span>
+                <span class="text-[11px] font-mono text-slate-500 bg-white/[0.04] px-2 py-0.5 rounded">0% CUT</span>
               </div>
               <h3 class="text-[19px] font-bold text-white tracking-tight">Bespoke Web App</h3>
               <p class="text-[13px] text-slate-400 leading-relaxed">
                 Ultra-fast, high-converting mobile web app. Sub-1s load times, luxury treatments & services menu, zero template clutter, and 0% commission forever.
               </p>
             </div>
-            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300">
+            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300 relative z-10">
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Custom Domain & Branding</div>
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 1-Tap Booking Flow</div>
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Zero Commission Paid</div>
@@ -392,18 +571,18 @@
           </div>
 
           <!-- Pillar 02 -->
-          <div class="glass-card p-6 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-6 flex flex-col justify-between space-y-6 reveal delay-2">
+            <div class="space-y-4 relative z-10">
               <div class="flex items-center justify-between">
                 <span class="text-[11px] font-mono text-indigo-400 font-bold tracking-wider">PILLAR 02</span>
-                <span class="text-[11px] font-mono text-slate-500">DISCOVERY</span>
+                <span class="text-[11px] font-mono text-slate-500 bg-white/[0.04] px-2 py-0.5 rounded">DISCOVERY</span>
               </div>
               <h3 class="text-[19px] font-bold text-white tracking-tight">Maps & AI Discovery</h3>
               <p class="text-[13px] text-slate-400 leading-relaxed">
                 68%+ of local clicks go to the top 3 map pins. We optimize your business profile to win the Google Maps 3-Pack and train AI answer engines (ChatGPT, Gemini) to recommend you first.
               </p>
             </div>
-            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300">
+            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300 relative z-10">
               <div class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Google Maps 3-Pack Rank</div>
               <div class="flex items-center gap-2"><span class="text-indigo-400">✓</span> ChatGPT / Gemini AEO</div>
               <div class="flex items-center gap-2"><span class="text-indigo-400">✓</span> Hyper-Local Authority</div>
@@ -411,18 +590,18 @@
           </div>
 
           <!-- Pillar 03 -->
-          <div class="glass-card p-6 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-6 flex flex-col justify-between space-y-6 reveal delay-3">
+            <div class="space-y-4 relative z-10">
               <div class="flex items-center justify-between">
                 <span class="text-[11px] font-mono text-emerald-400 font-bold tracking-wider">PILLAR 03</span>
-                <span class="text-[11px] font-mono text-slate-500">CONVERSION</span>
+                <span class="text-[11px] font-mono text-slate-500 bg-white/[0.04] px-2 py-0.5 rounded">CONVERSION</span>
               </div>
               <h3 class="text-[19px] font-bold text-white tracking-tight">WhatsApp AI Automation</h3>
               <p class="text-[13px] text-slate-400 leading-relaxed">
                 Sub-60s instant replies on your verified WhatsApp hotline. Automatically answers pricing queries, books appointments into your calendar, and triggers 5-star Google review loops.
               </p>
             </div>
-            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300">
+            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300 relative z-10">
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Sub-60s Instant Replies</div>
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Calendar Slot Booking</div>
               <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 5-Star Review Engine</div>
@@ -430,18 +609,18 @@
           </div>
 
           <!-- Pillar 04 -->
-          <div class="glass-card p-6 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-6 flex flex-col justify-between space-y-6 reveal delay-4">
+            <div class="space-y-4 relative z-10">
               <div class="flex items-center justify-between">
                 <span class="text-[11px] font-mono text-amber-400 font-bold tracking-wider">PILLAR 04</span>
-                <span class="text-[11px] font-mono text-slate-500">RETENTION</span>
+                <span class="text-[11px] font-mono text-slate-500 bg-white/[0.04] px-2 py-0.5 rounded">RETENTION</span>
               </div>
               <h3 class="text-[19px] font-bold text-white tracking-tight">Direct Growth Engine</h3>
               <p class="text-[13px] text-slate-400 leading-relaxed">
                 Convert fleeting social views and influencer promotions into permanent customer equity. Attribute bookings with unique links, capture direct phone numbers, and fuel re-engagement campaigns.
               </p>
             </div>
-            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300">
+            <div class="pt-4 border-t border-white/[0.06] space-y-2 text-[12px] font-mono text-slate-300 relative z-10">
               <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> Influencer QR Attribution</div>
               <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> Permanent Customer CRM</div>
               <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> Zero Marketplace Tax</div>
@@ -454,12 +633,15 @@
     </section>
 
     <!-- SECTION 2: INTERACTIVE COMMISSION LEAK CALCULATOR -->
-    <section id="calculator" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
-      <div class="max-w-4xl mx-auto">
+    <section id="calculator" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
+      <div class="ambient-glow-1 top-10 right-10"></div>
 
-        <div class="text-center max-w-xl mx-auto mb-12 space-y-3">
-          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
-            Financial Impact
+      <div class="max-w-4xl mx-auto relative z-10">
+
+        <div class="text-center max-w-xl mx-auto mb-12 space-y-3 reveal">
+          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase flex items-center justify-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
+            <span>Financial Impact</span>
           </div>
           <h2 class="text-[32px] sm:text-[42px] font-bold text-white tracking-[-0.03em]">
             Commission Leak Calculator
@@ -469,14 +651,14 @@
           </p>
         </div>
 
-        <div class="glass-card p-6 sm:p-10 space-y-8">
+        <div class="spotlight-card p-6 sm:p-10 space-y-8 reveal delay-1">
 
           <!-- Controls -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
             <div class="space-y-3">
               <div class="flex justify-between items-center text-[13px]">
                 <span class="text-slate-300 font-medium">Monthly Revenue</span>
-                <span id="calcRevText" class="text-white font-mono font-bold text-[15px]">₹6,00,000</span>
+                <span id="calcRevText" class="text-white font-mono font-bold text-[15px] px-2 py-0.5 rounded bg-white/[0.05]">₹6,00,000</span>
               </div>
               <input type="range" id="calcRev" min="100000" max="3000000" step="50000" value="600000">
               <div class="flex justify-between text-[11px] font-mono text-slate-500">
@@ -488,7 +670,7 @@
             <div class="space-y-3">
               <div class="flex justify-between items-center text-[13px]">
                 <span class="text-slate-300 font-medium">Average Aggregator Cut</span>
-                <span id="calcCutText" class="text-emerald-400 font-mono font-bold text-[15px]">22%</span>
+                <span id="calcCutText" class="text-emerald-400 font-mono font-bold text-[15px] px-2 py-0.5 rounded bg-emerald-500/10">22%</span>
               </div>
               <input type="range" id="calcCut" min="15" max="35" step="1" value="22">
               <div class="flex justify-between text-[11px] font-mono text-slate-500">
@@ -499,10 +681,10 @@
           </div>
 
           <!-- Live Output Strip -->
-          <div class="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white/[0.02] -mx-6 sm:-mx-10 -mb-6 sm:-mb-10 p-6 sm:p-10 rounded-b-[20px]">
+          <div class="pt-6 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white/[0.02] -mx-6 sm:-mx-10 -mb-6 sm:-mb-10 p-6 sm:p-10 rounded-b-[20px] relative z-10">
             <div>
               <div class="text-[12px] font-mono text-slate-400 uppercase tracking-wider">Estimated Annual Leak</div>
-              <div id="calcYearlyLoss" class="text-[34px] sm:text-[40px] font-extrabold text-red-400 tracking-tight mt-1">₹15,84,000</div>
+              <div id="calcYearlyLoss" class="text-[34px] sm:text-[42px] font-extrabold text-red-400 tracking-tight mt-1 transition-all">₹15,84,000</div>
               <div class="text-[12px] text-slate-400 mt-1">Paid directly to third-party marketplaces each year.</div>
             </div>
 
@@ -523,10 +705,10 @@
     </section>
 
     <!-- SECTION 3: RENTED LAND VS GETMORE OS -->
-    <section id="comparison" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
-      <div class="max-w-5xl mx-auto">
+    <section id="comparison" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
+      <div class="max-w-5xl mx-auto relative z-10">
 
-        <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
+        <div class="text-center max-w-xl mx-auto mb-14 space-y-3 reveal">
           <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
             Strategic Comparison
           </div>
@@ -541,12 +723,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <!-- Rented Land -->
-          <div class="glass-card p-7 space-y-6 border-red-500/20 bg-red-950/[0.04]">
-            <div class="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+          <div class="spotlight-card p-7 space-y-6 border-red-500/20 bg-red-950/[0.04] reveal delay-1">
+            <div class="flex items-center justify-between pb-4 border-b border-white/[0.06] relative z-10">
               <h3 class="text-[18px] font-bold text-red-300">Rented Land (Aggregators)</h3>
               <span class="text-[11px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded">High Tax</span>
             </div>
-            <ul class="space-y-3.5 text-[13.5px] text-slate-300">
+            <ul class="space-y-3.5 text-[13.5px] text-slate-300 relative z-10">
               <li class="flex items-start gap-2.5">
                 <span class="text-red-400 font-bold">✕</span>
                 <span><strong>20% to 30% commission</strong> deducted from every transaction and booking.</span>
@@ -567,12 +749,12 @@
           </div>
 
           <!-- Getmore OS -->
-          <div class="glass-card p-7 space-y-6 border-emerald-500/30 bg-emerald-950/[0.06]">
-            <div class="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+          <div class="spotlight-card p-7 space-y-6 border-emerald-500/30 bg-emerald-950/[0.06] reveal delay-2">
+            <div class="flex items-center justify-between pb-4 border-b border-white/[0.06] relative z-10">
               <h3 class="text-[18px] font-bold text-emerald-300">GETMORE OS</h3>
               <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">0% Cut</span>
             </div>
-            <ul class="space-y-3.5 text-[13.5px] text-slate-300">
+            <ul class="space-y-3.5 text-[13.5px] text-slate-300 relative z-10">
               <li class="flex items-start gap-2.5">
                 <span class="text-emerald-400 font-bold">✓</span>
                 <span><strong>0% platform commission</strong> on direct bookings. You keep 100% of revenue.</span>
@@ -598,10 +780,10 @@
     </section>
 
     <!-- SECTION 4: 4-WEEK PROCESS -->
-    <section id="process" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
-      <div class="max-w-5xl mx-auto">
+    <section id="process" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
+      <div class="max-w-5xl mx-auto relative z-10">
 
-        <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
+        <div class="text-center max-w-xl mx-auto mb-14 space-y-3 reveal">
           <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
             Implementation Roadmap
           </div>
@@ -615,32 +797,44 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-          <div class="glass-card p-6 space-y-3">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold">WEEK 01</div>
+          <div class="spotlight-card p-6 space-y-3 reveal delay-1">
+            <div class="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-between">
+              <span>WEEK 01</span>
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            </div>
             <h3 class="text-[16px] font-bold text-white">Audit & Architecture</h3>
             <p class="text-[13px] text-slate-400 leading-relaxed">
               Complete leak audit of existing booking channels, customer flows, and competitor search rankings.
             </p>
           </div>
 
-          <div class="glass-card p-6 space-y-3">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold">WEEK 02</div>
+          <div class="spotlight-card p-6 space-y-3 reveal delay-2">
+            <div class="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-between">
+              <span>WEEK 02</span>
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            </div>
             <h3 class="text-[16px] font-bold text-white">Bespoke Web App</h3>
             <p class="text-[13px] text-slate-400 leading-relaxed">
               Custom mobile web app design, services catalog upload, domain connection, and 0% commission setup.
             </p>
           </div>
 
-          <div class="glass-card p-6 space-y-3">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold">WEEK 03</div>
+          <div class="spotlight-card p-6 space-y-3 reveal delay-3">
+            <div class="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-between">
+              <span>WEEK 03</span>
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            </div>
             <h3 class="text-[16px] font-bold text-white">Search & WhatsApp AI</h3>
             <p class="text-[13px] text-slate-400 leading-relaxed">
               Google Maps 3-Pack optimization, ChatGPT/Gemini AEO indexing, and sub-60s WhatsApp AI automation.
             </p>
           </div>
 
-          <div class="glass-card p-6 space-y-3">
-            <div class="text-[11px] font-mono text-emerald-400 font-bold">WEEK 04</div>
+          <div class="spotlight-card p-6 space-y-3 reveal delay-4">
+            <div class="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-between">
+              <span>WEEK 04</span>
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            </div>
             <h3 class="text-[16px] font-bold text-white">Go-Live & Retention</h3>
             <p class="text-[13px] text-slate-400 leading-relaxed">
               Staff walkthrough, QR codes rollout, influencer tracking setup, and live direct booking activation.
@@ -653,10 +847,12 @@
     </section>
 
     <!-- SECTION 5: PRICING -->
-    <section id="pricing" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
-      <div class="max-w-5xl mx-auto">
+    <section id="pricing" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
+      <div class="ambient-glow-2 top-20 right-10"></div>
 
-        <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
+      <div class="max-w-5xl mx-auto relative z-10">
+
+        <div class="text-center max-w-xl mx-auto mb-14 space-y-3 reveal">
           <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
             Transparent Investment
           </div>
@@ -671,8 +867,8 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           <!-- Tier 1 -->
-          <div class="glass-card p-7 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-7 flex flex-col justify-between space-y-6 reveal delay-1">
+            <div class="space-y-4 relative z-10">
               <div class="text-[11px] font-mono text-slate-400 font-bold uppercase">Launchpad OS</div>
               <div class="flex items-baseline gap-1">
                 <span class="text-[36px] font-extrabold text-white">₹9,999</span>
@@ -688,17 +884,17 @@
                 <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 14-Day Delivery</li>
               </ul>
             </div>
-            <a href="#discovery-call" class="pill-btn pill-btn-secondary w-full justify-center text-[13px]">
+            <a href="#discovery-call" class="pill-btn pill-btn-secondary w-full justify-center text-[13px] relative z-10">
               Deploy Launchpad OS
             </a>
           </div>
 
           <!-- Tier 2 (Featured) -->
-          <div class="glass-card p-7 flex flex-col justify-between space-y-6 border-emerald-500/40 relative bg-emerald-950/[0.08]">
-            <div class="space-y-4">
+          <div class="spotlight-card p-7 flex flex-col justify-between space-y-6 border-emerald-500/40 relative bg-emerald-950/[0.08] reveal delay-2">
+            <div class="space-y-4 relative z-10">
               <div class="flex justify-between items-center">
                 <span class="text-[11px] font-mono text-emerald-400 font-bold uppercase">Growth OS</span>
-                <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">MOST POPULAR</span>
+                <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded font-bold radar-beacon">MOST POPULAR</span>
               </div>
               <div class="flex items-baseline gap-1">
                 <span class="text-[36px] font-extrabold text-white">₹17,499</span>
@@ -716,14 +912,14 @@
                 <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> 3-Week Dedicated Deployment</li>
               </ul>
             </div>
-            <a href="#discovery-call" class="pill-btn pill-btn-primary w-full justify-center text-[13px]">
+            <a href="#discovery-call" class="pill-btn pill-btn-primary w-full justify-center text-[13px] relative z-10">
               Deploy Growth OS
             </a>
           </div>
 
           <!-- Tier 3 -->
-          <div class="glass-card p-7 flex flex-col justify-between space-y-6">
-            <div class="space-y-4">
+          <div class="spotlight-card p-7 flex flex-col justify-between space-y-6 reveal delay-3">
+            <div class="space-y-4 relative z-10">
               <div class="text-[11px] font-mono text-slate-400 font-bold uppercase">Dominance OS</div>
               <div class="flex items-baseline gap-1">
                 <span class="text-[36px] font-extrabold text-white">₹24,999</span>
@@ -739,7 +935,7 @@
                 <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Priority SLAs & Continuous Support</li>
               </ul>
             </div>
-            <a href="#discovery-call" class="pill-btn pill-btn-secondary w-full justify-center text-[13px]">
+            <a href="#discovery-call" class="pill-btn pill-btn-secondary w-full justify-center text-[13px] relative z-10">
               Deploy Dominance OS
             </a>
           </div>
@@ -753,7 +949,7 @@
     <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06]">
       <div class="max-w-3xl mx-auto space-y-8">
 
-        <div class="text-center space-y-3">
+        <div class="text-center space-y-3 reveal">
           <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
             Clear Answers
           </div>
@@ -764,42 +960,42 @@
 
         <div class="space-y-3">
 
-          <details class="glass-card p-5 group cursor-pointer">
-            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none">
+          <details class="spotlight-card p-5 group cursor-pointer reveal delay-1">
+            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none relative z-10">
               <span>What are the 4 pillars of Getmore OS?</span>
-              <span class="text-slate-500 group-open:rotate-180 transition-transform">↓</span>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200">↓</span>
             </summary>
-            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed">
+            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed relative z-10">
               The 4 pillars are: <strong>1. Bespoke Web Applications</strong> (0% commission, sub-1s load times), <strong>2. Google Maps & AI Discovery</strong> (Top 3-Pack rank + ChatGPT/Gemini recommendations), <strong>3. WhatsApp AI Automations</strong> (sub-60s instant replies & 5-star review loops), and <strong>4. Direct Growth Engine</strong> (converting rented social views into permanent CRM equity).
             </p>
           </details>
 
-          <details class="glass-card p-5 group cursor-pointer">
-            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none">
+          <details class="spotlight-card p-5 group cursor-pointer reveal delay-2">
+            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none relative z-10">
               <span>How does this eliminate aggregator cuts?</span>
-              <span class="text-slate-500 group-open:rotate-180 transition-transform">↓</span>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200">↓</span>
             </summary>
-            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed">
+            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed relative z-10">
               Aggregators charge 20% to 30% from every appointment or order. We deploy your own direct booking app connected straight to your verified WhatsApp hotline. Your customers book in 1 tap, and you keep 100% of the transaction value.
             </p>
           </details>
 
-          <details class="glass-card p-5 group cursor-pointer">
-            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none">
+          <details class="spotlight-card p-5 group cursor-pointer reveal delay-3">
+            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none relative z-10">
               <span>How long does deployment take?</span>
-              <span class="text-slate-400 group-open:rotate-180 transition-transform">↓</span>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200">↓</span>
             </summary>
-            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed">
+            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed relative z-10">
               Launchpad OS goes live in 14 days. Growth OS and multi-location setups are completed within 3 to 4 weeks from audit sign-off to full WhatsApp and search indexing.
             </p>
           </details>
 
-          <details class="glass-card p-5 group cursor-pointer">
-            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none">
+          <details class="spotlight-card p-5 group cursor-pointer reveal delay-4">
+            <summary class="font-semibold text-white text-[15px] flex items-center justify-between list-none relative z-10">
               <span>Do we own 100% of the customer database?</span>
-              <span class="text-slate-400 group-open:rotate-180 transition-transform">↓</span>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200">↓</span>
             </summary>
-            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed">
+            <p class="text-[13.5px] text-slate-400 mt-3 leading-relaxed relative z-10">
               Yes. Unlike aggregator platforms that withhold phone numbers, all client details and booking histories go directly into your private database. You own your customer relationships forever.
             </p>
           </details>
@@ -810,12 +1006,15 @@
     </section>
 
     <!-- SECTION 7: BOOK DISCOVERY CALL -->
-    <section id="discovery-call" class="py-20 sm:py-28 px-4 sm:px-6">
-      <div class="max-w-xl mx-auto space-y-8">
+    <section id="discovery-call" class="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
+      <div class="ambient-glow-1 top-10 left-1/2 -translate-x-1/2"></div>
+
+      <div class="max-w-xl mx-auto space-y-8 relative z-10 reveal">
 
         <div class="text-center space-y-3">
-          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase">
-            Take Action
+          <div class="text-[11.5px] font-mono text-emerald-400 font-semibold tracking-wider uppercase flex items-center justify-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 radar-beacon"></span>
+            <span>Take Action</span>
           </div>
           <h2 class="text-[32px] sm:text-[42px] font-bold text-white tracking-[-0.03em]">
             Book Your Discovery Call
@@ -825,29 +1024,29 @@
           </p>
         </div>
 
-        <form id="callForm" class="glass-card p-6 sm:p-8 space-y-4">
-          <div>
+        <form id="callForm" class="spotlight-card p-6 sm:p-8 space-y-4">
+          <div class="relative z-10">
             <label class="block text-[12px] font-mono text-slate-400 mb-1.5">Your Name</label>
             <input type="text" id="inputName" required placeholder="e.g. Dr. Rajesh / Priya Sharma"
-              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400">
+              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400 transition-colors">
           </div>
 
-          <div>
+          <div class="relative z-10">
             <label class="block text-[12px] font-mono text-slate-400 mb-1.5">WhatsApp Phone Number</label>
             <input type="tel" id="inputPhone" required placeholder="+91 98765 43210"
-              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400">
+              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400 transition-colors">
           </div>
 
-          <div>
+          <div class="relative z-10">
             <label class="block text-[12px] font-mono text-slate-400 mb-1.5">Business Name & Location</label>
             <input type="text" id="inputBusiness" required placeholder="e.g. Aura Aesthetics, Indiranagar"
-              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400">
+              class="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400 transition-colors">
           </div>
 
-          <div>
+          <div class="relative z-10">
             <label class="block text-[12px] font-mono text-slate-400 mb-1.5">Industry</label>
             <select id="inputIndustry"
-              class="w-full px-3.5 py-2.5 rounded-lg bg-[#0C0D12] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400">
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#0C0D12] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400 transition-colors">
               <option value="Salon & Spa">Salon & Spa</option>
               <option value="Clinic & Healthcare">Clinic & Healthcare (Dental, Dermatology, Wellness)</option>
               <option value="Hospitality & Dining">Hospitality & Dining (Boutique Stay, Cafe, Restaurant)</option>
@@ -856,22 +1055,22 @@
             </select>
           </div>
 
-          <div>
+          <div class="relative z-10">
             <label class="block text-[12px] font-mono text-slate-400 mb-1.5">Target OS Package</label>
             <select id="inputTier"
-              class="w-full px-3.5 py-2.5 rounded-lg bg-[#0C0D12] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400">
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#0C0D12] border border-white/[0.08] text-white text-[14px] focus:outline-none focus:border-emerald-400 transition-colors">
               <option value="Growth OS (₹17,499) - Recommended">Growth OS (₹17,499) — The 4 Pillars</option>
               <option value="Launchpad OS (₹9,999)">Launchpad OS (₹9,999) — Starter</option>
               <option value="Dominance OS (₹24,999)">Dominance OS (₹24,999) — Enterprise / Multi-location</option>
             </select>
           </div>
 
-          <button type="submit" class="pill-btn pill-btn-primary w-full justify-center text-[14px] mt-2">
+          <button type="submit" class="pill-btn pill-btn-primary w-full justify-center text-[14px] mt-2 relative z-10">
             Submit & Open WhatsApp ↗
           </button>
         </form>
 
-        <div id="formSubmitted" class="hidden glass-card p-6 text-center space-y-2 border-emerald-500/40 bg-emerald-950/[0.1]">
+        <div id="formSubmitted" class="hidden spotlight-card p-6 text-center space-y-2 border-emerald-500/40 bg-emerald-950/[0.1]">
           <div class="text-[20px] font-bold text-white">Request Received</div>
           <p class="text-[13px] text-slate-300">Opening WhatsApp conversation with the Getmore OS team now...</p>
         </div>
@@ -898,7 +1097,34 @@
 
   <!-- SCRIPT -->
   <script>
-    // Calculator Logic
+    // Scroll Reveal System (Intersection Observer)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Spotlight Cursor Tracking
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Calculator Logic with pop animation
     const calcRev = document.getElementById('calcRev');
     const calcCut = document.getElementById('calcCut');
     const calcRevText = document.getElementById('calcRevText');
@@ -917,6 +1143,10 @@
       const monthlyLoss = rev * (cut / 100);
       const yearlyLoss = monthlyLoss * 12;
       calcYearlyLoss.textContent = formatINR(Math.round(yearlyLoss));
+      
+      calcYearlyLoss.classList.remove('calc-pop');
+      void calcYearlyLoss.offsetWidth; // Trigger reflow
+      calcYearlyLoss.classList.add('calc-pop');
     }
 
     if (calcRev && calcCut) {
