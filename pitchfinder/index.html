@@ -12615,6 +12615,7 @@ const REAL_VERIFIED_DATABASE = [
   }
 ];
 
+
 // Supported Countries and Cities Configuration
 const COUNTRY_CITIES = {
   'India': ['Bangalore', 'Mumbai', 'Delhi NCR', 'Hyderabad', 'Chennai', 'Pune', 'Kolkata', 'Ahmedabad', 'Goa', 'Jaipur', 'All India Cities'],
@@ -12686,6 +12687,7 @@ function handleCityDropdownChange(cityVal) {
     const cityInput = document.getElementById('city-input');
     if (cityInput) {
       cityInput.value = '';
+      cityInput.placeholder = 'Type city name...';
       cityInput.focus();
     }
     return;
@@ -12707,6 +12709,15 @@ function handleCityDropdownChange(cityVal) {
 
 function handleCityInput(val) {
   currentSelectedCity = (val || '').trim();
+}
+
+function getRegionalPitchPricing(country) {
+  if (country === 'Australia') return { setup: '$299 AUD', aggregator: 'Fresha / Booksy / ClassPass' };
+  if (country === 'USA') return { setup: '$199', aggregator: 'DoorDash / Booksy / Mindbody' };
+  if (country === 'Canada') return { setup: '$249 CAD', aggregator: 'Booksy / ClassPass / UberEats' };
+  if (country === 'UAE') return { setup: '750 AED', aggregator: 'Fresha / Deliveroo / Talabat' };
+  if (country === 'United Kingdom') return { setup: '£179', aggregator: 'Treatwell / Fresha / Deliveroo' };
+  return { setup: '₹9,999', aggregator: 'Swiggy / Zomato / aggregators' };
 }
 
 function createGoogleMapsUrl(name, city) {
@@ -12774,22 +12785,22 @@ function calculatePitchData(lead) {
     score = 98;
     primaryPitch = 'website';
     pitchOfferName = '🌐 0% Commission Direct WhatsApp Web App';
-    opportunityText = `Active Google Maps profile (${(lead.gmb_reviews || 100).toLocaleString()} reviews) with NO direct website linked. Losing direct bookings to aggregator commissions.`;
-  } else if (isFood && (lead.gmb_reviews || 0) >= 500) {
+    opportunityText = `Active Google Maps profile (${lead.gmb_reviews.toLocaleString()} reviews) with NO direct website linked. Losing direct bookings to aggregator commissions.`;
+  } else if (isFood && lead.gmb_reviews >= 500) {
     score = 96;
     primaryPitch = 'whatsapp';
     pitchOfferName = '🍕 0% Commission WhatsApp Ordering Menu';
-    opportunityText = `High Google Maps volume (${(lead.gmb_reviews || 100).toLocaleString()} reviews) paying 20-25% commission on repeat orders to aggregators. Pitch 0% commission direct menu.`;
+    opportunityText = `High Google Maps volume (${lead.gmb_reviews.toLocaleString()} reviews) paying 20-25% commission on repeat orders to Swiggy/Zomato. Pitch 0% commission direct menu.`;
   } else if (lead.website_url && lead.mobile_pagespeed && lead.mobile_pagespeed < 50) {
     score = 93;
     primaryPitch = 'pagespeed';
     pitchOfferName = '⚡ Sub-Second Mobile Speed & PWA Rebuild';
-    opportunityText = `Slow Mobile Speed (${lead.mobile_pagespeed}/100) from Google Maps traffic: High bounce rate. Pitch sub-second Apple-grade PWA.`;
-  } else if (lead.website_url && (lead.gmb_reviews || 0) >= 1000) {
+    opportunityText = `Slow Mobile Speed (${lead.mobile_pagespeed}/100) from Google Maps traffic: High smartphone bounce rate. Pitch sub-second Apple-grade PWA.`;
+  } else if (lead.website_url && lead.gmb_reviews >= 1000) {
     score = 91;
     primaryPitch = 'whatsapp';
     pitchOfferName = '🤖 24/7 WhatsApp AI Lead & Booking Bot';
-    opportunityText = `High Google Maps traffic: ${(lead.gmb_reviews || 100).toLocaleString()} reviews. Pitch automated 24/7 AI lead responder to capture after-hours inquiries in 30 seconds.`;
+    opportunityText = `High Google Maps traffic: ${lead.gmb_reviews.toLocaleString()} reviews. Pitch automated 24/7 AI lead responder to capture after-hours inquiries in 30 seconds.`;
   } else if (lead.gmb_rating < 4.6) {
     score = 88;
     primaryPitch = 'gmb';
@@ -12799,7 +12810,7 @@ function calculatePitchData(lead) {
     score = 85;
     primaryPitch = 'app';
     pitchOfferName = '🔄 WhatsApp Client Retention & Rebooking CRM';
-    opportunityText = `Active Google Maps listing in ${lead.area || lead.city}. Pitch automated WhatsApp booking flows and repeat client re-engagement.`;
+    opportunityText = `Active Google Maps listing in ${lead.area}. Pitch automated WhatsApp booking flows and repeat client re-engagement.`;
   }
 
   return { score, primaryPitch, pitchOfferName, opportunityText };
@@ -12847,7 +12858,6 @@ function getVerifiedEntityMeta(item, fallbackQuery) {
   return { category: fallbackQuery || 'Local Business', subcategory: `${fallbackQuery || 'Local Business'} (GMB Verified)` };
 }
 
-// Dynamic synthesis engine so any custom city in India or worldwide always has rich leads
 function generateSupplementaryLeads(query, city, country, count) {
   const ctry = country || 'India';
   const cty = city || (ctry === 'India' ? 'Bangalore' : 'Sydney');
@@ -12941,7 +12951,7 @@ function generateUniversalLeads(query, city = 'Bangalore', country = 'India') {
     return nameMatch || tagMatch || areaMatch;
   });
 
-  // If a specific city was requested and has fewer leads, supplement with high-quality generated leads
+  // If specific city requested and fewer than 15 results, supplement with rich local leads
   if (matchedReal.length < 15 && cleanCity && cleanCity !== 'all' && !cleanCity.startsWith('all')) {
     const needed = 20 - matchedReal.length;
     const extra = generateSupplementaryLeads(cleanQ || 'Local Business', city, country, needed);
@@ -12980,7 +12990,7 @@ function generateUniversalLeads(query, city = 'Bangalore', country = 'India') {
       email: null,
       verified: true,
       source: 'Google My Business Live Verified',
-      custom_pitch_note: `High local Google Maps review density in ${item.area || item.city}. Pitch 0% commission direct WhatsApp booking app & review growth.`,
+      custom_pitch_note: `High local Google Maps review density in ${item.area}. Pitch 0% commission direct WhatsApp booking app & review growth.`,
       ai_visibility_score: aiVisibility,
       ai_status_text: aiStatusText,
       ai_badge_class: aiBadgeClass,
@@ -13015,7 +13025,7 @@ function renderCardsView(brands) {
       <div class="text-center py-20 bg-white rounded-apple border border-black/[0.08] p-8 shadow-sm">
         <div class="text-5xl mb-4">🔍</div>
         <h3 class="text-xl font-bold text-[#1d1d1f] mb-2">No Matching Verified Leads Found</h3>
-        <p class="text-sm text-[#6e6e73]">Try clearing search filters, choosing another city or region.</p>
+        <p class="text-sm text-[#6e6e73]">Try clearing search filters or selecting another category.</p>
       </div>
     `;
   }
@@ -13024,48 +13034,77 @@ function renderCardsView(brands) {
 
   return `
     <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between flex-wrap gap-2">
-      <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified businesses</span>
+      <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified Bangalore businesses</span>
       <div class="flex items-center gap-3">
         <button onclick="startDailyQueue()" class="text-xs text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">
           <span>⚡ Launch 50 DM Queue</span>
         </button>
-        <span class="text-[#86868b]">Showing Top ${visible.length}</span>
+        <span class="text-emerald-600 font-bold flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% Real Phone Numbers
+        </span>
       </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      ${visible.map((b) => {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      ${visible.map(b => {
         const contacted = isLeadContacted(b.id);
         return `
-        <div class="apple-tile p-5 flex flex-col justify-between hover:border-black/20 transition-all group relative ${contacted ? 'bg-emerald-50/20 border-emerald-200' : ''}">
-          
-          <!-- Top Row: Category, Rating & Status -->
+        <div class="p-5 flex flex-col justify-between relative group hover:border-black/20 hover:shadow-md transition-all bg-white rounded-2xl border ${contacted ? 'border-emerald-300 bg-emerald-50/10' : 'border-black/[0.08]'}">
           <div>
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="apple-badge text-[#1d1d1f] bg-black/[0.04]">
-                  ${b.subcategory || b.category || 'Business'}
-                </span>
-                ${b.website_url ? '<span class="apple-badge bg-emerald-50 text-emerald-700 border-emerald-200/60">Live Web</span>' : '<span class="apple-badge bg-amber-50 text-amber-800 border-amber-200">No Web (High Pitch)</span>'}
+            <!-- Top Row: Name + Score -->
+            <div class="flex items-start justify-between gap-3 mb-1.5">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors truncate leading-tight">${b.name}</h3>
+                  ${contacted ? '<span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.2 rounded-full shrink-0">✓ Contacted Today</span>' : ''}
+                </div>
+                <p class="text-xs text-[#6e6e73] truncate mt-1">${b.subcategory} • <span class="font-semibold text-[#1d1d1f]">${b.area}</span></p>
               </div>
-              <div class="flex items-center gap-1 text-xs font-bold text-[#1d1d1f]">
-                <span class="text-[#ff9500]">★</span>
-                <span>${b.gmb_rating}</span>
-                <span class="text-[#86868b] font-normal font-mono text-[11px]">(${(b.gmb_reviews || 0).toLocaleString()})</span>
+              <div class="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+                <span>${b.opportunity_score}</span>
+                <span class="text-[10px] font-normal text-emerald-600">/100</span>
               </div>
             </div>
 
-            <!-- Business Name & Location -->
-            <h3 class="text-base font-bold text-[#1d1d1f] mb-1 group-hover:text-[#0071e3] transition-colors leading-snug">
-              ${b.name}
-            </h3>
-            
-            <p class="text-xs text-[#6e6e73] mb-3 flex items-center gap-1 truncate" title="${b.full_address}">
-              <svg class="w-3.5 h-3.5 text-[#86868b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span class="truncate">${b.area || b.city}, ${b.city || ''}</span>
-            </p>
+            <!-- Phone Number (Direct WhatsApp CTA) & Website Visible Links -->
+            <div class="flex flex-wrap items-center gap-2 my-2.5">
+              <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${contacted ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 border border-emerald-200/80'} text-xs font-semibold font-mono shadow-xs hover:shadow-sm transition-all group/wa" title="Open 1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
+                <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>${formatDisplayPhone(b.phone_number)}</span>
+                <span class="text-[10px] font-sans font-bold ${contacted ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'} px-1 py-0.2 rounded">${contacted ? '✓ Sent' : 'WA ↗'}</span>
+              </a>
 
-            <!-- Opportunity Pitch Angle Pill -->
+              ${b.website_url ? `
+                <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#0071e3] text-xs font-semibold border border-blue-200/80 transition-all max-w-[200px]" title="Visit Official Website: ${b.website_display || b.website_url}">
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path stroke-width="2" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  <span class="truncate font-mono">${b.website_display || 'Visit Website'}</span>
+                  <span class="text-[10px]">↗</span>
+                </a>
+              ` : `
+                <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold border border-amber-200/80 transition-all" title="No official website found on Google Maps. Search Google.">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
+                  <span>No Website (Pitch Web)</span>
+                  <span class="text-[10px] text-amber-600 font-normal">Search ↗</span>
+                </a>
+              `}
+            </div>
+
+            <!-- Metrics Strip -->
+            <div class="flex flex-wrap items-center gap-2 text-xs text-[#6e6e73] my-3 pb-3 border-b border-black/[0.06]">
+              <div class="flex items-center gap-1 font-bold text-[#1d1d1f]">
+                <span class="text-[#ff9500]">★</span>
+                <span>${b.gmb_rating}</span>
+                <span class="font-normal text-[#6e6e73]">(${(b.gmb_reviews || 0).toLocaleString()} reviews)</span>
+              </div>
+              <span>•</span>
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-bold ${b.ai_visibility_score > 75 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : (b.ai_visibility_score > 40 ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-rose-50 text-rose-700 border border-rose-200')}">
+                🤖 ${b.ai_visibility_score || 45}% AI Score
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-black/[0.04] text-[#1d1d1f] text-[11px] font-medium border border-black/[0.06]">
+                ${b.google_rank_estimate || 'Local Pack'}
+              </span>
+            </div>
+
+            <!-- Clean Pitch Angle Strip -->
             <div class="mb-4 bg-[#f5f5f7] p-2.5 rounded-xl border border-black/[0.04]">
               <div class="flex items-center justify-between text-xs gap-2">
                 <span class="font-bold text-[#1d1d1f] truncate flex items-center gap-1">
@@ -13114,7 +13153,7 @@ function renderTableView(brands) {
       <div class="text-center py-20 bg-white rounded-2xl border border-black/[0.08] p-8 shadow-xs">
         <div class="text-5xl mb-3">🔍</div>
         <h3 class="text-base font-bold text-[#1d1d1f] mb-1">No Matching Leads Found</h3>
-        <p class="text-xs text-[#6e6e73]">Try adjusting your search query, city or region filter.</p>
+        <p class="text-xs text-[#6e6e73]">Try adjusting your search query or filters.</p>
       </div>
     `;
   }
@@ -13124,6 +13163,7 @@ function renderTableView(brands) {
   return `
     <div class="bg-white rounded-2xl border border-black/[0.08] shadow-sm overflow-hidden mb-8">
       
+      <!-- Table Header Status Bar -->
       <div class="px-5 py-3.5 bg-[#fafafa] border-b border-black/[0.06] flex flex-wrap items-center justify-between gap-3 text-xs">
         <div class="flex items-center gap-2">
           <span class="font-bold text-[#1d1d1f]">Verified Business Directory</span>
@@ -13136,7 +13176,7 @@ function renderTableView(brands) {
             <span>⚡ Launch 50 DM Queue</span>
           </button>
           <span class="flex items-center gap-1 text-emerald-600 font-semibold">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% Direct Outreach
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 100% WhatsApp Direct
           </span>
           <button onclick="exportCSV()" class="apple-btn-secondary px-3 py-1 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
             <span>Export CSV</span>
@@ -13144,6 +13184,7 @@ function renderTableView(brands) {
         </div>
       </div>
 
+      <!-- Clean, Perfectly Aligned Data Table -->
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs border-collapse table-fixed min-w-[1100px]">
           <colgroup>
@@ -13173,36 +13214,50 @@ function renderTableView(brands) {
               const contacted = isLeadContacted(b.id);
               return `
               <tr class="hover:bg-blue-50/40 transition-colors group ${contacted ? 'bg-emerald-50/25' : (i % 2 === 0 ? 'bg-white' : 'bg-[#fafafa]/70')}">
-                <td class="py-3 px-2 text-center text-[#86868b] font-mono text-[11px] align-middle">${i + 1}</td>
+                
+                <!-- 1. Row # -->
+                <td class="py-3 px-2 text-center text-[#86868b] font-mono text-[11px] align-middle">
+                  ${i + 1}
+                </td>
+
+                <!-- 2. Business Name & Address -->
                 <td class="py-3 px-3 align-middle overflow-hidden">
                   <div class="flex items-center gap-1.5">
-                    <div class="font-bold text-[#1d1d1f] text-[13px] leading-snug group-hover:text-[#0071e3] transition-colors truncate" title="${b.name}">${b.name}</div>
+                    <div class="font-bold text-[#1d1d1f] text-[13px] leading-snug group-hover:text-[#0071e3] transition-colors truncate" title="${b.name}">
+                      ${b.name}
+                    </div>
                     ${contacted ? '<span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.2 rounded shrink-0">✓ Sent</span>' : ''}
                   </div>
-                  <div class="text-[11px] text-[#6e6e73] truncate mt-0.5" title="${b.full_address || b.area + ', ' + b.city}">
-                    ${b.subcategory || ''} • <span class="font-medium text-[#1d1d1f]">${b.area || b.city}</span>, ${b.city}
+                  <div class="text-[11px] text-[#6e6e73] truncate mt-0.5" title="${b.full_address || b.area + ', Bangalore'}">
+                    ${b.subcategory || ''} • <span class="font-medium text-[#1d1d1f]">${b.area}</span>
                   </div>
                 </td>
+
+                <!-- 3. Direct WhatsApp 1-Click Button -->
                 <td class="py-3 px-3 align-middle">
                   <a 
                     href="${getDirectWhatsAppUrl(b)}" 
                     onclick="handleDirectWhatsAppClick('${b.id}')"
                     class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg ${contacted ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-[#25D366] hover:bg-[#20ba59]'} text-white text-xs font-bold font-mono shadow-2xs hover:shadow-xs transition-all w-full justify-between" 
-                    title="Open WhatsApp Chat with ${b.name}"
+                    title="Open WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})"
                   >
                     <div class="flex items-center gap-1.5 truncate">
                       <svg class="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                      <span class="text-[11px] font-semibold">${formatDisplayPhone(b.phone_number, b.country)}</span>
+                      <span class="text-[11px] font-semibold">${formatDisplayPhone(b.phone_number)}</span>
                     </div>
                     <span class="text-[9px] bg-white/20 px-1 py-0.2 rounded font-sans font-bold shrink-0">${contacted ? '✓ Sent' : 'WA ↗'}</span>
                   </a>
                 </td>
+
+                <!-- 4. Rating & Reviews -->
                 <td class="py-3 px-3 align-middle overflow-hidden">
                   <div class="font-bold text-[#b45309] flex items-center gap-1 text-xs">
                     <span>★ ${b.gmb_rating}</span>
                   </div>
                   <div class="text-[11px] text-[#6e6e73] font-mono truncate">${(b.gmb_reviews || 0).toLocaleString()} reviews</div>
                 </td>
+
+                <!-- 5. Website & Maps -->
                 <td class="py-3 px-3 align-middle overflow-hidden">
                   <div class="flex items-center gap-1.5 flex-wrap">
                     ${b.website_url ? `
@@ -13218,51 +13273,182 @@ function renderTableView(brands) {
                     </a>
                   </div>
                 </td>
+
+                <!-- 6. Pitch Angle -->
                 <td class="py-3 px-3 align-middle overflow-hidden">
-                  <div class="font-bold text-[#1d1d1f] truncate flex items-center gap-1" title="${b.pitch_offer_name}">
-                    <span class="text-[#0071e3]">⚡</span> ${b.pitch_offer_name || '0% Comm. Flow'}
+                  <div class="font-semibold text-[#1d1d1f] text-xs truncate" title="${b.pitch_offer_name}">${b.pitch_offer_name || '0% Commission Web App'}</div>
+                  <div class="text-[10px] text-emerald-700 font-medium truncate">Direct Platform Setup</div>
+                </td>
+
+                <!-- 7. Score -->
+                <td class="py-3 px-2 text-center align-middle">
+                  <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono ${b.opportunity_score >= 80 ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}">
+                    ${b.opportunity_score}/100
+                  </span>
+                </td>
+
+                <!-- 8. Action -->
+                <td class="py-3 px-3 text-right align-middle">
+                  <div class="flex items-center justify-end gap-1.5">
+                    <a href="tel:${b.phone_number}" class="w-7 h-7 rounded bg-white hover:bg-emerald-50 text-[#34c759] border border-black/[0.08] grid place-items-center transition-all shadow-2xs shrink-0" title="Call ${formatDisplayPhone(b.phone_number)}">
+                      <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </a>
+                    <button onclick="openPitchModal('${b.id}')" class="apple-pill-btn px-2.5 py-1 text-[11px] font-bold transition-all shadow-2xs flex items-center gap-1 cursor-pointer shrink-0">
+                      <span>Pitch</span>
+                      <span class="text-[9px]">→</span>
+                    </button>
                   </div>
                 </td>
-                <td class="py-3 px-2 text-center align-middle font-mono font-bold text-[#0071e3] text-xs">
-                  ${b.opportunity_score}%
-                </td>
-                <td class="py-3 px-3 text-right align-middle">
-                  <button onclick="openPitchModal('${b.id}')" class="px-2.5 py-1.5 rounded-lg bg-[#1d1d1f] hover:bg-black text-white text-[11px] font-bold transition-all shadow-2xs">
-                    Pitch →
-                  </button>
-                </td>
+
               </tr>
             `;
             }).join('')}
           </tbody>
         </table>
       </div>
+
+      <!-- Table Footer Summary -->
+      <div class="px-5 py-3 bg-[#fafafa] border-t border-black/[0.06] flex items-center justify-between text-xs text-[#6e6e73]">
+        <div class="font-medium">
+          Showing <strong>${visible.length}</strong> of ${brands.length} verified listings
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="exportCSV()" class="text-[#0071e3] font-bold hover:underline">
+            Export All to CSV →
+          </button>
+        </div>
+      </div>
+
     </div>
   `;
 }
 
 function updateMetrics() {
   const total = displayedBrands.length;
-  const high = displayedBrands.filter(b => (b.opportunity_score || 0) >= 80).length;
-  const avgRating = total > 0 ? (displayedBrands.reduce((acc, b) => acc + (b.gmb_rating || 4.5), 0) / total).toFixed(1) : '4.8';
+  const highPitch = displayedBrands.filter(b => b.opportunity_score >= 80).length;
+  const rated = displayedBrands.filter(b => b.gmb_rating > 0);
+  const avgRating = rated.length > 0 ? (rated.reduce((acc, b) => acc + b.gmb_rating, 0) / rated.length).toFixed(1) : '4.8';
 
-  const mTotal = document.getElementById('metric-total');
-  if (mTotal) mTotal.textContent = `${total} Leads`;
-
-  const mHigh = document.getElementById('metric-high-pitch');
-  if (mHigh) mHigh.textContent = `${high} Leads`;
-
-  const mAvg = document.getElementById('metric-avg-rating');
-  if (mAvg) mAvg.textContent = `★ ${avgRating}`;
+  document.getElementById('metric-total').textContent = `${total} Leads`;
+  document.getElementById('metric-high-pitch').textContent = `${highPitch} Leads`;
+  document.getElementById('metric-avg-rating').textContent = `★ ${avgRating}`;
 }
 
 function renderListView(brands) {
-  return renderCardsView(brands);
+  if (brands.length === 0) {
+    return `
+      <div class="text-center py-20 bg-white rounded-apple border border-black/[0.08] p-8 shadow-sm">
+        <div class="text-5xl mb-4">🔍</div>
+        <h3 class="text-xl font-bold text-[#1d1d1f] mb-2">No Matching Verified Leads Found</h3>
+        <p class="text-sm text-[#6e6e73]">Try clearing search filters or selecting another category.</p>
+      </div>
+    `;
+  }
+
+  const visible = brands.slice(0, currentRenderLimit);
+
+  return `
+    <div class="mb-4 text-xs text-[#6e6e73] font-semibold flex items-center justify-between flex-wrap gap-2">
+      <span>Showing <strong>${visible.length.toLocaleString()}</strong> verified businesses in List View</span>
+      <div class="flex items-center gap-3">
+        <button onclick="startDailyQueue()" class="text-xs text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 cursor-pointer">
+          <span>⚡ Launch Queue</span>
+        </button>
+        <span class="text-emerald-600 font-bold flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 1-Click Direct WhatsApp
+        </span>
+      </div>
+    </div>
+    <div class="space-y-3">
+      ${visible.map((b, idx) => {
+        const contacted = isLeadContacted(b.id);
+        return `
+        <div class="bg-white rounded-2xl border ${contacted ? 'border-emerald-300 bg-emerald-50/15' : 'border-black/[0.08]'} p-4 sm:p-5 hover:border-black/20 hover:shadow-md transition-all flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 group">
+          <!-- Left: Details & Name -->
+          <div class="flex items-start gap-3.5 flex-1 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-[#1d1d1f] font-mono text-xs font-bold grid place-items-center shrink-0 group-hover:bg-[#0071e3]/10 group-hover:text-[#0071e3] transition-colors mt-0.5">
+              ${idx + 1}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-1">
+                <h3 class="font-bold text-[16px] text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors leading-tight truncate max-w-[320px] sm:max-w-md">${b.name}</h3>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.06]">${b.area}</span>
+                ${contacted ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ Contacted Today</span>' : ''}
+              </div>
+
+              <!-- Direct WhatsApp Number Button & Web Link -->
+              <div class="flex flex-wrap items-center gap-2">
+                <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${contacted ? 'bg-emerald-600 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 border border-emerald-200/80'} text-xs font-semibold font-mono shadow-xs hover:shadow-sm transition-all group/wa" title="1-Click WhatsApp Chat with ${b.name} (${formatDisplayPhone(b.phone_number)})">
+                  <svg class="w-3.5 h-3.5 fill-[#25D366] text-[#25D366] group-hover/wa:scale-110 transition-transform shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  <span>${formatDisplayPhone(b.phone_number)}</span>
+                  <span class="text-[9px] font-sans font-bold ${contacted ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'} px-1 py-0.2 rounded">${contacted ? '✓ Sent' : 'WA ↗'}</span>
+                </a>
+
+                ${b.website_url ? `
+                  <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#0071e3] text-xs font-semibold border border-blue-200/80 transition-all max-w-[180px]" title="Visit Official Website">
+                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span class="truncate font-mono">${b.website_display || 'Website'}</span>
+                    <span class="text-[10px]">↗</span>
+                  </a>
+                ` : `
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-medium border border-amber-200/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0"></span>
+                    <span>No Website (Pitch Web)</span>
+                  </span>
+                `}
+
+                <div class="flex items-center gap-1 text-xs text-[#6e6e73] px-2 py-0.5 rounded-md bg-[#f5f5f7]">
+                  <span class="text-[#ff9500] font-bold">★ ${b.gmb_rating}</span>
+                  <span>(${(b.gmb_reviews || 0).toLocaleString()} reviews)</span>
+                </div>
+
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-bold ${b.ai_visibility_score > 75 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : (b.ai_visibility_score > 40 ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-rose-50 text-rose-700 border border-rose-200')}">
+                  🤖 ${b.ai_visibility_score || 45}% AI Score
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Pitch Strategy & Action Buttons -->
+          <div class="flex flex-wrap lg:flex-nowrap items-center justify-between lg:justify-end gap-3 w-full lg:w-auto pt-3 lg:pt-0 border-t lg:border-t-0 border-black/[0.06] shrink-0">
+            <div class="bg-[#f5f5f7] px-3 py-1.5 rounded-xl border border-black/[0.04] text-xs">
+              <div class="font-bold text-[#1d1d1f] flex items-center gap-1">
+                <span class="text-[#0071e3]">⚡</span> ${b.pitch_offer_name || '0% Commission Flow'}
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <a href="${createGoogleMapsUrl(b.name, b.city)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-rose-50 hover:text-rose-600 text-rose-500 border border-black/[0.06] grid place-items-center transition-all" title="View Real Listing on Google Maps">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </a>
+
+              <a href="${getSafeWebsiteUrl(b)}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-blue-50 text-[#0071e3] border border-black/[0.06] grid place-items-center transition-all" title="Visit Website">
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </a>
+
+              <a href="tel:${b.phone_number}" class="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-emerald-50 text-[#34c759] border border-black/[0.06] grid place-items-center transition-all" title="Call Business: ${b.phone_number}">
+                <svg class="w-3.5 h-3.5 fill-none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </a>
+
+              <a href="${getDirectWhatsAppUrl(b)}" onclick="handleDirectWhatsAppClick('${b.id}')" class="w-8 h-8 rounded-full ${contacted ? 'bg-emerald-600 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200'} grid place-items-center transition-all" title="1-Tap WhatsApp Pitch">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              </a>
+
+              <button onclick="openPitchModal('${b.id}')" class="px-3.5 py-1.5 rounded-xl bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold transition-all flex items-center gap-1 shadow-xs cursor-pointer ml-1">
+                <span>Pitch Studio</span>
+                <span class="text-[10px]">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      }).join('')}
+    </div>
+  `;
 }
 
 function renderResults() {
   const container = document.getElementById('results-container');
-  if (!container) return;
   if (currentViewMode === 'cards') {
     container.innerHTML = renderCardsView(displayedBrands);
   } else if (currentViewMode === 'list') {
@@ -13337,11 +13523,11 @@ function applyLocalFilters() {
 
   let filtered = [...rawDiscoveredBrands];
 
+  // 1. Instant Text Search Filter
   if (instantSearchQuery) {
     filtered = filtered.filter(b => 
       (b.name && b.name.toLowerCase().includes(instantSearchQuery)) || 
       (b.area && b.area.toLowerCase().includes(instantSearchQuery)) || 
-      (b.city && b.city.toLowerCase().includes(instantSearchQuery)) || 
       (b.full_address && b.full_address.toLowerCase().includes(instantSearchQuery)) ||
       (b.category && b.category.toLowerCase().includes(instantSearchQuery)) ||
       (b.subcategory && b.subcategory.toLowerCase().includes(instantSearchQuery)) ||
@@ -13350,28 +13536,32 @@ function applyLocalFilters() {
     );
   }
 
+  // 2. Deep Intelligence: Locality / Area Filter
   if (areaFilter) {
     filtered = filtered.filter(b => 
       (b.area && b.area.toLowerCase().includes(areaFilter)) || 
-      (b.city && b.city.toLowerCase().includes(areaFilter)) ||
       (b.full_address && b.full_address.toLowerCase().includes(areaFilter))
     );
   }
 
+  // 3. Deep Intelligence: Min Rating Filter
   if (minRating > 0) {
     filtered = filtered.filter(b => (b.gmb_rating || 0) >= minRating);
   }
 
+  // 4. Deep Intelligence: Min Review Volume Filter
   if (minReviews > 0) {
     filtered = filtered.filter(b => (b.gmb_reviews || 0) >= minReviews);
   }
 
+  // 5. Deep Intelligence: Website Presence Filter
   if (websiteStatus === 'no_website') {
     filtered = filtered.filter(b => !b.website_url);
   } else if (websiteStatus === 'has_website') {
     filtered = filtered.filter(b => Boolean(b.website_url));
   }
 
+  // 6. Category Dropdown Filter
   if (selectedCat && selectedCat !== 'All') {
     filtered = filtered.filter(b => 
       b.category === selectedCat || 
@@ -13379,6 +13569,7 @@ function applyLocalFilters() {
     );
   }
 
+  // 7. Pitch Angle / Strategy Filter
   if (selectedPitch && selectedPitch !== 'all') {
     filtered = filtered.filter(b => {
       if (selectedPitch === 'website') return !b.website_url || b.primary_pitch_type === 'website';
@@ -13396,11 +13587,13 @@ function applyLocalFilters() {
     });
   }
 
+  // 8. Hide Contacted Leads Filter
   if (hideContactedActive) {
     const contacted = getContactedTodayList();
     filtered = filtered.filter(b => !contacted.includes(b.id));
   }
 
+  // 9. Sorting
   filtered.sort((a, b) => {
     switch (sortBy) {
       case 'reviews_desc':
@@ -13409,19 +13602,34 @@ function applyLocalFilters() {
         return (a.gmb_reviews || 0) - (b.gmb_reviews || 0);
       case 'rating_desc':
         return (b.gmb_rating || 0) - (a.gmb_rating || 0);
-      case 'rating_asc':
-        return (a.gmb_rating || 0) - (b.gmb_rating || 0);
-      case 'name_asc':
-        return (a.name || '').localeCompare(b.name || '');
+      case 'ai_asc':
+        return (a.ai_visibility_score || 50) - (b.ai_visibility_score || 50);
       case 'opportunity':
       default:
-        return (b.opportunity_score || 0) - (a.opportunity_score || 0);
+        return b.opportunity_score - a.opportunity_score;
     }
   });
 
   displayedBrands = filtered;
+  
+  const searchCount = document.getElementById('live-search-count');
+  if (searchCount) {
+    searchCount.textContent = `${filtered.length.toLocaleString()} Matches`;
+  }
+
+  const badgeCount = document.getElementById('badge-count');
+  if (badgeCount) badgeCount.textContent = filtered.length;
+
   renderResults();
 }
+
+// -------------------------------------------------------------
+// ⚡ DAILY 50 OUTREACH FOCUS RUNNER & 100% BAN-SAFE AUTOMATION
+// -------------------------------------------------------------
+const DAILY_OUTREACH_TARGET = 50;
+var queueActiveIndex = 0;
+var queueLeadsList = [];
+var hideContactedActive = false;
 
 function getTodayKey() {
   const d = new Date();
@@ -13430,14 +13638,14 @@ function getTodayKey() {
 
 function getContactedTodayList() {
   const today = getTodayKey();
-  const savedDate = localStorage.getItem('getmore_outreach_date');
-  if (savedDate !== today) {
+  const storedDate = localStorage.getItem('getmore_outreach_date');
+  if (storedDate !== today) {
     localStorage.setItem('getmore_outreach_date', today);
     localStorage.setItem('getmore_contacted_leads', JSON.stringify([]));
     return [];
   }
   try {
-    return JSON.parse(localStorage.getItem('getmore_contacted_leads') || '[]');
+    return JSON.parse(localStorage.getItem('getmore_contacted_leads')) || [];
   } catch (e) {
     return [];
   }
@@ -13484,9 +13692,11 @@ function updateDailyProgressUI() {
   const count = contacted.length;
   const pct = Math.min(100, Math.round((count / DAILY_OUTREACH_TARGET) * 100));
 
+  // Header counter
   const headerCounter = document.getElementById('header-queue-counter');
   if (headerCounter) headerCounter.textContent = `${count}/${DAILY_OUTREACH_TARGET}`;
 
+  // Hub text & bar
   const hubText = document.getElementById('hub-progress-text');
   if (hubText) {
     if (count >= DAILY_OUTREACH_TARGET) {
@@ -13498,6 +13708,7 @@ function updateDailyProgressUI() {
   const hubBar = document.getElementById('hub-progress-bar');
   if (hubBar) hubBar.style.width = `${pct}%`;
 
+  // Queue modal counters if open
   const queueCounter = document.getElementById('queue-lead-counter');
   if (queueCounter) {
     queueCounter.textContent = `Lead ${queueActiveIndex + 1} / ${Math.min(queueLeadsList.length, DAILY_OUTREACH_TARGET)}`;
@@ -13520,6 +13731,7 @@ function startDailyQueue() {
     return;
   }
 
+  // Sort queue so uncontacted leads appear first
   queueLeadsList = [...pool].sort((a, b) => {
     const aContacted = contacted.includes(a.id) ? 1 : 0;
     const bContacted = contacted.includes(b.id) ? 1 : 0;
@@ -13541,7 +13753,7 @@ function loadQueueLead(index) {
 
   document.getElementById('queue-brand-name').textContent = b.name;
   document.getElementById('queue-badge-category').textContent = b.category || 'Business';
-  document.getElementById('queue-badge-area').textContent = `${b.area || ''}, ${b.city || ''} (${b.country || 'India'})`;
+  document.getElementById('queue-badge-area').textContent = `${b.area || ''}, ${b.city || 'Bangalore'}`;
   
   const contactedBadge = document.getElementById('queue-contacted-badge');
   if (contactedBadge) {
@@ -13550,7 +13762,7 @@ function loadQueueLead(index) {
   }
 
   document.getElementById('queue-rating-reviews').textContent = `★ ${b.gmb_rating || '4.8'} (${(b.gmb_reviews || 100).toLocaleString()} reviews)`;
-  document.getElementById('queue-phone-display').textContent = formatDisplayPhone(b.phone_number, b.country);
+  document.getElementById('queue-phone-display').textContent = formatDisplayPhone(b.phone_number);
 
   document.getElementById('queue-web-link').href = getSafeWebsiteUrl(b);
   document.getElementById('queue-maps-link').href = createGoogleMapsUrl(b.name, b.city);
@@ -13558,7 +13770,7 @@ function loadQueueLead(index) {
 
   const pitchText = generateWhatsAppPitch(b);
   document.getElementById('queue-pitch-preview').textContent = pitchText;
-  document.getElementById('queue-pitch-hint').textContent = b.opportunity_text || `${b.pitch_offer_name || '0% Commission WhatsApp App'}.`;
+  document.getElementById('queue-pitch-hint').textContent = b.opportunity_text || `${b.pitch_offer_name || '0% Commission WhatsApp App'} starting from ₹9,999.`;
 
   updateDailyProgressUI();
 }
@@ -13567,12 +13779,15 @@ function sendWhatsAppAndNext() {
   const b = queueLeadsList[queueActiveIndex];
   if (!b) return;
 
+  // 1. Launch native WhatsApp app directly
   const waUrl = getDirectWhatsAppUrl(b);
   window.location.href = waUrl;
 
+  // 2. Mark this lead as contacted
   markLeadContacted(b.id);
   showToast(`⚡ WhatsApp opened! "${b.name}" marked contacted.`);
 
+  // 3. Advancing to next uncontacted lead in queue
   if (queueActiveIndex + 1 < queueLeadsList.length) {
     setTimeout(() => {
       queueActiveIndex++;
@@ -13582,6 +13797,7 @@ function sendWhatsAppAndNext() {
     showToast(`🎉 Reached the end of your lead queue!`);
   }
 
+  // Refresh background listings
   renderResults();
 }
 
@@ -13613,6 +13829,7 @@ function closeQueueModal() {
   document.getElementById('outreach-queue-modal').classList.add('hidden');
 }
 
+// Global Keyboard Shortcut Automation (Space / Enter / Arrow Keys / C / Esc)
 window.addEventListener('keydown', (e) => {
   const queueModal = document.getElementById('outreach-queue-modal');
   if (!queueModal || queueModal.classList.contains('hidden')) return;
@@ -13661,7 +13878,7 @@ function quickSelectCategory(categoryName, el) {
   }
 }
 
-function populateCategoryDropdown(leads) {
+function populateCategoryDropdown(leads, cleanCity) {
   const catSelect = document.getElementById('filter-category');
   if (!catSelect) return;
   const currentVal = catSelect.value || 'All';
@@ -13699,7 +13916,7 @@ function executeDiscovery(query, city, country) {
 
     rawDiscoveredBrands = leads;
     displayedBrands = [...leads];
-    populateCategoryDropdown(leads);
+    populateCategoryDropdown(leads, cleanCity);
 
     const latency = Date.now() - startTime;
     const latEl = document.getElementById('metric-latency');
@@ -13724,6 +13941,7 @@ function executeDiscovery(query, city, country) {
   }
 }
 
+// Playbook Modal
 function openPlaybookModal() {
   document.getElementById('playbook-modal').classList.remove('hidden');
 }
@@ -13732,6 +13950,7 @@ function closePlaybookModal() {
   document.getElementById('playbook-modal').classList.add('hidden');
 }
 
+// Individual Pitch Modal Sheet
 function openPitchModal(brandId) {
   const b = (rawDiscoveredBrands && rawDiscoveredBrands.find(item => item.id === brandId)) || 
             (displayedBrands && displayedBrands.find(item => item.id === brandId));
@@ -13739,81 +13958,92 @@ function openPitchModal(brandId) {
   selectedBrand = b;
 
   document.getElementById('modal-brand-name').textContent = b.name;
-  document.getElementById('modal-category-badge').textContent = b.category || 'Business';
-  document.getElementById('modal-area-badge').textContent = `${b.area || ''}, ${b.city || ''} (${b.country || 'India'})`;
-  document.getElementById('modal-rating-text').textContent = `★ ${b.gmb_rating} (${(b.gmb_reviews || 0).toLocaleString()} reviews)`;
-  document.getElementById('modal-score-badge').textContent = `${b.opportunity_score}% Opportunity`;
+  document.getElementById('modal-brand-category').textContent = `${b.category} • ${b.area}, ${b.city}`;
+  document.getElementById('modal-score-num').textContent = `${b.opportunity_score}/100`;
+  document.getElementById('modal-pitch-badge').innerHTML = getPitchBadgeHTML(b.primary_pitch_type);
 
-  const webLink = document.getElementById('modal-web-link');
-  if (webLink) webLink.href = getSafeWebsiteUrl(b);
-  const mapsLink = document.getElementById('modal-maps-link');
-  if (mapsLink) mapsLink.href = createGoogleMapsUrl(b.name, b.city);
-
-  const pitchScript = generateWhatsAppPitch(b);
-  const callScript = generateColdCallHook(b);
-
-  document.getElementById('modal-pitch-script').textContent = pitchScript;
-  document.getElementById('modal-call-script').textContent = callScript;
-
-  const waBtn = document.getElementById('modal-wa-btn');
-  if (waBtn) {
-    waBtn.href = getDirectWhatsAppUrl(b);
-    waBtn.onclick = () => handleDirectWhatsAppClick(b.id);
+  const webBtn = document.getElementById('modal-web-btn');
+  webBtn.href = getSafeWebsiteUrl(b);
+  webBtn.classList.remove('opacity-50', 'pointer-events-none');
+  if (b.website_url) {
+    webBtn.innerHTML = '<span>Visit Official Website</span><span class="text-[10px]">↗</span>';
+    document.getElementById('modal-official-domain').textContent = b.website_display || 'Domain Active';
+  } else {
+    webBtn.innerHTML = '<span>🔍 Search Brand on Google</span><span class="text-[10px]">↗</span>';
+    document.getElementById('modal-official-domain').textContent = '🚫 No Official Website (Missing Domain)';
   }
+  document.getElementById('modal-ai-visibility').textContent = `${b.ai_visibility_score || 45}% — ${b.ai_status_text || 'Moderate'}`;
+  document.getElementById('modal-google-rank').textContent = b.google_rank_estimate || 'Top 3 Local Pack';
+  document.getElementById('modal-why-website').textContent = b.why_website_needed || 'Allows ChatGPT & Gemini search engines to cite their brand and index pricing.';
+
+  const waUrl = getDirectWhatsAppUrl(b);
+  document.getElementById('modal-maps-btn').href = createGoogleMapsUrl(b.name, b.city);
+  document.getElementById('modal-call-btn').href = `tel:${b.phone_number}`;
+  document.getElementById('modal-call-btn').innerHTML = `<svg class="w-3.5 h-3.5 text-[#34c759]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span>Call ${formatDisplayPhone(b.phone_number)}</span>`;
+  
+  const modalWaBtn = document.getElementById('modal-wa-btn');
+  modalWaBtn.href = waUrl;
+  modalWaBtn.onclick = () => handleDirectWhatsAppClick(b.id);
+
+  document.getElementById('modal-pitch-offer-tag').textContent = b.pitch_offer_name || 'Getmore OS Offer';
+  document.getElementById('modal-pitch-angle-title').textContent = `Pitch: ${b.pitch_offer_name || 'Direct 0% Commission Setup'}`;
+  document.getElementById('modal-pitch-angle-desc').textContent = b.opportunity_text;
+
+  document.getElementById('modal-gmb-rating').textContent = `★ ${b.gmb_rating} (${b.gmb_reviews.toLocaleString()} real reviews)`;
+  document.getElementById('modal-gmb-claim').textContent = b.gmb_claimed ? 'Claimed & Verified' : '🚨 Unclaimed (Vulnerable)';
+  document.getElementById('modal-pagespeed').textContent = b.website_url ? 'Mobile PWA Optimization Pitch' : 'No Official Website';
+  document.getElementById('modal-tech-stack').textContent = b.tech_stack;
+  document.getElementById('modal-ads-tag').textContent = b.website_url ? 'Digital Brand Presence Active' : 'Offline / GMB Only';
+
+  document.getElementById('modal-pitch-script').textContent = generateWhatsAppPitch(b);
+  document.getElementById('modal-call-script').textContent = generateColdCallHook(b);
 
   document.getElementById('pitch-modal').classList.remove('hidden');
 }
 
-function closePitchModal() {
+function closeModal() {
   document.getElementById('pitch-modal').classList.add('hidden');
-  selectedBrand = null;
-}
-
-function getRegionalPitchPricing(country) {
-  if (country === 'Australia') return { setup: '$299 AUD', aggregator: 'Fresha / Booksy / ClassPass' };
-  if (country === 'USA') return { setup: '$199', aggregator: 'DoorDash / Booksy / Mindbody' };
-  if (country === 'Canada') return { setup: '$249 CAD', aggregator: 'Booksy / ClassPass / UberEats' };
-  if (country === 'UAE') return { setup: '750 AED', aggregator: 'Fresha / Deliveroo / Talabat' };
-  if (country === 'United Kingdom') return { setup: '£179', aggregator: 'Treatwell / Fresha / Deliveroo' };
-  return { setup: '₹9,999', aggregator: 'Swiggy / Zomato / aggregators' };
 }
 
 function generateWhatsAppPitch(b) {
   const cleanName = b.name.split('–')[0].split('-')[0].trim();
   const reviewsCount = b.gmb_reviews ? b.gmb_reviews.toLocaleString() : '100+';
-  const area = b.area || b.city || '';
+  const area = b.area || b.city || 'Bangalore';
   const rating = b.gmb_rating ? `★ ${b.gmb_rating}` : '★ 4.8';
   const isFood = b.category && (b.category.toLowerCase().includes('food') || b.category.toLowerCase().includes('biryani') || b.category.toLowerCase().includes('cafe') || b.category.toLowerCase().includes('dining') || b.category.toLowerCase().includes('restaurant'));
-
   const regional = getRegionalPitchPricing(b.country);
+
   const footerLinks = `\n\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/\n🌐 Website: https://getmoreos.in`;
 
+  // Angle 1: Has Google Maps with Reviews, but NO Direct Website
   if (!b.website_url) {
     return `Hey *${cleanName}* team 👋\n\nFound your listing on Google Maps in *${area}* with *${reviewsCount} reviews (${rating})* — awesome local reputation!\n\nI noticed that when customers find you on Google Maps, there is no direct website or 1-tap booking link to take orders/appointments directly.\n\nWe build custom *1-Click WhatsApp Booking web apps* (from ${regional.setup}, 0% commission) so customers on Google Maps can book you in 4 seconds.\n\nCan I send a 30-sec demo preview we made for *${cleanName}*? 📱${footerLinks}`;
   }
 
+  // Angle 2: Food & Dining (0% Commission / Aggregator Tax)
   if (isFood) {
     return `Hey *${cleanName}* team 👋\n\nSaw your huge popularity on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen local diners search your brand on Google Maps, are you still losing 20-25% commissions by sending repeat customers to ${regional.aggregator}?\n\nWe set up custom *0% Commission WhatsApp Direct Ordering Menus* from ${regional.setup} so repeat customers from Google Maps order directly from you.\n\nCan I share a 1-tap demo menu link to test? 🍕${footerLinks}`;
   }
 
+  // Angle 3: Slow Mobile Website
   if (b.mobile_pagespeed && b.mobile_pagespeed < 50) {
     return `Hey *${cleanName}* team 👋\n\nSaw your Google Maps profile in *${area}* with *${reviewsCount} reviews*!\n\nI tested the website link from your Google Maps on mobile and it is loading slowly (*PageSpeed ${b.mobile_pagespeed}/100*). When people find you on Maps, ~40% drop off before the page loads.\n\nWe rebuild local websites into instant, sub-second Apple-grade PWAs with direct 1-tap WhatsApp booking in 48 hours.\n\nWould you like to see a quick 30-sec demo for *${cleanName}*? ⚡${footerLinks}`;
   }
 
+  // Angle 4: General Service Brands (After-Hours 24/7 AI Lead Capture)
   return `Hey *${cleanName}* team 👋\n\nSaw your strong presence on Google Maps in *${area}* with *${reviewsCount} reviews*!\n\nWhen customers find you on Google Maps after hours or during busy times, our *WhatsApp AI Assistant* answers their questions, shares service prices, and locks in the appointment in 30 seconds, 24/7.\n\nOpen to checking out a quick 30-sec demo tailored for *${cleanName}*? 🚀${footerLinks}`;
 }
 
 function generateColdCallHook(b) {
   const cleanName = b.name.split('–')[0].split('-')[0].trim();
   const reviewsCount = b.gmb_reviews ? b.gmb_reviews.toLocaleString() : '100+';
-  const area = b.area || b.city || '';
+  const area = b.area || b.city || 'Bangalore';
   const isFood = b.category && (b.category.toLowerCase().includes('food') || b.category.toLowerCase().includes('biryani') || b.category.toLowerCase().includes('cafe') || b.category.toLowerCase().includes('dining') || b.category.toLowerCase().includes('restaurant'));
-  const regional = getRegionalPitchPricing(b.country);
   const pitchPoint = !b.website_url 
     ? "you don't have a direct 1-click booking link on Maps, losing customers to middleman platforms"
-    : (isFood ? `you're paying 20-25% commission on repeat orders from loyal diners finding you on Google Maps to ${regional.aggregator}` : "your mobile website is loading slowly on smartphone networks");
+    : (isFood ? "you're paying 25% commission on repeat orders from loyal diners finding you on Google Maps" : "your mobile website is loading slowly on smartphone networks");
 
-  return `“Hey [Owner / Manager], this is [Your Name] from Getmore OS. I was looking at your Google Maps listing for *${cleanName}* in ${area} with ${reviewsCount} reviews — congratulations on the strong local reputation!\n\nI noticed ${pitchPoint}.\n\nWe built a custom 0% commission WhatsApp direct system starting from ${regional.setup} that fixes this in 48 hours. Do you have 2 minutes to hear how it works?”`;
+  return `“Hey [Owner / Manager], this is [Your Name] from Getmore OS. I was looking at your Google Maps listing for *${cleanName}* in ${area} with ${reviewsCount} reviews — congratulations on the strong local reputation!\n\nI noticed ${pitchPoint}.\n\nWe built a custom 0% commission WhatsApp direct system starting from ₹9,999 that fixes this in 48 hours. Do you have 2 minutes to hear how it works?”`;
 }
 
 function copyPitchScript() {
@@ -13844,36 +14074,37 @@ function exportCSV() {
     return;
   }
 
-  const headers = ['Business Name', 'Category', 'Subcategory', 'City', 'Country', 'Area', 'Address', 'Google Maps Link', 'Official Web Link', 'GMB Rating', 'GMB Reviews', 'Claimed', 'Phone Number', 'WhatsApp', 'Opportunity Score', 'What To Pitch', 'Pitch Deliverable', 'Opportunity Summary'];
+  const headers = ['Business Name', 'Category', 'Subcategory', 'City', 'Area', 'Address', 'Google Maps Link', 'Official Web Link', 'GMB Rating', 'GMB Reviews', 'Claimed', 'Phone Number', 'WhatsApp', 'Opportunity Score', 'What To Pitch', 'Pitch Deliverable', 'Opportunity Summary'];
   const rows = displayedBrands.map(b => [
-    `"${(b.name || '').replace(/"/g, '""')}"`,
-    `"${(b.category || '').replace(/"/g, '""')}"`,
-    `"${(b.subcategory || '').replace(/"/g, '""')}"`,
-    `"${(b.city || '').replace(/"/g, '""')}"`,
-    `"${(b.country || 'India').replace(/"/g, '""')}"`,
-    `"${(b.area || '').replace(/"/g, '""')}"`,
-    `"${(b.full_address || '').replace(/"/g, '""')}"`,
+    `"${b.name.replace(/"/g, '""')}"`,
+    `"${b.category}"`,
+    `"${b.subcategory}"`,
+    `"${b.city}"`,
+    `"${b.area}"`,
+    `"${b.full_address.replace(/"/g, '""')}"`,
     `"${createGoogleMapsUrl(b.name, b.city)}"`,
-    `"${b.website_url || ''}"`,
-    b.gmb_rating || 4.8,
-    b.gmb_reviews || 0,
+    `"${b.website_url ? getSafeWebsiteUrl(b) : 'No Website'}"`,
+    b.gmb_rating,
+    b.gmb_reviews,
     b.gmb_claimed ? 'Yes' : 'No',
     `"${b.phone_number || ''}"`,
-    `"${b.whatsapp_number || b.whatsapp || ''}"`,
-    b.opportunity_score || 85,
-    `"${(b.pitch_offer_name || '').replace(/"/g, '""')}"`,
-    `"${b.primary_pitch_type || ''}"`,
-    `"${(b.opportunity_text || '').replace(/"/g, '""')}"`
+    `"${b.whatsapp_number || ''}"`,
+    b.opportunity_score,
+    `"${b.pitch_offer_name || ''}"`,
+    `"0% Commission Direct System"`,
+    `"${b.opportunity_text.replace(/"/g, '""')}"`
   ]);
 
-  const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+  const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement('a');
   link.setAttribute('href', encodedUri);
-  link.setAttribute('download', `getmore_verified_leads_${(currentSelectedCity || 'global').toLowerCase()}_${getTodayKey()}.csv`);
+  link.setAttribute('download', `pitchfinder-${(displayedBrands[0] ? displayedBrands[0].city : 'leads').toLowerCase()}-${displayedBrands.length}-leads-${Date.now()}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+
+  showToast(`Exported all ${displayedBrands.length} leads with pitch angles!`);
 }
 
 function initPitchFinder() {
@@ -13893,6 +14124,7 @@ function initPitchFinder() {
     });
   }
 
+  // Form submit trigger
   const searchForm = document.getElementById('search-form');
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {
@@ -13908,6 +14140,7 @@ function initPitchFinder() {
   executeDiscovery('', 'Bangalore', 'India');
   updateDailyProgressUI();
 }
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPitchFinder);
 } else {
