@@ -366,6 +366,102 @@
     .calc-pop {
       animation: number-pop 0.3s ease;
     }
+
+    /* Industries Section Styles */
+    .country-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: #94A3B8;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .country-pill:hover {
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .country-pill.active {
+      background: #C8FF00;
+      color: #050505;
+      border-color: #C8FF00;
+      box-shadow: 0 0 18px rgba(200, 255, 0, 0.3);
+    }
+
+    .industry-accordion {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      background: #08090C;
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .industry-accordion[open] {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .industry-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.15rem 1.4rem;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .industry-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .industry-summary:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .industry-card {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      background: #090A0D;
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 112px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .industry-card:hover {
+      border-color: #C8FF00;
+      box-shadow: 0 0 24px rgba(200, 255, 0, 0.16);
+      transform: translateY(-2px);
+      background: #0C0D11;
+    }
+
+    .industry-card:hover .industry-hover-savings {
+      color: #C8FF00;
+    }
+
+    .industry-card.is-country-match {
+      border-color: #C8FF00;
+      background: rgba(200, 255, 0, 0.035);
+      box-shadow: 0 0 20px rgba(200, 255, 0, 0.16);
+    }
+
+    .industry-card.is-country-dimmed {
+      opacity: 0.3;
+    }
+
   </style>
 </head>
 
@@ -409,6 +505,7 @@
         <a href="#pillars" class="hover:text-white transition-colors">The 4 Pillars</a>
         <a href="#calculator" class="hover:text-white transition-colors">Leak Audit</a>
         <a href="#comparison" class="hover:text-white transition-colors">Why OS</a>
+        <a href="#industries" class="hover:text-white transition-colors">Industries</a>
         <a href="#process" class="hover:text-white transition-colors">Process</a>
         <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
@@ -450,6 +547,7 @@
         <a href="#pillars" class="mobile-nav-link hover:text-white py-1">The 4 Pillars</a>
         <a href="#calculator" class="mobile-nav-link hover:text-white py-1">Commission Leak Audit</a>
         <a href="#comparison" class="mobile-nav-link hover:text-white py-1">Why OS vs Rented Land</a>
+        <a href="#industries" class="mobile-nav-link hover:text-white py-1">Industries We Serve</a>
         <a href="#process" class="mobile-nav-link hover:text-white py-1">4-Week Process</a>
         <a href="#pricing" class="mobile-nav-link hover:text-white py-1">Pricing Packages</a>
         <a href="#faq" class="mobile-nav-link hover:text-white py-1">FAQ</a>
@@ -779,7 +877,1565 @@
       </div>
     </section>
 
-    <!-- SECTION 4: 4-WEEK PROCESS -->
+        <!-- SECTION: INDUSTRIES WE SERVE -->
+    <section id="industries" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] bg-[#050505] relative overflow-hidden">
+      <div class="max-w-6xl mx-auto relative z-10">
+
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-4 reveal">
+          <div class="text-[11.5px] font-mono font-semibold tracking-wider uppercase text-[#C8FF00] flex items-center justify-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#C8FF00]"></span>
+            <span>INDUSTRIES WE SERVE</span>
+          </div>
+          <h2 class="text-[32px] sm:text-[46px] font-extrabold text-white tracking-[-0.03em] leading-tight">
+            112+ INDUSTRIES. ONE OPERATING SYSTEM.
+          </h2>
+          <p class="text-[15px] sm:text-[16px] text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
+            If you take bookings and pay 15-30% to aggregators like Fresha, Treatwell, Booksy, Mindbody, ClassPass - GetMore OS replaces them with your own 0% system. Built for Australia, US, Canada & Dubai.
+          </p>
+
+          <!-- Filter Pills -->
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-2.5">
+            <button type="button" class="country-pill active" data-country="all">
+              <span>All</span>
+            </button>
+            <button type="button" class="country-pill" data-country="au">
+              <span>🇦🇺 Australia</span>
+            </button>
+            <button type="button" class="country-pill" data-country="us">
+              <span>🇺🇸 USA</span>
+            </button>
+            <button type="button" class="country-pill" data-country="ca">
+              <span>🇨🇦 Canada</span>
+            </button>
+            <button type="button" class="country-pill" data-country="ae">
+              <span>🇦🇪 Dubai</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 10 Collapsible Accordions -->
+        <div class="space-y-4 reveal delay-1" id="industries-accordion-wrap">
+          <!-- 1. BEAUTY CORE (12) -->
+          <details class="industry-accordion group" open>
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">01</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">BEAUTY CORE</span>
+                <span class="text-[12px] font-mono text-slate-400">(12)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hair Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Barbershop</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hair Color Specialist</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hair Extensions</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Treatwell 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Keratin Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Nail Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Lash Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Brow Bar Microblading</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Treatwell 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Waxing Sugaring</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Tanning Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Makeup Artist</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Beauty Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Treatwell 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 2. SPA & MASSAGE (8) -->
+          <details class="industry-accordion group" open>
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">02</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">SPA & MASSAGE</span>
+                <span class="text-[12px] font-mono text-slate-400">(8)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Day Spa</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ca">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Massage RMT Clinic</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Canada Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Thai Massage Spa</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Foot Spa Reflexology</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Treatwell 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hammam Turkish Bath</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Sauna Ice Bath Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Wellness Holistic Spa</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Baby Spa</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 3. AESTHETIC & MEDICAL - HIGH TICKET (28) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">03</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">AESTHETIC & MEDICAL - HIGH TICKET</span>
+                <span class="text-[12px] font-mono text-slate-400">(28)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card" data-country="us">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Med Spa</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">USA Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Aesthetic Skin Clinic</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Dermatology</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Phorest 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Botox Filler</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Laser Hair Removal</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Treatwell 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">CoolSculpting</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Emsculpt</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Teeth Whitening</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Dental Clinic</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Zocdoc 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hair Transplant</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hair Loss Trichology</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="us">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Scalp Micropigmentation</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">USA Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">IV Drip Vitamin Bar</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">TRT Hormone</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Fertility IVF</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ca">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Physiotherapy</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Canada Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Jane / Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Chiropractic</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Osteopathy</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Acupuncture</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Podiatry</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Cupping Hijama</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Lymphatic Drainage</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Cryotherapy</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="au">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Float Tank</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Australia Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">HBOT</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Infrared Sauna</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Colon Hydrotherapy</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="au">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Naturopathy Ayurveda</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Australia Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 4. FITNESS & SPORTS (17) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">04</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">FITNESS & SPORTS</span>
+                <span class="text-[12px] font-mono text-slate-400">(17)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Yoga Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Pilates Reformer</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Prenatal Yoga</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Boutique Gym</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Personal Training Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">CrossFit Box</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Wodify 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Boxing Muay Thai MMA</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">BJJ Karate Dojo</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Dance Ballet</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Spin Cycle</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Climbing Gym</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="us">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Recovery Stretch Lab</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">USA Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Padel Court Booking</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Playtomic 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="us">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Pickleball Court Booking</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">USA Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">CourtReserve 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Squash Tennis Court</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Playtomic 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Golf Simulator</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Trackman 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="au">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Surf School</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Australia Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">FareHarbor 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 5. TATTOO & PIERCING (4) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">05</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">TATTOO & PIERCING</span>
+                <span class="text-[12px] font-mono text-slate-400">(4)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Tattoo Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Piercing Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Permanent Makeup</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Tooth Gem Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 6. HOSPITALITY & F&B (9) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">06</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">HOSPITALITY & F&B</span>
+                <span class="text-[12px] font-mono text-slate-400">(9)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Boutique Hotel</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booking.com 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Villa Holiday Home</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Airbnb 18%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Cafe Coffee Shop</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Aggregators 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Restaurant Fine Dining</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">OpenTable 15%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Bar Pub Lounge</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">SevenRooms 15%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Cloud Kitchen</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Deliveroo 30%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Bakery Patisserie</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">UberEats 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Private Chef</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">TakeAChef 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Shisha Lounge</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 7. PET KIDS FAMILY (6) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">07</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">PET KIDS FAMILY</span>
+                <span class="text-[12px] font-mono text-slate-400">(6)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Pet Grooming Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Dog Training</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Vet Clinic</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Kids Hair Salon</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Kids Dance Gymnastics</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Family Activity Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 8. AUTO & ADVENTURE (9) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">08</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">AUTO & ADVENTURE</span>
+                <span class="text-[12px] font-mono text-slate-400">(9)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Auto Detailing</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Booksy 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Premium Car Wash</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Luxury Car Rental</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Turo 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Bike Scooter Rental</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">BikesBooking 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Yacht Rental</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">CharterClick 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Jet Ski Quad Bike Rental</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Tripadvisor 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card" data-country="ae">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Desert Safari Booking</span>
+                      <span class="country-badge hidden text-[9.5px] font-mono font-bold text-[#C8FF00]">Dubai Highlight</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Viator 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Scuba Diving Center</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">PADI Travel 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Ski Rental</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">SkiSet 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 9. CREATIVE & STUDIO RENTAL (11) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">09</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">CREATIVE & STUDIO RENTAL</span>
+                <span class="text-[12px] font-mono text-slate-400">(11)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Photography Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Peerspace 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Podcast Studio Rental</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Peerspace 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Content Creator Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Peerspace 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Co-working Day Pass</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Deskpass 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Meeting Room Rental</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">LiquidSpace 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Karaoke Room</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Selfie Museum</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Eventbrite 15%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Music School</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Art Pottery Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Cooking Class Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">CozyMeal 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Tutoring Center</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Wyzant 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- 10. MIND ALTERNATIVE & OTHER (8) -->
+          <details class="industry-accordion group" >
+            <summary class="industry-summary">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-mono font-bold text-[#C8FF00] bg-[#C8FF00]/10 px-2.5 py-1 rounded-full border border-[#C8FF00]/20">010</span>
+                <span class="font-bold text-white text-[15px] sm:text-[16px] tracking-tight">MIND ALTERNATIVE & OTHER</span>
+                <span class="text-[12px] font-mono text-slate-400">(8)</span>
+              </div>
+              <span class="text-slate-500 group-open:rotate-180 transition-transform duration-200 text-[14px]">↓</span>
+            </summary>
+            <div class="p-4 sm:p-5 pt-1 border-t border-white/[0.04]">
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Meditation Center</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Sound Healing</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Mindbody 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Reiki Healing</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Fresha 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Breathwork Studio</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">ClassPass 25%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Hypnotherapy Clinic</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Premium Laundry Dry Cleaning</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Aggregators 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Luxury Florist</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Floom 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+                <div class="industry-card">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="space-y-1">
+                      <span class="text-white font-medium text-[13.5px] leading-snug block">Luxury Tailor</span>
+                      
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] text-slate-400 border border-white/[0.08] whitespace-nowrap">Bespoke 20%</span>
+                  </div>
+                  <div class="mt-3 pt-2.5 border-t border-white/[0.05] text-[11px] font-mono text-slate-400 industry-hover-savings transition-colors">
+                    Avg Booking: $80-$200 | Saves 20-30%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="mt-14 pt-10 border-t border-white/[0.06] text-center space-y-4 reveal delay-2">
+          <p class="text-[16px] text-slate-300 font-medium">
+            Don't see your industry? If you take bookings, we cover you.
+          </p>
+          <a href="#discovery-call" class="pill-btn pill-btn-primary inline-flex text-[14px]">
+            <span>Book Discovery Call</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+<!-- SECTION 4: 4-WEEK PROCESS -->
     <section id="process" class="py-20 sm:py-28 px-4 sm:px-6 border-b border-white/[0.06] relative overflow-hidden">
       <div class="max-w-5xl mx-auto relative z-10">
 
@@ -1186,6 +2842,50 @@
         });
       });
     }
+
+    
+    // Country Filter for Industries Section
+    const countryPills = document.querySelectorAll('.country-pill');
+    const industryCards = document.querySelectorAll('.industry-card');
+    const accordions = document.querySelectorAll('.industry-accordion');
+
+    countryPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const country = pill.getAttribute('data-country');
+        
+        countryPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        if (country === 'all') {
+          industryCards.forEach(card => {
+            card.classList.remove('is-country-match', 'is-country-dimmed');
+            const badge = card.querySelector('.country-badge');
+            if (badge) badge.classList.add('hidden');
+          });
+        } else {
+          industryCards.forEach(card => {
+            const cardCountry = card.getAttribute('data-country');
+            const badge = card.querySelector('.country-badge');
+            
+            if (cardCountry === country) {
+              card.classList.add('is-country-match');
+              card.classList.remove('is-country-dimmed');
+              if (badge) badge.classList.remove('hidden');
+
+              // Ensure parent accordion is open
+              const parentAccordion = card.closest('.industry-accordion');
+              if (parentAccordion) {
+                parentAccordion.open = true;
+              }
+            } else {
+              card.classList.remove('is-country-match');
+              card.classList.add('is-country-dimmed');
+              if (badge) badge.classList.add('hidden');
+            }
+          });
+        }
+      });
+    });
 
     // Form submission
     const callForm = document.getElementById('callForm');
