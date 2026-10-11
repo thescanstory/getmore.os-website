@@ -1,0 +1,28 @@
+{
+  "name": "getmoreos-website",
+  "version": "1.0.0",
+  "description": "GetMoreOS - Growth Engine & PitchFinder for Local Businesses",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "dev": "node scripts/serve.js",
+    "test": "node --test tests/unit/*.test.js",
+    "test:simulate": "node tests/simulation/synthetic_traffic.js",
+    "audit": "node tests/unit/seo_and_schema.test.js && node tests/unit/links_and_assets.test.js",
+    "supervisor": "node tests/supervisor.js",
+    "build": "node scripts/build_check.js"
+  },
+  "keywords": [
+    "getmoreos",
+    "local-business",
+    "pitchfinder",
+    "whatsapp-automation",
+    "growth"
+  ],
+  "author": "GetMoreOS Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}
