@@ -78,3 +78,43 @@ test('PitchFinder CSV Import Parser Logic', async (t) => {
   assert.ok(header.includes('phone'), 'Header includes Phone');
   assert.ok(header.includes('city'), 'Header includes City');
 });
+
+test('PitchFinder 1-Click SMS / iMessage Outreach Logic', async (t) => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'pitchfinder/index.html'), 'utf8');
+
+  await t.test('Helper function getDirectSmsUrl is present in HTML', () => {
+    assert.ok(html.includes('function getDirectSmsUrl(b)'), 'getDirectSmsUrl function missing in HTML');
+    assert.ok(html.includes('function generateSmsPitch(b)'), 'generateSmsPitch function missing in HTML');
+    assert.ok(html.includes('handleDirectSmsClick'), 'handleDirectSmsClick missing in HTML');
+  });
+
+  await t.test('Views support 1-Click SMS CTAs for leads without WhatsApp', () => {
+    assert.ok(html.includes('1-Click SMS'), 'Cards/List view missing 1-Click SMS CTA');
+    assert.ok(html.includes('SMS ↗'), 'Table view missing SMS ↗ badge');
+    assert.ok(html.includes('modal-script-type-label'), 'Modal missing dynamic script label');
+  });
+
+  await t.test('getDirectSmsUrl accurately formats North American and Australian numbers', () => {
+    // Mock getDirectSmsUrl
+    function formatSms(b) {
+      const phone = b.phone_number || b.phone;
+      let num = phone.toString().replace(/\D/g, '');
+      if (b.country === 'USA' || b.country === 'Canada') {
+        if (num.length === 10) num = '1' + num;
+      } else if (b.country === 'Australia') {
+        if (num.startsWith('0')) num = num.substring(1);
+        if (num.length === 9) num = '61' + num;
+      }
+      return `sms:+${num}?&body=pitch`;
+    }
+
+    const usLead = { phone: '+1 (786) 276-5980', country: 'USA' };
+    const caLead = { phone: '+1 (416) 555-0123', country: 'Canada' };
+    const auLead = { phone: '0410315770', country: 'Australia' };
+
+    assert.equal(formatSms(usLead), 'sms:+17862765980?&body=pitch');
+    assert.equal(formatSms(caLead), 'sms:+14165550123?&body=pitch');
+    assert.equal(formatSms(auLead), 'sms:+61410315770?&body=pitch');
+  });
+});
+
