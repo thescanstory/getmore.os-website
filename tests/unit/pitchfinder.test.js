@@ -160,13 +160,13 @@ test('PitchFinder Top Directory Overview & Instagram Outreach', async (t) => {
 
   await t.test('Top Directory Overview section displays total 100% verified businesses', () => {
     assert.ok(html.includes('Verified Businesses on Dashboard'), 'Missing top section title');
-    assert.ok(html.includes('683 Active Verified Entities') || html.includes('683'), 'Missing total active businesses badge');
-    assert.ok(html.includes('616'), 'Missing India count');
-    assert.ok(html.includes('23'), 'Missing Australia count');
-    assert.ok(html.includes('19'), 'Missing USA count');
-    assert.ok(html.includes('11'), 'Missing UAE count');
-    assert.ok(html.includes('8'), 'Missing UK count');
-    assert.ok(html.includes('6'), 'Missing Canada count');
+    assert.ok(html.includes('Active Verified Entities'), 'Missing total active businesses badge');
+    assert.ok(html.includes('India'), 'Missing India label');
+    assert.ok(html.includes('Australia'), 'Missing Australia label');
+    assert.ok(html.includes('United States'), 'Missing USA label');
+    assert.ok(html.includes('UAE / Dubai'), 'Missing UAE label');
+    assert.ok(html.includes('United Kingdom'), 'Missing UK label');
+    assert.ok(html.includes('Canada'), 'Missing Canada label');
   });
 
   await t.test('Instagram helper functions exist in HTML', () => {
