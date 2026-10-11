@@ -64,12 +64,41 @@ test('PitchFinder Database Integrity', async (t) => {
     });
   });
 
-  await t.test('All leads in database have non-empty Instagram handles', () => {
-    let missingIg = 0;
+  await t.test('Instagram handles are authentic, valid strings or null for unclaimed directory leads', () => {
+    let invalidIg = 0;
+    let verifiedCount = 0;
     db.forEach((lead, i) => {
-      if (!lead.instagram || !lead.instagram.trim()) missingIg++;
+      if (lead.instagram !== null && lead.instagram !== undefined) {
+        if (typeof lead.instagram !== 'string' || !lead.instagram.trim() || !/^[a-zA-Z0-9._]+$/.test(lead.instagram.replace(/^@/, ''))) {
+          invalidIg++;
+        } else {
+          verifiedCount++;
+        }
+      }
     });
-    assert.equal(missingIg, 0, `Expected 0 leads missing Instagram, found ${missingIg}`);
+    assert.equal(invalidIg, 0, `Expected 0 invalid Instagram handles, found ${invalidIg}`);
+    assert.ok(verifiedCount > 0, `Expected verified Instagram handles in database, found ${verifiedCount}`);
+  });
+
+  await t.test('Verified anchor brands have authentic 1:1 Instagram handles without fake pool cycling', () => {
+    const geist = db.find(l => l.name === 'Geist Brewing Factory');
+    if (geist) assert.equal(geist.instagram, 'drinkgeist');
+
+    const biergarten = db.find(l => l.name === 'Biergarten Brewery & Kitchen');
+    if (biergarten) assert.equal(biergarten.instagram, 'biergartenbangalore');
+
+    const rameshwaram = db.find(l => l.name === 'The Rameshwaram Cafe');
+    if (rameshwaram) assert.equal(rameshwaram.instagram, 'therameshwaramcafe');
+
+    const toit = db.find(l => l.name === 'Toit Brewpub');
+    if (toit) assert.equal(toit.instagram, 'toitbeerco');
+
+    const camali = db.find(l => l.name === 'Camali Clinic');
+    if (camali) assert.equal(camali.instagram, 'camaliclinic');
+
+    // Ensure Kaya Skin Clinic or unrelated clinics are NOT falsely mapped to Camali Clinic
+    const kaya = db.find(l => l.name === 'Kaya Skin Clinic');
+    if (kaya) assert.notEqual(kaya.instagram, 'camaliclinic');
   });
 });
 
