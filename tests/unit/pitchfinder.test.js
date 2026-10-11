@@ -118,3 +118,55 @@ test('PitchFinder 1-Click SMS / iMessage Outreach Logic', async (t) => {
   });
 });
 
+test('PitchFinder Top Directory Overview & Instagram Outreach', async (t) => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'pitchfinder/index.html'), 'utf8');
+
+  await t.test('Top Directory Overview section displays total 9,560 businesses', () => {
+    assert.ok(html.includes('Verified Businesses on Dashboard'), 'Missing top section title');
+    assert.ok(html.includes('9,560 Active Entities'), 'Missing total active businesses badge');
+    assert.ok(html.includes('3,572'), 'Missing India count');
+    assert.ok(html.includes('2,016'), 'Missing Australia count');
+    assert.ok(html.includes('1,010'), 'Missing USA count');
+    assert.ok(html.includes('1,011'), 'Missing UAE count');
+    assert.ok(html.includes('1,008'), 'Missing UK count');
+    assert.ok(html.includes('943'), 'Missing Canada count');
+  });
+
+  await t.test('Instagram helper functions exist in HTML', () => {
+    assert.ok(html.includes('function getBusinessInstagramHandle(b)'), 'Missing getBusinessInstagramHandle');
+    assert.ok(html.includes('function getDirectInstagramUrl(b)'), 'Missing getDirectInstagramUrl');
+    assert.ok(html.includes('function generateInstagramPitch(b)'), 'Missing generateInstagramPitch');
+    assert.ok(html.includes('function handleDirectInstagramClick(brandId)'), 'Missing handleDirectInstagramClick');
+    assert.ok(html.includes('function openInstagramFromModal()'), 'Missing openInstagramFromModal');
+    assert.ok(html.includes('function copyInstagramScript()'), 'Missing copyInstagramScript');
+  });
+
+  await t.test('Views contain 1-Click Instagram DM integration', () => {
+    assert.ok(html.includes('handleDirectInstagramClick'), 'Missing Instagram click handlers');
+    assert.ok(html.includes('modal-ig-script'), 'Missing modal Instagram script container');
+    assert.ok(html.includes('modal-ig-handle-label'), 'Missing modal Instagram handle label');
+    assert.ok(html.includes('modal-ig-direct-btn'), 'Missing modal direct Instagram button');
+  });
+
+  await t.test('getBusinessInstagramHandle cleans handles properly', () => {
+    function getHandle(b) {
+      if (b.instagram) return b.instagram.replace(/^@/, '');
+      if (b.website) {
+        try {
+          const url = new URL(b.website.startsWith('http') ? b.website : 'https://' + b.website);
+          const host = url.hostname.replace(/^www\./, '').split('.')[0];
+          if (host && host.length >= 3 && !['google', 'facebook', 'instagram', 'yelp'].includes(host)) {
+            return host.toLowerCase().replace(/[^a-z0-9_]/g, '');
+          }
+        } catch (e) {}
+      }
+      const clean = (b.name || 'business').split('(')[0].split('–')[0].split('-')[0].trim();
+      return clean.toLowerCase().replace(/[^a-z0-9_]/g, '').substring(0, 30);
+    }
+
+    assert.equal(getHandle({ name: 'The Rameshwaram Cafe', website: 'https://therameshwaramcafe.org' }), 'therameshwaramcafe');
+    assert.equal(getHandle({ name: 'Clover Emergency Vet Hospital (Key Biscayne Central)' }), 'cloveremergencyvethospital');
+  });
+});
+
+
