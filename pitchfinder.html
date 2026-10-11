@@ -372,154 +372,51 @@
       </div>
     </section>
 
-    <!-- Apple Store Style Horizontal Category Carousel -->
-    <section class="mb-8 overflow-x-auto pb-2">
-      <div class="flex items-center gap-3 sm:gap-4 min-w-max">
-        
-        <div class="apple-category-item active" onclick="quickSelectCategory('All', this)">
-          <div class="cat-icon-circle">✨</div>
-          <span class="text-xs font-semibold">All Verified Leads</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Food & Dining', this)">
-          <div class="cat-icon-circle">🍽️</div>
-          <span class="text-xs font-semibold">Food &amp; Dining</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Tattoo Studio', this)">
-          <div class="cat-icon-circle">🎨</div>
-          <span class="text-xs font-semibold">Tattoo Studios</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Car Detailing', this)">
-          <div class="cat-icon-circle">🚗</div>
-          <span class="text-xs font-semibold">Car Detailing</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Luxury Salon', this)">
-          <div class="cat-icon-circle">💇</div>
-          <span class="text-xs font-semibold">Salons &amp; Spa</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Pet Clinic & Vet', this)">
-          <div class="cat-icon-circle">🐾</div>
-          <span class="text-xs font-semibold">Pet Care &amp; Vets</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Dentist', this)">
-          <div class="cat-icon-circle">🦷</div>
-          <span class="text-xs font-semibold">Dental Clinics</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Wedding Photographer', this)">
-          <div class="cat-icon-circle">📸</div>
-          <span class="text-xs font-semibold">Photographers</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Solar Panels', this)">
-          <div class="cat-icon-circle">⚡</div>
-          <span class="text-xs font-semibold">Solar Energy</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('CrossFit Gym', this)">
-          <div class="cat-icon-circle">🏋️</div>
-          <span class="text-xs font-semibold">Fitness &amp; Gyms</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Chartered Accountant', this)">
-          <div class="cat-icon-circle">💼</div>
-          <span class="text-xs font-semibold">CA &amp; Tax</span>
-        </div>
-
-        <div class="apple-category-item" onclick="quickSelectCategory('Real Estate Broker', this)">
-          <div class="cat-icon-circle">🏢</div>
-          <span class="text-xs font-semibold">Real Estate</span>
-        </div>
-
-      </div>
-    </section>
-
     <!-- Unified Apple Search Console (Single Master Search) -->
     <section class="mb-8">
-      <form id="search-form" class="bg-[#ffffff] p-5 sm:p-7 rounded-apple border border-black/[0.08] shadow-sm space-y-4">
+      <form id="search-form" class="bg-[#ffffff] p-4 sm:p-5 rounded-apple border border-black/[0.08] shadow-sm space-y-3">
         
-        <!-- Top Main Input Bar (Consolidated 1 Search) -->
-        <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
+        <!-- Top Main Input Bar (Single Consolidated Filter Bar) -->
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5">
           
           <!-- Unified Keyword / Business Search Input -->
-          <div class="flex-1 flex items-center gap-2.5 px-4 py-3.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner">
-            <svg class="w-5 h-5 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div class="flex-1 flex items-center gap-2.5 px-3.5 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner">
+            <svg class="w-4 h-4 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input 
               id="query-input" 
               type="text" 
               value="" 
-              placeholder="Search any verified business, trade, or category in Bangalore..." 
-              class="bg-transparent border-none text-[#1d1d1f] text-sm sm:text-base focus:outline-none w-full placeholder:text-[#86868b] font-medium"
+              placeholder="Search business name, trade, or keyword..." 
+              class="bg-transparent border-none text-[#1d1d1f] text-xs sm:text-sm focus:outline-none w-full placeholder:text-[#86868b] font-medium"
             />
-            <!-- Quick Category Preset Dropdown inside Search Bar -->
+          </div>
+
+          <!-- Single Category Selector Dropdown -->
+          <div class="sm:w-52 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
+            <span class="text-sm shrink-0">✨</span>
             <select 
               id="query-dropdown" 
-              class="bg-white/90 hover:bg-white text-[#1d1d1f] text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-black/[0.08] focus:outline-none cursor-pointer max-w-[130px] sm:max-w-[170px] shrink-0 truncate"
+              class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
               onchange="handleQueryDropdownChange(this.value)"
-              title="Quick Select Industry"
+              title="Filter by Category"
             >
               <option value="" selected>✨ All Categories</option>
-              <optgroup label="📸 Creative &amp; Events">
-                <option value="Wedding Photographer">Wedding Photographers</option>
-                <option value="Event Planner">Event Planners</option>
-                <option value="DJ &amp; Sound Studio">DJs &amp; Sound Studios</option>
-                <option value="Tattoo Studio">Tattoo Studios</option>
-              </optgroup>
-              <optgroup label="⚡ Clean Energy &amp; Trades">
-                <option value="Solar Panels">Solar Rooftops</option>
-                <option value="Plumber &amp; AC Repair">AC &amp; MEP Repair</option>
-                <option value="Pest Control">Pest Control</option>
-                <option value="Modular Furniture">Modular Kitchens</option>
-              </optgroup>
-              <optgroup label="🚗 Auto &amp; Detailing">
-                <option value="Car Detailing">Car Detailing</option>
-                <option value="Auto Garage">Auto Repair Garages</option>
-                <option value="EV Charging">EV Charging Setup</option>
-              </optgroup>
-              <optgroup label="💼 Professional &amp; Tech">
-                <option value="Chartered Accountant">CA &amp; Tax Advisors</option>
-                <option value="Corporate Lawyer">Corporate Lawyers</option>
-                <option value="Architect &amp; Interior Designer">Architects &amp; Interiors</option>
-                <option value="Digital Marketing Agency">Digital Agencies</option>
-                <option value="Coworking Space">Coworking Spaces</option>
-              </optgroup>
-              <optgroup label="🩺 Healthcare &amp; Clinics">
-                <option value="Dentist">Dental Clinics</option>
-                <option value="Dermatologist">Skin &amp; Hair Clinics</option>
-                <option value="Orthopedic Clinic">Orthopedic Centers</option>
-                <option value="Ayurveda Center">Ayurveda Clinics</option>
-              </optgroup>
-              <optgroup label="💇 Beauty &amp; Wellness">
-                <option value="Luxury Salon">Luxury Salons</option>
-                <option value="Day Spa &amp; Massage">Day Spas</option>
-                <option value="Nail &amp; Lash Studio">Nail Studios</option>
-              </optgroup>
-              <optgroup label="🏋️ Fitness &amp; Gyms">
-                <option value="CrossFit Gym">CrossFit &amp; Gyms</option>
-                <option value="Yoga &amp; Pilates Studio">Yoga &amp; Pilates</option>
-                <option value="MMA Academy">MMA Academies</option>
-              </optgroup>
-              <optgroup label="🍽️ Dining &amp; Cafes">
-                <option value="Biryani &amp; Dining">Biryani &amp; Dining</option>
-                <option value="Specialty Coffee">Specialty Coffee</option>
-                <option value="Microbrewery &amp; Pub">Microbreweries</option>
-                <option value="Artisan Bakery">Artisan Bakeries</option>
-              </optgroup>
-              <optgroup label="🏡 Real Estate &amp; Pet Care">
-                <option value="Real Estate Broker">Real Estate Brokers</option>
-                <option value="Pet Clinic &amp; Vet">Veterinary Hospitals</option>
-                <option value="Pet Grooming">Pet Grooming</option>
-              </optgroup>
+              <option value="Food & Dining">🍽️ Food &amp; Dining</option>
+              <option value="Luxury Salon">💇 Salons &amp; Spa</option>
+              <option value="Dentist">🦷 Dental Clinics</option>
+              <option value="CrossFit Gym">🏋️ Fitness &amp; Gyms</option>
+              <option value="Car Detailing">🚗 Car Detailing</option>
+              <option value="Real Estate Broker">🏢 Real Estate</option>
+              <option value="Wedding Photographer">📸 Photographers</option>
+              <option value="Tattoo Studio">🎨 Tattoo Studios</option>
+              <option value="Pet Clinic & Vet">🐾 Pet Care &amp; Vets</option>
+              <option value="Chartered Accountant">💼 CA &amp; Tax</option>
+              <option value="Solar Panels">⚡ Solar Energy</option>
             </select>
           </div>
 
           <!-- Country Selector Dropdown -->
-          <div class="sm:w-48 flex items-center gap-2 px-3.5 py-3.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
+          <div class="sm:w-44 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
             <span class="text-sm shrink-0">🌍</span>
             <select 
               id="country-select" 
@@ -537,22 +434,15 @@
             </select>
           </div>
 
-          <!-- Target City Dynamic Dropdown & Input -->
-          <div class="sm:w-64 flex items-center gap-2 px-3.5 py-3.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
+          <!-- Target City Dynamic Dropdown (Single Clean Selector) -->
+          <div class="sm:w-44 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
             <svg class="w-4 h-4 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <input 
-              id="city-input" 
-              type="text" 
-              value="Bangalore" 
-              placeholder="City (e.g. Bangalore, Mumbai)" 
-              class="bg-transparent border-none text-[#1d1d1f] text-sm focus:outline-none w-full placeholder:text-[#86868b] font-medium"
-              oninput="handleCityInput(this.value)"
-            />
+            <input id="city-input" type="hidden" value="Bangalore" />
             <select 
               id="city-dropdown" 
-              class="bg-white/90 hover:bg-white text-[#1d1d1f] text-xs font-semibold px-2 py-1 rounded-lg border border-black/[0.08] focus:outline-none cursor-pointer max-w-[110px] shrink-0"
+              class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
               onchange="handleCityDropdownChange(this.value)"
-              title="Quick Select City"
+              title="Select Target City"
             >
               <option value="Bangalore" selected>Bangalore</option>
               <option value="Mumbai">Mumbai</option>
@@ -565,20 +455,14 @@
               <option value="Goa">Goa</option>
               <option value="Jaipur">Jaipur</option>
               <option value="All India Cities">All India Cities</option>
-              <option value="custom">✏️ Custom City</option>
+              <option value="custom">✏️ Custom City...</option>
             </select>
           </div>
 
-          <!-- Verified Status Badge -->
-          <div class="sm:w-44 flex items-center justify-center gap-1.5 px-3 py-3.5 bg-emerald-50 rounded-apple-sm border border-emerald-200 text-emerald-700 text-xs font-bold shrink-0">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Verified Contacts Only</span>
-          </div>
-
           <!-- Sort Selector -->
-          <div class="sm:w-48 flex items-center gap-1.5 px-3 py-3.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] text-xs font-semibold text-[#1d1d1f] shrink-0">
+          <div class="sm:w-44 flex items-center gap-1.5 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] text-xs font-semibold text-[#1d1d1f] shrink-0">
             <span class="text-[#0071e3] font-bold">⇅</span>
-            <select id="main-sort-select" class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer" onchange="handleSortChange(this.value)">
+            <select id="main-sort-select" class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate" onchange="handleSortChange(this.value)">
               <option value="opportunity">Sort: Opportunity Score</option>
               <option value="reviews_desc">Sort: Most Reviews</option>
               <option value="reviews_asc">Sort: Least Reviews</option>
@@ -590,65 +474,15 @@
             </select>
           </div>
 
-          <!-- Filters Toggle -->
-          <button 
-            type="button" 
-            id="toggle-params-btn"
-            class="px-4 py-3.5 bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] border border-black/[0.06] rounded-apple-sm text-xs font-semibold flex items-center justify-center gap-2 transition-all shrink-0"
-          >
-            <svg class="w-4 h-4 text-[#6e6e73]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-            <span>Filters</span>
-            <span id="params-arrow" class="text-[10px] text-[#6e6e73]">▼</span>
-          </button>
-
           <!-- Primary Discover Button -->
           <button 
             type="submit" 
             id="discover-btn"
-            class="apple-pill-btn px-6 py-3.5 text-sm font-bold flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-sm"
+            class="apple-pill-btn px-5 py-3 text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 shrink-0 cursor-pointer shadow-sm"
           >
             <span id="btn-text">Filter Leads</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
           </button>
-        </div>
-
-        <!-- Collapsible Deep Intelligence Filters -->
-        <div id="deep-params-panel" class="hidden pt-4 border-t border-black/[0.06] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <div>
-            <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Locality / Area Filter</label>
-            <input id="param-area" type="text" oninput="applyLocalFilters()" placeholder="e.g. Indiranagar, Koramangala, Bandra" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs" />
-          </div>
-
-          <div>
-            <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Min GMB Rating</label>
-            <select id="param-min-rating" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
-              <option value="0">Any Rating</option>
-              <option value="3.5">★ 3.5+</option>
-              <option value="4.0">★ 4.0+</option>
-              <option value="4.3">★ 4.3+</option>
-              <option value="4.5">★ 4.5+</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Min Review Count</label>
-            <select id="param-min-reviews" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
-              <option value="0">Any Volume</option>
-              <option value="50">50+ Reviews</option>
-              <option value="200">200+ Reviews</option>
-              <option value="1000">1,000+ Reviews</option>
-              <option value="3000">3,000+ Reviews</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-[#6e6e73] text-[10px] uppercase font-bold mono mb-1">Website Presence</label>
-            <select id="param-website" onchange="applyLocalFilters()" class="w-full bg-[#f5f5f7] border border-black/[0.06] rounded-lg px-3 py-2 text-[#1d1d1f] focus:outline-none text-xs cursor-pointer">
-              <option value="all">All Listings</option>
-              <option value="no_website">🚫 No Website (High Value)</option>
-              <option value="has_website">🌐 Has Official Website</option>
-            </select>
-          </div>
         </div>
 
       </form>
@@ -762,9 +596,7 @@
         </div>
 
         <!-- Category Filter -->
-        <select id="filter-category" class="px-3.5 py-2 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-xs text-[#1d1d1f] font-medium focus:outline-none cursor-pointer" onchange="applyLocalFilters()">
-          <option value="All">All Categories</option>
-        </select>
+        <select id="filter-category" class="hidden" onchange="applyLocalFilters()"><option value="All">All Categories</option></select>
 
         <!-- Pitch Filter -->
         <select id="filter-pitch" class="px-3.5 py-2 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-xs text-[#1d1d1f] font-medium focus:outline-none cursor-pointer" onchange="applyLocalFilters()">
@@ -1410,6 +1242,31 @@ function updateCityDropdown(country, defaultCity) {
   citySelect.innerHTML = html;
 }
 
+
+// Single Unified Category Filter Handler
+function handleQueryDropdownChange(val) {
+  const catVal = (val === 'All' || !val) ? '' : val;
+  const cityInput = document.getElementById('city-input');
+  const city = (cityInput ? cityInput.value : '') || currentSelectedCity;
+  const country = (document.getElementById('country-select') ? document.getElementById('country-select').value : '') || currentSelectedCountry;
+  
+  const queryInput = document.getElementById('query-input');
+  if (queryInput) {
+    queryInput.value = catVal;
+  }
+  
+  const filterCat = document.getElementById('filter-category');
+  if (filterCat) filterCat.value = val || 'All';
+  
+  executeDiscovery(catVal, city, country);
+}
+
+function quickSelectCategory(categoryName, el) {
+  const qDropdown = document.getElementById('query-dropdown');
+  if (qDropdown) qDropdown.value = (categoryName === 'All') ? '' : categoryName;
+  handleQueryDropdownChange((categoryName === 'All') ? '' : categoryName);
+}
+
 function handleCountryChange(countryVal) {
   currentSelectedCountry = countryVal || 'India';
   const countrySelect = document.getElementById('country-select');
@@ -1451,28 +1308,28 @@ function selectCountryPill(countryVal, el) {
 }
 
 function handleCityDropdownChange(cityVal) {
-  if (cityVal === 'custom') {
-    const cityInput = document.getElementById('city-input');
-    if (cityInput) {
-      cityInput.value = '';
-      cityInput.placeholder = 'Type city name...';
-      cityInput.focus();
-    }
-    return;
-  }
-  currentSelectedCity = cityVal;
   const cityInput = document.getElementById('city-input');
-  if (cityInput) {
-    if (cityVal.startsWith('All')) {
-      cityInput.value = '';
-      cityInput.placeholder = `All Cities (${currentSelectedCountry})`;
+  if (cityVal === 'custom') {
+    const customCity = prompt('Enter city name (e.g. Pune, Gold Coast, Chicago):', '');
+    if (customCity && customCity.trim()) {
+      currentSelectedCity = customCity.trim();
+      if (cityInput) cityInput.value = currentSelectedCity;
+      const citySelect = document.getElementById('city-dropdown');
+      if (citySelect) {
+        const opt = new Option(currentSelectedCity, currentSelectedCity, true, true);
+        citySelect.add(opt, citySelect.options[0]);
+      }
     } else {
-      cityInput.value = cityVal;
+      return;
     }
+  } else {
+    currentSelectedCity = cityVal;
+    if (cityInput) cityInput.value = cityVal.startsWith('All') ? '' : cityVal;
   }
+  
   const queryInput = document.getElementById('query-input');
   const query = queryInput ? queryInput.value : '';
-  executeDiscovery(query, (cityVal.startsWith('All') ? '' : cityVal), currentSelectedCountry);
+  executeDiscovery(query, (currentSelectedCity.startsWith('All') ? '' : currentSelectedCity), currentSelectedCountry);
 }
 
 function handleCityInput(val) {
