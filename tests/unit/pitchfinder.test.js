@@ -63,6 +63,14 @@ test('PitchFinder Database Integrity', async (t) => {
       assert.ok(Array.isArray(lead.tags) && lead.tags.length > 0, `Lead #${i} (${lead.name}) missing tags`);
     });
   });
+
+  await t.test('All leads in database have non-empty Instagram handles', () => {
+    let missingIg = 0;
+    db.forEach((lead, i) => {
+      if (!lead.instagram || !lead.instagram.trim()) missingIg++;
+    });
+    assert.equal(missingIg, 0, `Expected 0 leads missing Instagram, found ${missingIg}`);
+  });
 });
 
 test('PitchFinder CSV Import Parser Logic', async (t) => {
