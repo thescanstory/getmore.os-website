@@ -206,4 +206,29 @@ test('PitchFinder Top Directory Overview & Instagram Outreach', async (t) => {
   });
 });
 
+test('PitchFinder Direct Contacts Only View (Names, Phones & Emails)', async (t) => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'pitchfinder/index.html'), 'utf8');
+
+  await t.test('View switcher and section contains Contacts Only mode', () => {
+    assert.ok(html.includes('id="view-contacts-btn"'), 'Missing view-contacts-btn in HTML');
+    assert.ok(html.includes("setViewMode('contacts')"), 'Missing setViewMode contacts trigger in HTML');
+    assert.ok(html.includes('Emails &amp; Phones') || html.includes('Emails & Phones'), 'Missing Emails & Phones label');
+  });
+
+  await t.test('Contacts view renderer and clipboard helper functions exist', () => {
+    assert.ok(html.includes('function renderContactsOnlyView(brands)'), 'Missing renderContactsOnlyView');
+    assert.ok(html.includes('function copyAllVisibleEmails()'), 'Missing copyAllVisibleEmails');
+    assert.ok(html.includes('function copyAllVisiblePhones()'), 'Missing copyAllVisiblePhones');
+    assert.ok(html.includes('function exportContactsOnlyCSV()'), 'Missing exportContactsOnlyCSV');
+  });
+
+  await t.test('Contacts table renders only Name, Phone and Email columns', () => {
+    assert.ok(html.includes('Direct Contact Roster: Names, Phones &amp; Emails Only') || html.includes('Direct Contact Roster: Names, Phones & Emails Only'), 'Missing contact roster title');
+    assert.ok(html.includes('Business Name</th>'), 'Missing Business Name th');
+    assert.ok(html.includes('Phone Number</th>'), 'Missing Phone Number th');
+    assert.ok(html.includes('Email ID</th>'), 'Missing Email ID th');
+  });
+});
+
+
 
