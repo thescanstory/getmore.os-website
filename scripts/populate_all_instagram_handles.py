@@ -40,10 +40,10 @@ def populate_instagram_handles():
         'bombay canteen': 'thebombaycanteen',
         'cejas miami salón': 'cejasmiami',
         'cejas miami': 'cejasmiami',
-        'the serenity hair lab': 'serenityhairlab',
-        'serenity hair lab': 'serenityhairlab',
-        'the reflections hair extensions lounge': 'reflectionsalon',
-        'reflections hair extensions lounge': 'reflectionsalon',
+        'the serenity hair lab': 'serenityhairsalon',
+        'serenity hair lab': 'serenityhairsalon',
+        'the reflections hair extensions lounge': 'reflectionshair',
+        'reflections hair extensions lounge': 'reflectionshair',
         'the bloom barbershop': 'bloombarber',
         'bloom barbershop': 'bloombarber',
         'salt kite beach': 'findsalt',
@@ -83,7 +83,7 @@ def populate_instagram_handles():
     city_niche_pools = {
         # MIAMI & USA
         ('USA', 'Miami', 'salon'): [
-            'serenityhairlab', 'reflectionsalon', 'bloombarber', 'cejasmiami', 'miamisalon',
+            'serenityhairsalon', 'reflectionshair', 'bloombarber', 'cejasmiami', 'miamisalon',
             'miamibarber', 'miamibarbers', 'barbershopmiami', 'thebarbershop', 'southbeachbarber'
         ],
         ('USA', 'Miami', 'food'): [
