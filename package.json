@@ -23,6 +23,7 @@
   "author": "GetMoreOS Team",
   "license": "UNLICENSED",
   "devDependencies": {
+    "puppeteer-core": "^25.13.0",
     "sharp": "^0.35.5"
   }
 }
