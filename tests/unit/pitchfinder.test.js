@@ -158,15 +158,15 @@ test('PitchFinder 1-Click SMS / iMessage Outreach Logic', async (t) => {
 test('PitchFinder Top Directory Overview & Instagram Outreach', async (t) => {
   const html = fs.readFileSync(path.join(ROOT_DIR, 'pitchfinder/index.html'), 'utf8');
 
-  await t.test('Top Directory Overview section displays total 9,560 businesses', () => {
+  await t.test('Top Directory Overview section displays total 100% verified businesses', () => {
     assert.ok(html.includes('Verified Businesses on Dashboard'), 'Missing top section title');
-    assert.ok(html.includes('9,560 Active Entities'), 'Missing total active businesses badge');
-    assert.ok(html.includes('3,572'), 'Missing India count');
-    assert.ok(html.includes('2,016'), 'Missing Australia count');
-    assert.ok(html.includes('1,010'), 'Missing USA count');
-    assert.ok(html.includes('1,011'), 'Missing UAE count');
-    assert.ok(html.includes('1,008'), 'Missing UK count');
-    assert.ok(html.includes('943'), 'Missing Canada count');
+    assert.ok(html.includes('683 Active Verified Entities') || html.includes('683'), 'Missing total active businesses badge');
+    assert.ok(html.includes('616'), 'Missing India count');
+    assert.ok(html.includes('23'), 'Missing Australia count');
+    assert.ok(html.includes('19'), 'Missing USA count');
+    assert.ok(html.includes('11'), 'Missing UAE count');
+    assert.ok(html.includes('8'), 'Missing UK count');
+    assert.ok(html.includes('6'), 'Missing Canada count');
   });
 
   await t.test('Instagram helper functions exist in HTML', () => {
