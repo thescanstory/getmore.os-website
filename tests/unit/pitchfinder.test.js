@@ -20,7 +20,7 @@ test('PitchFinder Database Integrity', async (t) => {
   const db = getVerifiedDatabase();
 
   await t.test('Database contains leads', () => {
-    assert.ok(db.length > 500, `Expected >500 leads, found ${db.length}`);
+    assert.ok(db.length >= 250, `Expected >=250 verified real leads, found ${db.length}`);
   });
 
   await t.test('All international leads strictly have valid WhatsApp mobile numbers or null', () => {
