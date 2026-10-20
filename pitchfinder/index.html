@@ -237,48 +237,35 @@
       </div>
 
       <!-- Right: Status Pill, Daily 50 Queue, What to Pitch & Upgrade CTA -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <div class="flex items-center gap-2 sm:gap-2.5">
         <!-- LinkedIn Link -->
-        <a href="https://www.linkedin.com/company/getmoreos/" target="_blank" rel="noopener noreferrer" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0a66c2]/10 hover:bg-[#0a66c2]/20 text-[#0a66c2] text-xs font-semibold border border-[#0a66c2]/30 transition-all">
+        <a href="https://www.linkedin.com/company/getmoreos/" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0a66c2]/10 hover:bg-[#0a66c2]/20 text-[#0a66c2] text-xs font-semibold border border-[#0a66c2]/30 transition-all">
           <svg class="w-3.5 h-3.5 fill-[#0a66c2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           <span>LinkedIn</span>
         </a>
 
-        <!-- Detailing 50 Queue Trigger Pill -->
-        <button onclick="startDailyQueue('detailing')" class="px-3.5 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 text-[#af52de] border border-purple-200 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Verified 50 Bangalore Car Detailing & PPF Studios Focus Queue">
-          <span>🏎️ Detailing 50</span>
-          <span class="text-[10px] px-1.5 py-0.2 bg-[#af52de] text-white rounded-full font-mono">50</span>
-        </button>
-
-        <!-- Dental 50 Queue Trigger Pill -->
-        <button onclick="startDailyQueue('dental')" class="px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Verified 50 Bangalore Dental Clinics Focus Queue">
-          <span>🦷 Dental 50</span>
-          <span class="text-[10px] px-1.5 py-0.2 bg-[#0071e3] text-white rounded-full font-mono">50</span>
-        </button>
-
-        <!-- Daily 50 Queue Trigger Pill -->
-        <button onclick="startDailyQueue('detailing')" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Today's Verified 50 Focus Leads">
+        <!-- Master Daily 50 Focus Queue Pill -->
+        <button onclick="startDailyQueue('detailing')" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Launch Today's Focus Queue (50 Leads)">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span>⚡ Daily 50 Queue</span>
           <span id="header-queue-counter" class="text-[10px] px-1.5 py-0.2 bg-emerald-600 text-white rounded-full font-mono">0/50</span>
         </button>
 
-        <!-- Import 1,000+ Leads (CSV / API) Button -->
-        <button onclick="openImportModal()" class="px-3 py-1.5 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer" title="Import 1,000+ Leads via CSV or Apify / Google Places API">
-          <svg class="w-3.5 h-3.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-          <span>📥 Import 1,000+ Leads</span>
+        <!-- Import Leads Modal -->
+        <button onclick="openImportModal()" class="hidden sm:flex px-3 py-1.5 rounded-full bg-black/5 hover:bg-black/10 text-[#1d1d1f] border border-black/[0.08] text-xs font-semibold items-center gap-1.5 transition-all shadow-2xs cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-[#0071e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+          <span>Import Leads</span>
         </button>
 
-        <!-- What to Pitch Playbook Trigger Button -->
-        <button onclick="openPlaybookModal()" class="hidden md:flex px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold items-center gap-1.5 transition-all shadow-sm">
-          <span>📘 What Can We Pitch?</span>
-          <span class="text-[10px] px-1.5 py-0.2 bg-[#0071e3] text-white rounded-full">6 Offers</span>
+        <!-- What to Pitch Playbook -->
+        <button onclick="openPlaybookModal()" class="hidden md:flex px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-[#0071e3] border border-blue-200 text-xs font-bold items-center gap-1.5 transition-all shadow-2xs cursor-pointer">
+          <span>📘 Sales Playbook</span>
         </button>
 
-        <a href="index.html#pricing" class="hidden sm:inline-flex apple-pill-dark px-4 py-1.5 text-xs font-semibold">
+        <!-- CTA Pricing -->
+        <a href="index.html#pricing" class="apple-pill-dark px-4 py-1.5 text-xs font-semibold shrink-0">
           <span>Setup ₹9,999</span>
-        </a>
-      </div>
+        </a></div>
     </div>
   </header>
 
@@ -308,34 +295,10 @@
           <button type="button" data-country="All" onclick="selectCountryPill('All', this)" class="country-pill px-3.5 py-1.5 rounded-full bg-white text-[#1d1d1f] border border-black/[0.08] hover:border-black/20 shadow-2xs cursor-pointer shrink-0 transition-all text-xs font-semibold">🌐 All Countries</button>
         </div>
 
-        <!-- What We Offer: 5 Core Deliverables -->
-        <div class="mt-4 pt-3.5 border-t border-black/[0.06] flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs">
-          <span class="font-bold text-[#1d1d1f] text-[11px] uppercase tracking-wider flex items-center gap-1 mr-1">
-            <span>🚀</span> What We Offer:
-          </span>
-          <span class="px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 font-bold flex items-center gap-1.5 shadow-2xs">
-            <span>🎬</span> 1. Influencer Reels
-          </span>
-          <span class="px-3 py-1.5 rounded-full bg-blue-50 text-[#0071e3] border border-blue-200 font-bold flex items-center gap-1.5 shadow-2xs">
-            <span>🌐</span> 2. Website
-          </span>
-          <span class="px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold flex items-center gap-1.5 shadow-2xs">
-            <span>📈</span> 3. SEO Ranking
-          </span>
-          <span class="px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-bold flex items-center gap-1.5 shadow-2xs">
-            <span>📱</span> 4. App
-          </span>
-          <span class="px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-bold flex items-center gap-1.5 shadow-2xs">
-            <span>🎯</span> 5. Ads + Sales
-          </span>
         </div>
-      </div>
-
-      <!-- Quick Action Guide Button -->
       <div class="shrink-0 flex items-center gap-2">
-        <button onclick="openPlaybookModal()" class="apple-pill-btn px-5 py-2.5 text-xs font-bold flex items-center gap-2 shadow-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-          <span>What Can We Pitch? (Playbook)</span>
+        <button onclick="openPlaybookModal()" class="apple-pill-btn px-4 py-2 text-xs font-bold flex items-center gap-2 shadow-xs cursor-pointer">
+          <span>📘 What Can We Pitch?</span>
         </button>
       </div>
     </div>
@@ -442,382 +405,226 @@
     </section>
 
     <!-- ⚡ Daily 50 WhatsApp Outreach Hub Bar -->
-    <section class="mb-8 p-4 sm:p-5 rounded-apple bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-blue-500/10 border border-emerald-200/80 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-2xl bg-[#25D366] text-white flex items-center justify-center font-bold text-xl shadow-sm shrink-0">
+    <section class="mb-8 p-4 sm:p-5 rounded-apple bg-gradient-to-r from-emerald-50/70 via-white to-purple-50/60 border border-emerald-200/70 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      
+      <!-- Left: Title & Subtitle -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="w-10 h-10 rounded-2xl bg-[#25D366] text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
           ⚡
         </div>
         <div>
           <div class="flex items-center gap-2 flex-wrap">
-            <h3 class="font-bold text-sm sm:text-base text-[#1d1d1f]">Daily 50 WhatsApp Outreach Hub</h3>
-            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wide">100% Ban-Safe Human Pacing</span>
+            <h3 class="font-bold text-sm sm:text-base text-[#1d1d1f]">Daily 50 Outreach Hub</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wide">1-Key Quick-Fire</span>
           </div>
-          <p class="text-xs text-[#6e6e73] mt-0.5">
-            Safely reach 50 verified businesses/day with 1-Key quick-fire. Spacebar opens WhatsApp directly with pre-filled pitch &amp; auto-advances.
+          <p class="text-xs text-[#6e6e73]">
+            Personalized 1-click WhatsApp outreach. Spacebar opens chat and advances to next lead.
           </p>
         </div>
       </div>
 
-      <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end flex-wrap">
+      <!-- Center & Right: Segmented Queue Selector, Progress & CTA -->
+      <div class="flex flex-wrap items-center gap-3 justify-between lg:justify-end">
+        
+        <!-- Segmented Focus Selector -->
+        <div class="flex items-center bg-black/[0.04] p-1 rounded-full border border-black/[0.06] text-xs font-semibold">
+          <button onclick="startDailyQueue('detailing')" class="px-3 py-1.5 rounded-full bg-white text-[#af52de] font-bold shadow-2xs border border-purple-200/60 flex items-center gap-1.5 transition-all cursor-pointer" title="Verified Car Detailing & PPF Studios">
+            <span>🏎️ Detailing</span>
+            <span class="text-[10px] px-1.5 py-0.2 bg-[#af52de] text-white rounded-full font-mono">50</span>
+          </button>
+          <button onclick="startDailyQueue('dental')" class="px-3 py-1.5 rounded-full text-[#6e6e73] hover:text-[#0071e3] hover:bg-white/60 flex items-center gap-1.5 transition-all cursor-pointer" title="Verified Dental Clinics">
+            <span>🦷 Dental</span>
+            <span class="text-[10px] px-1.5 py-0.2 bg-[#0071e3] text-white rounded-full font-mono">50</span>
+          </button>
+          <button onclick="startDailyQueue('all')" class="px-3 py-1.5 rounded-full text-[#6e6e73] hover:text-emerald-700 hover:bg-white/60 flex items-center gap-1.5 transition-all cursor-pointer" title="Mixed High Opportunity Leads">
+            <span>⚡ All Mix</span>
+            <span class="text-[10px] px-1.5 py-0.2 bg-emerald-600 text-white rounded-full font-mono">50</span>
+          </button>
+        </div>
+
         <!-- Progress Counter -->
-        <div class="flex flex-col items-start md:items-end">
-          <div class="flex items-center gap-1.5 text-xs font-bold text-[#1d1d1f]">
-            <span>Today's Sent:</span>
-            <span id="hub-progress-text" class="text-emerald-700 font-mono">0 / 50 sent</span>
-          </div>
-          <div class="w-28 sm:w-36 h-2 bg-black/[0.08] rounded-full overflow-hidden mt-1">
-            <div id="hub-progress-bar" class="h-full bg-[#25D366] rounded-full transition-all duration-300" style="width: 0%;"></div>
+        <div class="flex items-center gap-2">
+          <div class="flex flex-col items-end">
+            <span id="hub-progress-text" class="text-xs font-bold font-mono text-emerald-700">0 / 50 sent</span>
+            <div class="w-24 h-1.5 bg-black/[0.08] rounded-full overflow-hidden mt-1">
+              <div id="hub-progress-bar" class="h-full bg-[#25D366] rounded-full transition-all duration-300" style="width: 0%;"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Launch Detailing 50 Button -->
-        <button onclick="startDailyQueue('detailing')" class="apple-pill-btn px-4 py-2.5 text-xs font-bold flex items-center gap-2 bg-[#af52de] hover:bg-[#9a3ec4] text-white shadow-sm shrink-0 cursor-pointer" title="Launch Verified 50 Car Detailing & PPF Studios">
-          <span>🏎️ Detailing 50 Queue</span>
-          <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white font-mono">50</span>
-        </button>
-
-        <!-- Launch Dental 50 Button -->
-        <button onclick="startDailyQueue('dental')" class="apple-pill-btn px-4 py-2.5 text-xs font-bold flex items-center gap-2 bg-[#0071e3] hover:bg-blue-600 text-white shadow-sm shrink-0 cursor-pointer" title="Launch Verified 50 Dental Clinics Focus Queue">
-          <span>🦷 Dental 50 Queue</span>
-          <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white font-mono">50</span>
-        </button>
-
-        <!-- Launch Master 50 Queue Button -->
-        <button onclick="startDailyQueue('detailing')" class="apple-pill-btn px-4 py-2.5 text-xs font-bold flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm shrink-0 cursor-pointer">
+        <!-- Launch Button -->
+        <button onclick="startDailyQueue('detailing')" class="apple-pill-btn px-4 py-2 text-xs font-bold flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-sm shrink-0 cursor-pointer">
           <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          <span>Launch 50 DM Queue</span>
+          <span>Launch 50 Queue</span>
           <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white font-mono">Space ␣</span>
         </button>
 
         <!-- Hide Contacted Checkbox -->
-        <label class="flex items-center gap-1.5 text-xs text-[#6e6e73] hover:text-[#1d1d1f] cursor-pointer select-none px-2.5 py-1.5 rounded-lg bg-white/70 border border-black/[0.06]">
+        <label class="flex items-center gap-1.5 text-xs text-[#6e6e73] hover:text-[#1d1d1f] cursor-pointer select-none px-2.5 py-1.5 rounded-lg bg-white/80 border border-black/[0.06]">
           <input type="checkbox" id="hide-contacted-checkbox" onchange="toggleHideContacted(this.checked)" class="rounded text-[#25D366] focus:ring-emerald-400 cursor-pointer">
-          <span class="font-semibold">Hide Contacted</span>
+          <span class="font-medium text-[11px]">Hide Contacted</span>
         </label>
       </div>
     </section>
 
-    <!-- Unified Apple Search Console (Single Master Search) -->
-    <section class="mb-8">
-      <form id="search-form" class="bg-[#ffffff] p-4 sm:p-5 rounded-apple border border-black/[0.08] shadow-sm space-y-3">
-        
-        <!-- Top Main Input Bar (Single Consolidated Filter Bar) -->
-        <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5">
-          
-          <!-- Unified Keyword / Business Search Input -->
-          <div class="flex-1 flex items-center gap-2.5 px-3.5 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner">
-            <svg class="w-4 h-4 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input 
-              id="query-input" 
-              type="text" 
-              value="" 
-              placeholder="Search business name, trade, or keyword..." 
-              class="bg-transparent border-none text-[#1d1d1f] text-xs sm:text-sm focus:outline-none w-full placeholder:text-[#86868b] font-medium"
-            />
-          </div>
-
-          <!-- Single Category Selector Dropdown -->
-          <div class="sm:w-52 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
-            <span class="text-sm shrink-0">✨</span>
-            <select 
-              id="query-dropdown" 
-              class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
-              onchange="handleQueryDropdownChange(this.value)"
-              title="Filter by Category"
-            >
-              <option value="" selected>✨ All Categories</option>
-              <option value="Food & Dining">🍽️ Food &amp; Dining</option>
-              <option value="Luxury Salon">💇 Salons &amp; Spa</option>
-              <option value="Dentist">🦷 Dental Clinics</option>
-              <option value="CrossFit Gym">🏋️ Fitness &amp; Gyms</option>
-              <option value="Car Detailing">🚗 Car Detailing</option>
-              <option value="Real Estate Broker">🏢 Real Estate</option>
-              <option value="Wedding Photographer">📸 Photographers</option>
-              <option value="Tattoo Studio">🎨 Tattoo Studios</option>
-              <option value="Pet Clinic & Vet">🐾 Pet Care &amp; Vets</option>
-              <option value="Chartered Accountant">💼 CA &amp; Tax</option>
-              <option value="Solar Panels">⚡ Solar Energy</option>
-            </select>
-          </div>
-
-          <!-- Country Selector Dropdown -->
-          <div class="sm:w-44 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
-            <span class="text-sm shrink-0">🌍</span>
-            <select 
-              id="country-select" 
-              class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer"
-              onchange="handleCountryChange(this.value)"
-              title="Select Target Country"
-            >
-              <option value="India" selected>🇮🇳 India</option>
-              <option value="Australia">🇦🇺 Australia</option>
-              <option value="USA">🇺🇸 United States</option>
-              <option value="Canada">🇨🇦 Canada</option>
-              <option value="UAE">🇦🇪 UAE / Dubai</option>
-              <option value="United Kingdom">🇬🇧 United Kingdom</option>
-              <option value="All">🌐 All Countries</option>
-            </select>
-          </div>
-
-          <!-- Target City Dynamic Dropdown (Single Clean Selector) -->
-          <div class="sm:w-44 flex items-center gap-2 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner shrink-0">
-            <svg class="w-4 h-4 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <input id="city-input" type="hidden" value="Bangalore" />
-            <select 
-              id="city-dropdown" 
-              class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
-              onchange="handleCityDropdownChange(this.value)"
-              title="Select Target City"
-            >
-              <option value="Bangalore" selected>Bangalore</option>
-              <option value="Mumbai">Mumbai</option>
-              <option value="Delhi NCR">Delhi NCR</option>
-              <option value="Hyderabad">Hyderabad</option>
-              <option value="Chennai">Chennai</option>
-              <option value="Pune">Pune</option>
-              <option value="Kolkata">Kolkata</option>
-              <option value="Ahmedabad">Ahmedabad</option>
-              <option value="Goa">Goa</option>
-              <option value="Jaipur">Jaipur</option>
-              <option value="All India Cities">All India Cities</option>
-              <option value="custom">✏️ Custom City...</option>
-            </select>
-          </div>
-
-          <!-- Sort Selector -->
-          <div class="sm:w-44 flex items-center gap-1.5 px-3 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] text-xs font-semibold text-[#1d1d1f] shrink-0">
-            <span class="text-[#0071e3] font-bold">⇅</span>
-            <select id="main-sort-select" class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate" onchange="handleSortChange(this.value)">
-              <option value="opportunity">Sort: Opportunity Score</option>
-              <option value="reviews_desc">Sort: Most Reviews</option>
-              <option value="reviews_asc">Sort: Least Reviews</option>
-              <option value="rating_desc">Sort: Highest Rating</option>
-              <option value="rating_asc">Sort: Lowest Rating</option>
-              <option value="pagespeed_asc">Sort: Slowest Speed</option>
-              <option value="loss_desc">Sort: Highest Loss / ROI</option>
-              <option value="name_asc">Sort: Name (A → Z)</option>
-            </select>
-          </div>
-
-          <!-- Primary Discover Button -->
-          <button 
-            type="submit" 
-            id="discover-btn"
-            class="apple-pill-btn px-5 py-3 text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 shrink-0 cursor-pointer shadow-sm"
-          >
-            <span id="btn-text">Filter Leads</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </button>
-        </div>
-
-      </form>
-    </section>
-
-    <!-- Quick Strategy Strip: 5 Core Deliverables -->
-    <section class="bg-gradient-to-r from-purple-50/60 via-white to-blue-50/60 p-4 sm:p-5 rounded-apple border border-blue-100 mb-8 shadow-sm">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3.5">
-        <div class="flex items-center gap-2.5">
-          <span class="text-xl">🎯</span>
-          <div>
-            <h3 class="text-sm font-bold text-[#1d1d1f]">What We Offer To Local Businesses</h3>
-            <p class="text-xs text-[#6e6e73]">5 high-ROI growth systems ready to pitch and deploy for any local brand.</p>
-          </div>
-        </div>
-        <button onclick="openPlaybookModal()" class="text-xs font-bold text-[#0071e3] hover:underline flex items-center gap-1 cursor-pointer">
-          <span>Open Full Sales Playbook</span>
-          <span>→</span>
-        </button>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
-        <div class="bg-white p-3.5 rounded-xl border border-black/[0.06] shadow-xs cursor-pointer hover:border-purple-300 hover:shadow-sm transition-all group" onclick="filterByPitchType('reels')">
-          <div class="font-bold text-[#1d1d1f] flex items-center gap-1.5 mb-1 group-hover:text-purple-600 transition-colors">
-            <span class="text-base">🎬</span> 1. Influencer Reels
-          </div>
-          <p class="text-[11px] text-[#6e6e73] leading-snug">Local creator UGC videos &amp; viral Instagram reels to drive footfall.</p>
-        </div>
-
-        <div class="bg-white p-3.5 rounded-xl border border-black/[0.06] shadow-xs cursor-pointer hover:border-blue-300 hover:shadow-sm transition-all group" onclick="filterByPitchType('website')">
-          <div class="font-bold text-[#1d1d1f] flex items-center gap-1.5 mb-1 group-hover:text-[#0071e3] transition-colors">
-            <span class="text-base">🌐</span> 2. Website
-          </div>
-          <p class="text-[11px] text-[#6e6e73] leading-snug">Sub-second Apple-grade mobile web portal with 0% commission direct booking.</p>
-        </div>
-
-        <div class="bg-white p-3.5 rounded-xl border border-black/[0.06] shadow-xs cursor-pointer hover:border-emerald-300 hover:shadow-sm transition-all group" onclick="filterByPitchType('seo')">
-          <div class="font-bold text-[#1d1d1f] flex items-center gap-1.5 mb-1 group-hover:text-emerald-600 transition-colors">
-            <span class="text-base">📈</span> 3. SEO Ranking
-          </div>
-          <p class="text-[11px] text-[#6e6e73] leading-snug">Google Map Pack Top-3 local ranking booster &amp; ChatGPT/Gemini AI search citation.</p>
-        </div>
-
-        <div class="bg-white p-3.5 rounded-xl border border-black/[0.06] shadow-xs cursor-pointer hover:border-amber-300 hover:shadow-sm transition-all group" onclick="filterByPitchType('app')">
-          <div class="font-bold text-[#1d1d1f] flex items-center gap-1.5 mb-1 group-hover:text-amber-600 transition-colors">
-            <span class="text-base">📱</span> 4. App
-          </div>
-          <p class="text-[11px] text-[#6e6e73] leading-snug">1-Click WhatsApp Ordering PWA app with automated lead capture &amp; rebooking CRM.</p>
-        </div>
-
-        <div class="bg-white p-3.5 rounded-xl border border-black/[0.06] shadow-xs cursor-pointer hover:border-rose-300 hover:shadow-sm transition-all group" onclick="filterByPitchType('ads')">
-          <div class="font-bold text-[#1d1d1f] flex items-center gap-1.5 mb-1 group-hover:text-rose-600 transition-colors">
-            <span class="text-base">🎯</span> 5. Ads + Sales
-          </div>
-          <p class="text-[11px] text-[#6e6e73] leading-snug">Meta &amp; Google hyper-local ROI ads with high-converting booking funnels.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Apple Health & Metrics Bento Strip (Light Theme) -->
-    <section id="metrics-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-      <div class="apple-tile p-5 flex items-center gap-4">
-        <div class="w-12 h-12 rounded-2xl bg-black/[0.04] border border-black/[0.06] grid place-items-center text-[#1d1d1f]">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2v2H9zM13 11h2v2h-2zM9 15h2v2H9zM13 15h2v2h-2z"></path></svg>
-        </div>
-        <div>
-          <div class="text-xs text-[#6e6e73] font-medium">Verified Leads Loaded</div>
-          <div id="metric-total" class="text-2xl font-bold tracking-tight text-[#1d1d1f]">500 Leads</div>
-        </div>
-      </div>
-
-      <div class="apple-tile p-5 flex items-center gap-4">
-        <div class="w-12 h-12 rounded-2xl bg-[#34c759]/10 border border-[#34c759]/20 grid place-items-center text-[#34c759]">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-        </div>
-        <div>
-          <div class="text-xs text-[#6e6e73] font-medium">High Score (80+)</div>
-          <div id="metric-high-pitch" class="text-2xl font-bold tracking-tight text-[#34c759]">500 Leads</div>
-        </div>
-      </div>
-
-      <div class="apple-tile p-5 flex items-center gap-4">
-        <div class="w-12 h-12 rounded-2xl bg-[#ff9500]/10 border border-[#ff9500]/20 grid place-items-center text-[#ff9500]">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        </div>
-        <div>
-          <div class="text-xs text-[#6e6e73] font-medium">Avg Google Rating</div>
-          <div id="metric-avg-rating" class="text-2xl font-bold tracking-tight text-[#1d1d1f]">★ 4.8</div>
-        </div>
-      </div>
-
-      <div class="apple-tile p-5 flex items-center gap-4">
-        <div class="w-12 h-12 rounded-2xl bg-[#0071e3]/10 border border-[#0071e3]/20 grid place-items-center text-[#0071e3]">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        </div>
-        <div>
-          <div class="text-xs text-[#6e6e73] font-medium">Verification Speed</div>
-          <div id="metric-latency" class="text-2xl font-bold tracking-tight text-[#1d1d1f]">42ms</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Apple Consolidated Action Toolbar (No duplicate search!) -->
-    <section class="bg-white p-4 rounded-apple-sm border border-black/[0.08] mb-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+    <!-- Unified Apple Search Console & Filter Command Center -->
+    <section class="mb-6 bg-white p-4 sm:p-5 rounded-apple border border-black/[0.08] shadow-sm space-y-3.5">
       
-      <div class="flex flex-wrap items-center gap-3 flex-1 min-w-[280px]">
-        <!-- Active Search Badge Indicator -->
-        <div id="active-search-badge" class="px-3.5 py-2 rounded-xl bg-blue-50/90 border border-blue-200/80 text-[#0071e3] font-semibold text-xs flex items-center gap-1.5 shadow-xs">
-          <span>🔍</span>
-          <span>Showing <strong id="badge-count">500</strong> leads for <strong id="badge-query">All Categories</strong> in <strong id="badge-city">Bangalore</strong> (<strong id="badge-country">India</strong>)</span>
-        </div>
-
-        <!-- Category Filter -->
-        <select id="filter-category" class="hidden" onchange="applyLocalFilters()"><option value="All">All Categories</option></select>
-
-        <!-- Pitch Filter -->
-        <select id="filter-pitch" class="px-3.5 py-2 rounded-xl bg-[#f5f5f7] border border-black/[0.06] text-xs text-[#1d1d1f] font-medium focus:outline-none cursor-pointer" onchange="applyLocalFilters()">
-          <option value="all">All Pitch Angles (All Strategies)</option>
-          <option value="reels">🎬 1. Influencer Reels &amp; Footfall</option>
-          <option value="website">🌐 2. Missing Official Website</option>
-          <option value="seo">📈 3. SEO Ranking &amp; AI Search</option>
-          <option value="whatsapp">💬 4. WhatsApp 0% Comm. Flow</option>
-          <option value="app">📱 5. App &amp; Retargeting CRM</option>
-          <option value="ads">🎯 6. Meta &amp; Google Local Ads</option>
-          <option value="gmb">⭐ 7. 5-Star Review Funnel</option>
-          <option value="pagespeed">⚡ 8. Slow Speed Rebuild</option>
-        </select>
-      </div>
-
-      <!-- Right Action Tools (Segmented View Mode + Export) -->
-      <div class="flex items-center gap-2.5">
-        <!-- iOS Style Segmented Control (Sheet / List / Grid) -->
-        <div class="flex items-center bg-[#f5f5f7] border border-black/[0.06] rounded-xl p-1">
-          <button id="view-table-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-sm transition-all flex items-center gap-1.5" onclick="setViewMode('table')" title="Data Table View">
-            <svg class="w-3.5 h-3.5 text-[#0071e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 10h18M3 14h18M3 6h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2z"></path></svg>
-            <span class="font-bold">Table</span>
-          </button>
-          <button id="view-list-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('list')" title="List View">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6" stroke-width="2"></line><line x1="3" y1="12" x2="21" y2="12" stroke-width="2"></line><line x1="3" y1="18" x2="21" y2="18" stroke-width="2"></line></svg>
-            <span class="hidden sm:inline">List</span>
-          </button>
-          <button id="view-cards-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('cards')" title="Grid View">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            <span class="hidden sm:inline">Grid</span>
-          </button>
-          <button id="view-contacts-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1.5" onclick="setViewMode('contacts')" title="Only Emails, Phone Numbers & Business Names">
-            <svg class="w-3.5 h-3.5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
-            <span class="font-bold text-purple-700">Emails &amp; Phones</span>
-          </button>
-        </div>
-
-        <button onclick="exportCSV()" class="apple-btn-secondary px-4 py-2 text-xs font-semibold flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-[#0071e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span>Export CSV</span>
-        </button>
-      </div>
-
-    </section>
-
-    <!-- Discovered Leads Container (Pure White Tiles) -->
-    
-    <!-- 🔍 Real-Time Instant Live Search Bar -->
-    <section class="mb-6 bg-white p-4 sm:p-5 rounded-apple border border-black/[0.08] shadow-sm space-y-3">
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-        <div class="flex-1 flex items-center gap-2.5 px-4 py-3 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner">
-          <svg class="w-5 h-5 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <!-- Top Row: Main Search Inputs -->
+      <form id="search-form" onsubmit="event.preventDefault(); applyLocalFilters();" class="flex flex-col lg:flex-row items-stretch lg:items-center gap-2.5">
+        
+        <!-- Live Instant Search Bar -->
+        <div class="flex-1 flex items-center gap-2.5 px-3.5 py-2.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shadow-inner">
+          <svg class="w-4 h-4 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input 
-            id="live-filter-search" 
+            id="query-input" 
             type="text" 
-            placeholder="⚡ Real-time search by business name (e.g. 1plus1, Clove, Meghana), locality (e.g. Indiranagar), or keywords..." 
+            placeholder="Search business name, trade, area (e.g. Indiranagar, HSR), or keywords..." 
             oninput="handleInstantSearch(this.value)"
-            class="bg-transparent border-none text-[#1d1d1f] text-sm focus:outline-none w-full placeholder:text-[#86868b] font-medium"
+            class="bg-transparent border-none text-[#1d1d1f] text-xs sm:text-sm focus:outline-none w-full placeholder:text-[#86868b] font-medium"
           />
           <button 
             type="button" 
             onclick="clearInstantSearch()" 
             id="clear-search-btn"
-            class="hidden text-xs text-[#86868b] hover:text-[#1d1d1f] font-bold px-2 py-1 rounded-full bg-black/5 hover:bg-black/10 transition-all shrink-0"
+            class="hidden text-xs text-[#86868b] hover:text-[#1d1d1f] font-bold px-2 py-0.5 rounded-full bg-black/5 hover:bg-black/10 transition-all shrink-0"
           >
-            ✕ Clear
+            ✕
           </button>
         </div>
 
-        <div class="flex items-center gap-2 shrink-0">
-          <div id="live-search-count" class="px-4 py-3 rounded-apple-sm bg-blue-50 border border-blue-200 text-[#0071e3] font-bold text-xs whitespace-nowrap">
-            5,000 Matches
-          </div>
+        <!-- Category Dropdown -->
+        <div class="sm:w-48 flex items-center gap-2 px-3 py-2.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shrink-0">
+          <span class="text-xs shrink-0">✨</span>
+          <select 
+            id="query-dropdown" 
+            class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
+            onchange="handleQueryDropdownChange(this.value)"
+            title="Filter by Category"
+          >
+            <option value="" selected>✨ All Categories</option>
+            <option value="Food & Dining">🍽️ Food &amp; Dining</option>
+            <option value="Luxury Salon">💇 Salons &amp; Spa</option>
+            <option value="Dentist">🦷 Dental Clinics</option>
+            <option value="CrossFit Gym">🏋️ Fitness &amp; Gyms</option>
+            <option value="Car Detailing">🚗 Car Detailing</option>
+            <option value="Real Estate Broker">🏢 Real Estate</option>
+            <option value="Wedding Photographer">📸 Photographers</option>
+            <option value="Tattoo Studio">🎨 Tattoo Studios</option>
+            <option value="Pet Clinic & Vet">🐾 Pet Care &amp; Vets</option>
+            <option value="Chartered Accountant">💼 CA &amp; Tax</option>
+            <option value="Solar Panels">⚡ Solar Energy</option>
+          </select>
         </div>
-      </div>
-    </section>
 
-    
-    <!-- ⚡ Quick Sort & AI Visibility Bar -->
-    <section class="mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-apple-sm border border-black/[0.08] shadow-xs text-xs">
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="font-bold text-[#6e6e73]">Sort By Reviews:</span>
-        <button onclick="handleSortChange('reviews_desc')" id="btn-sort-reviews-desc" class="px-3 py-1.5 rounded-xl font-bold bg-[#1d1d1f] text-white transition-all shadow-xs flex items-center gap-1">
-          <span>🔥 Most Reviews (High → Low)</span>
-        </button>
-        <button onclick="handleSortChange('reviews_asc')" id="btn-sort-reviews-asc" class="px-3 py-1.5 rounded-xl font-semibold bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] transition-all border border-black/[0.06]">
-          <span>Least Reviews (Low → High)</span>
-        </button>
-        <button onclick="handleSortChange('ai_asc')" id="btn-sort-ai-asc" class="px-3 py-1.5 rounded-xl font-semibold bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 transition-all flex items-center gap-1">
-          <span>🤖 Needs AI Visibility Boost</span>
-        </button>
-      </div>
+        <!-- Country Dropdown -->
+        <div class="sm:w-40 flex items-center gap-2 px-3 py-2.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shrink-0">
+          <span class="text-xs shrink-0">🌍</span>
+          <select 
+            id="country-select" 
+            class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer"
+            onchange="handleCountryChange(this.value)"
+            title="Select Target Country"
+          >
+            <option value="India" selected>🇮🇳 India</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="USA">🇺🇸 United States</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="UAE">🇦🇪 UAE / Dubai</option>
+            <option value="United Kingdom">🇬🇧 United Kingdom</option>
+            <option value="All">🌐 All Countries</option>
+          </select>
+        </div>
 
-      <div class="flex items-center gap-2 text-[11px] text-[#6e6e73]">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>AEO (Answer Engine Optimization) &amp; Google Rank Audited</span>
+        <!-- City Dropdown -->
+        <div class="sm:w-40 flex items-center gap-2 px-3 py-2.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] focus-within:border-[#0071e3] focus-within:bg-white transition-all shrink-0">
+          <svg class="w-3.5 h-3.5 text-[#0071e3] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <input id="city-input" type="hidden" value="Bangalore" />
+          <select 
+            id="city-dropdown" 
+            class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate"
+            onchange="handleCityDropdownChange(this.value)"
+            title="Select Target City"
+          >
+            <option value="Bangalore" selected>Bangalore</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi NCR">Delhi NCR</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Pune">Pune</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Goa">Goa</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="All India Cities">All India Cities</option>
+            <option value="custom">✏️ Custom City...</option>
+          </select>
+        </div>
+
+        <!-- Sort By Dropdown -->
+        <div class="sm:w-44 flex items-center gap-1.5 px-3 py-2.5 bg-[#f5f5f7] rounded-apple-sm border border-black/[0.06] text-xs font-semibold text-[#1d1d1f] shrink-0">
+          <span class="text-[#0071e3] font-bold text-xs">⇅</span>
+          <select id="main-sort-select" class="bg-transparent border-none text-[#1d1d1f] text-xs font-semibold focus:outline-none w-full cursor-pointer truncate" onchange="handleSortChange(this.value)">
+            <option value="opportunity">Opportunity Score</option>
+            <option value="reviews_desc">Most Reviews</option>
+            <option value="reviews_asc">Least Reviews</option>
+            <option value="rating_desc">Highest Rating</option>
+            <option value="rating_asc">Lowest Rating</option>
+          </select>
+        </div>
+      </form>
+
+      <!-- Bottom Row: Pitch Strategy Filters, View Switcher & Export -->
+      <div class="pt-2 border-t border-black/[0.05] flex flex-wrap items-center justify-between gap-3 text-xs">
+        
+        <!-- Pitch Strategy Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
+          <span class="text-[#86868b] text-[11px] uppercase font-bold tracking-wider shrink-0 mr-1">Pitch:</span>
+          <select id="filter-pitch" class="px-2.5 py-1 rounded-full bg-[#f5f5f7] border border-black/[0.06] text-xs text-[#1d1d1f] font-semibold focus:outline-none cursor-pointer" onchange="applyLocalFilters()">
+            <option value="all">🎯 All Pitch Angles</option>
+            <option value="reels">🎬 Influencer Reels</option>
+            <option value="website">🌐 Missing Website</option>
+            <option value="seo">📈 SEO &amp; Maps Rank</option>
+            <option value="whatsapp">💬 WhatsApp 0% Comm.</option>
+            <option value="app">📱 Direct Booking PWA</option>
+            <option value="ads">🎯 Local Meta Ads</option>
+            <option value="gmb">⭐ 5-Star Reviews</option>
+          </select>
+
+          <!-- Hidden category fallback -->
+          <select id="filter-category" class="hidden" onchange="applyLocalFilters()"><option value="All">All Categories</option></select>
+
+          <span id="badge-count-pill" class="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#0071e3] border border-blue-200 font-bold text-[11px] shrink-0">
+            <span id="badge-count">613</span> Verified Leads
+          </span>
+        </div>
+
+        <!-- View Mode Switcher & Export Button -->
+        <div class="flex items-center gap-2 shrink-0">
+          <div class="flex items-center bg-[#f5f5f7] border border-black/[0.06] rounded-xl p-0.5">
+            <button id="view-table-btn" class="px-3 py-1 rounded-lg text-xs font-semibold bg-white text-[#1d1d1f] shadow-2xs transition-all flex items-center gap-1 cursor-pointer" onclick="setViewMode('table')" title="Data Table View">
+              <svg class="w-3.5 h-3.5 text-[#0071e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 10h18M3 14h18M3 6h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2z"></path></svg>
+              <span class="font-bold">Table</span>
+            </button>
+            <button id="view-list-btn" class="px-3 py-1 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1 cursor-pointer" onclick="setViewMode('list')" title="List View">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6" stroke-width="2"></line><line x1="3" y1="12" x2="21" y2="12" stroke-width="2"></line><line x1="3" y1="18" x2="21" y2="18" stroke-width="2"></line></svg>
+              <span>List</span>
+            </button>
+            <button id="view-cards-btn" class="px-3 py-1 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1 cursor-pointer" onclick="setViewMode('cards')" title="Grid View">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span>Grid</span>
+            </button>
+            <button id="view-contacts-btn" class="px-3 py-1 rounded-lg text-xs font-semibold text-[#6e6e73] hover:text-[#1d1d1f] transition-all flex items-center gap-1 cursor-pointer" onclick="setViewMode('contacts')" title="Only Emails, Phone Numbers &amp; Business Names">
+              <svg class="w-3.5 h-3.5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+              <span class="text-purple-700 font-bold">Emails &amp; Phones</span>
+            </button>
+          </div>
+
+          <button onclick="exportCSV()" class="apple-btn-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-[#0071e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Export CSV</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -1028,12 +835,6 @@
           <button id="modal-tab-detailing" onclick="startDailyQueue('detailing')" class="px-2.5 py-1 rounded-full transition-all cursor-pointer">🏎️ Detailing (50)</button>
           <button id="modal-tab-dental" onclick="startDailyQueue('dental')" class="px-2.5 py-1 rounded-full transition-all cursor-pointer">🦷 Dental (50)</button>
           <button id="modal-tab-all" onclick="startDailyQueue('all')" class="px-2.5 py-1 rounded-full transition-all cursor-pointer">⚡ All (50)</button>
-        </div>
-            <div class="text-[11px] text-[#6e6e73] flex items-center gap-1.5">
-              <span>🟢 1-Key Quick-Fire</span> • 
-              <span id="queue-remaining-text" class="text-emerald-700 font-semibold">50 leads remaining today</span>
-            </div>
-          </div>
         </div>
 
         <!-- Mini Progress Bar & Close -->
@@ -2327,11 +2128,14 @@ function updateMetrics() {
   const total = displayedBrands.length;
   const highPitch = displayedBrands.filter(b => b.opportunity_score >= 80).length;
   const rated = displayedBrands.filter(b => b.gmb_rating > 0);
-  const avgRating = rated.length > 0 ? (rated.reduce((acc, b) => acc + b.gmb_rating, 0) / rated.length).toFixed(1) : '4.8';
+  const avgRating = rated.length > 0 ? (rated.reduce((acc, b) => acc + b.gmb_rating, 0) / rated.length).toFixed(1) : "4.8";
 
-  document.getElementById('metric-total').textContent = `${total} Leads`;
-  document.getElementById('metric-high-pitch').textContent = `${highPitch} Leads`;
-  document.getElementById('metric-avg-rating').textContent = `★ ${avgRating}`;
+  const mTotal = document.getElementById("metric-total");
+  if (mTotal) mTotal.textContent = `${total} Leads`;
+  const mHigh = document.getElementById("metric-high-pitch");
+  if (mHigh) mHigh.textContent = `${highPitch} Leads`;
+  const mAvg = document.getElementById("metric-avg-rating");
+  if (mAvg) mAvg.textContent = `★ ${avgRating}`;
 }
 
 function renderListView(brands) {
@@ -3451,6 +3255,9 @@ function generateWhatsAppPitch(b) {
   const reviewsCount = b.gmb_reviews ? b.gmb_reviews.toLocaleString() : '100+';
   const area = b.area || b.city || 'Bangalore';
   const rating = b.gmb_rating ? `★ ${b.gmb_rating}` : '★ 4.8';
+  const regional = getRegionalPitchPricing(b.country);
+  const footerLinks = `\n\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/\n🌐 Website: https://getmoreos.in`;
+
   const isFood = b.category && (b.category.toLowerCase().includes('food') || b.category.toLowerCase().includes('biryani') || b.category.toLowerCase().includes('cafe') || b.category.toLowerCase().includes('dining') || b.category.toLowerCase().includes('restaurant'));
   const isDetailing = (b.category && b.category.toLowerCase().includes('car detail')) ||
                     (b.tags && (b.tags.includes('car detailing') || b.tags.includes('ppf') || b.tags.includes('ceramic coating'))) ||
@@ -3463,9 +3270,6 @@ function generateWhatsAppPitch(b) {
   const isDental = (b.category && b.category.toLowerCase().includes('dent')) || 
                    (b.tags && (b.tags.includes('dentist') || b.tags.includes('dental'))) ||
                    (b.name && b.name.toLowerCase().includes('dental'));
-  const regional = getRegionalPitchPricing(b.country);
-
-  const footerLinks = `\n\n🎬 Live Demo Reel: https://www.instagram.com/p/DdwNX89Tls4/\n🌐 Website: https://getmoreos.in`;
 
     // Angle 1b: Dental Clinics (High-ticket smile makeovers, aligners, direct WhatsApp appointments)
   if (isDental) {
