@@ -43,19 +43,34 @@ requiredFiles.forEach(rel => {
   }
 });
 
-// 2. Verify JavaScript syntax inside pitchfinder/index.html
-const pfHtml = fs.readFileSync(path.join(ROOT_DIR, 'pitchfinder/index.html'), 'utf8');
-const scriptMatches = [...pfHtml.matchAll(/<script(?:\s+[^>]*)?>([\s\S]*?)<\/script>/gi)];
-scriptMatches.forEach((m, idx) => {
-  const code = m[1];
-  if (!code.trim()) return;
-  try {
-    new Function(code);
-    console.log(`  ✓ PitchFinder Script #${idx + 1} JS Syntax Valid`);
-  } catch (e) {
-    console.error(`❌ Script #${idx + 1} JS Syntax Error:`, e.message);
-    errors++;
-  }
+// 2. Verify JavaScript syntax inside key HTML files
+const htmlFilesWithScripts = ['index.html', 'pitchfinder/index.html'];
+htmlFilesWithScripts.forEach(rel => {
+  const full = path.join(ROOT_DIR, rel);
+  if (!fs.existsSync(full)) return;
+  const content = fs.readFileSync(full, 'utf8');
+  const scriptMatches = [...content.matchAll(/<script(?:\s+[^>]*)?>([\s\S]*?)<\/script>/gi)];
+  scriptMatches.forEach((m, idx) => {
+    const code = m[1].trim();
+    if (!code) return;
+    if (m[0].includes('application/ld+json')) {
+      try {
+        JSON.parse(code);
+        console.log(`  ✓ ${rel} Script #${idx + 1} JSON-LD Valid`);
+      } catch (e) {
+        console.error(`❌ ${rel} Script #${idx + 1} JSON-LD Error:`, e.message);
+        errors++;
+      }
+    } else {
+      try {
+        new Function(code);
+        console.log(`  ✓ ${rel} Script #${idx + 1} JS Syntax Valid`);
+      } catch (e) {
+        console.error(`❌ ${rel} Script #${idx + 1} JS Syntax Error:`, e.message);
+        errors++;
+      }
+    }
+  });
 });
 
 if (errors > 0) {

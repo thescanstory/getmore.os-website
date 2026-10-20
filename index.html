@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./og-image.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
   <!-- Primary SEO Meta Tags -->
@@ -1628,7 +1629,7 @@
         <a href="https://wa.me/919738397933" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp: +91-9738397933</a>
         <a href="https://www.theaxiomgrid.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors font-medium">The Axiom Grid</a>
         <a href="https://www.linkedin.com/company/getmoreos/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5 text-slate-300">
-          <svg class="w-3.5 h-3.5 fill-[#0a66c2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.75-1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          <svg class="w-3.5 h-3.5 fill-[#0a66c2]" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           <span>LinkedIn</span>
         </a>
         <a href="https://www.instagram.com/getmore.os/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
@@ -1640,25 +1641,82 @@
 
   <!-- SCRIPT -->
   <script>
-    // 1. Currency Management (Geo-Detection & Manual Switcher)
+    // 1. Elements Cache
+    const calcLeads = document.getElementById('calcLeads');
+    const calcValue = document.getElementById('calcValue');
+    const calcRate = document.getElementById('calcRate');
+    const calcLeadsText = document.getElementById('calcLeadsText');
+    const calcValueText = document.getElementById('calcValueText');
+    const calcRateText = document.getElementById('calcRateText');
+    const calcYearlyGain = document.getElementById('calcYearlyGain');
+    const calcValMin = document.getElementById('calcValMin');
+    const calcValMax = document.getElementById('calcValMax');
+
+    // 2. Currency Logic
     let currentCurrency = 'INR';
 
     function detectUserLocation() {
       try {
         const stored = localStorage.getItem('preferredCurrency');
-        if (stored === 'INR' || stored === 'USD') {
-          return stored;
-        }
-        // TimeZone heuristic: Asia/Kolkata / Asia/Calcutta indicates India
+        if (stored === 'INR' || stored === 'USD') return stored;
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
         if (tz.includes('Kolkata') || tz.includes('Calcutta') || tz.includes('India')) {
           return 'INR';
         }
-        // If outside India, default to USD $500 as requested
         return 'USD';
       } catch (e) {
         return 'INR';
       }
+    }
+
+    function formatCurrency(val) {
+      if (currentCurrency === 'INR') {
+        return '₹' + Number(val).toLocaleString('en-IN');
+      } else {
+        return '$' + Number(val).toLocaleString('en-US');
+      }
+    }
+
+    function updateCalcBounds() {
+      if (!calcValue || !calcValMin || !calcValMax) return;
+      if (currentCurrency === 'INR') {
+        calcValue.min = 1000;
+        calcValue.max = 50000;
+        calcValue.step = 500;
+        if (Number(calcValue.value) < 1000) calcValue.value = 8000;
+        calcValMin.textContent = '₹1,000';
+        calcValMax.textContent = '₹50,000';
+      } else {
+        calcValue.min = 50;
+        calcValue.max = 2500;
+        calcValue.step = 25;
+        if (Number(calcValue.value) > 2500 || Number(calcValue.value) < 50) calcValue.value = 350;
+        calcValMin.textContent = '$50';
+        calcValMax.textContent = '$2,500';
+      }
+    }
+
+    function updateCalc() {
+      if (!calcLeads || !calcValue || !calcRate || !calcYearlyGain) return;
+      const leads = Number(calcLeads.value);
+      const val = Number(calcValue.value);
+      const rate = Number(calcRate.value);
+
+      if (calcLeadsText) calcLeadsText.textContent = leads + ' leads';
+      if (calcValueText) calcValueText.textContent = formatCurrency(val);
+      if (calcRateText) calcRateText.textContent = rate + '%';
+
+      // 24/7 AI Voice + WhatsApp closing drives a +35% relative conversion jump
+      const currentMonthlyDeals = leads * (rate / 100);
+      const newMonthlyDeals = leads * ((rate * 1.35) / 100);
+      const additionalDealsMonthly = newMonthlyDeals - currentMonthlyDeals;
+      const additionalRevenueMonthly = additionalDealsMonthly * val;
+      const additionalRevenueYearly = Math.round(additionalRevenueMonthly * 12);
+
+      calcYearlyGain.textContent = formatCurrency(additionalRevenueYearly);
+      calcYearlyGain.classList.remove('calc-pop');
+      void calcYearlyGain.offsetWidth;
+      calcYearlyGain.classList.add('calc-pop');
     }
 
     function setCurrency(currency) {
@@ -1667,7 +1725,6 @@
         localStorage.setItem('preferredCurrency', currency);
       } catch (e) {}
 
-      // Update switcher pill buttons
       document.querySelectorAll('.currency-pill').forEach(btn => {
         if (btn.innerText.includes(currency)) {
           btn.classList.add('active');
@@ -1676,13 +1733,11 @@
         }
       });
 
-      // Update prices on the page
       document.querySelectorAll('.price-display').forEach(el => {
         const val = currency === 'INR' ? el.getAttribute('data-inr') : el.getAttribute('data-usd');
         if (val) el.textContent = val;
       });
 
-      // Update hero tag and text anchors
       const heroTag = document.querySelector('.currency-tag-hero');
       if (heroTag) {
         heroTag.textContent = currency === 'INR' ? 'Starts ₹10,000' : 'Starts $500 USD';
@@ -1693,40 +1748,17 @@
         textAnchor.textContent = currency === 'INR' ? '₹10K INR in India' : '$500 USD internationally';
       }
 
-      // Update calculator deal value bounds
       updateCalcBounds();
       updateCalc();
     }
 
-    function updateCalcBounds() {
-      const calcVal = document.getElementById('calcValue');
-      const calcValMin = document.getElementById('calcValMin');
-      const calcValMax = document.getElementById('calcValMax');
-
-      if (!calcVal || !calcValMin || !calcValMax) return;
-
-      if (currentCurrency === 'INR') {
-        calcVal.min = 1000;
-        calcVal.max = 50000;
-        calcVal.step = 500;
-        if (Number(calcVal.value) < 1000) calcVal.value = 8000;
-        calcValMin.textContent = '₹1,000';
-        calcValMax.textContent = '₹50,000';
-      } else {
-        calcVal.min = 50;
-        calcVal.max = 2500;
-        calcVal.step = 25;
-        if (Number(calcVal.value) > 2500 || Number(calcVal.value) < 50) calcVal.value = 350;
-        calcValMin.textContent = '$50';
-        calcValMax.textContent = '$2,500';
-      }
+    if (calcLeads && calcValue && calcRate) {
+      calcLeads.addEventListener('input', updateCalc);
+      calcValue.addEventListener('input', updateCalc);
+      calcRate.addEventListener('input', updateCalc);
     }
 
-    // Initialize Currency
-    currentCurrency = detectUserLocation();
-    setCurrency(currentCurrency);
-
-    // 2. Scroll Reveal System (Intersection Observer)
+    // 3. Scroll Reveal System with Instant Failsafe
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1734,15 +1766,22 @@
         }
       });
     }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '50px 0px 50px 0px'
     });
 
     document.querySelectorAll('.reveal').forEach(el => {
       revealObserver.observe(el);
     });
 
-    // 3. Spotlight Cursor Tracking
+    // Failsafe: Ensure visible content is always shown
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        el.classList.add('is-visible');
+      });
+    }, 450);
+
+    // 4. Spotlight Cursor Tracking
     document.querySelectorAll('.spotlight-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -1752,55 +1791,6 @@
         card.style.setProperty('--mouse-y', y + 'px');
       });
     });
-
-    // 4. Growth & Retainer Calculator Logic
-    const calcLeads = document.getElementById('calcLeads');
-    const calcValue = document.getElementById('calcValue');
-    const calcRate = document.getElementById('calcRate');
-    const calcLeadsText = document.getElementById('calcLeadsText');
-    const calcValueText = document.getElementById('calcValueText');
-    const calcRateText = document.getElementById('calcRateText');
-    const calcYearlyGain = document.getElementById('calcYearlyGain');
-
-    function formatCurrency(val) {
-      if (currentCurrency === 'INR') {
-        return '₹' + Number(val).toLocaleString('en-IN');
-      } else {
-        return '$' + Number(val).toLocaleString('en-US');
-      }
-    }
-
-    function updateCalc() {
-      if (!calcLeads || !calcValue || !calcRate) return;
-
-      const leads = Number(calcLeads.value);
-      const val = Number(calcValue.value);
-      const rate = Number(calcRate.value);
-
-      calcLeadsText.textContent = leads + ' leads';
-      calcValueText.textContent = formatCurrency(val);
-      calcRateText.textContent = rate + '%';
-
-      // Lift model: 24/7 AI Voice + WhatsApp closing drives a +35% relative conversion jump
-      const currentMonthlyDeals = leads * (rate / 100);
-      const newMonthlyDeals = leads * ((rate * 1.35) / 100);
-      const additionalDealsMonthly = newMonthlyDeals - currentMonthlyDeals;
-      const additionalRevenueMonthly = additionalDealsMonthly * val;
-      const additionalRevenueYearly = Math.round(additionalRevenueMonthly * 12);
-
-      calcYearlyGain.textContent = formatCurrency(additionalRevenueYearly);
-
-      calcYearlyGain.classList.remove('calc-pop');
-      void calcYearlyGain.offsetWidth; // Reflow
-      calcYearlyGain.classList.add('calc-pop');
-    }
-
-    if (calcLeads && calcValue && calcRate) {
-      calcLeads.addEventListener('input', updateCalc);
-      calcValue.addEventListener('input', updateCalc);
-      calcRate.addEventListener('input', updateCalc);
-      updateCalc();
-    }
 
     // 5. Mobile Navigation Toggle
     const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -1813,13 +1803,13 @@
         const isHidden = mobileMenu.classList.contains('hidden');
         if (isHidden) {
           mobileMenu.classList.remove('hidden');
-          hamburgerIcon.classList.add('hidden');
-          closeIcon.classList.remove('hidden');
+          if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
+          if (closeIcon) closeIcon.classList.remove('hidden');
           mobileBtn.setAttribute('aria-expanded', 'true');
         } else {
           mobileMenu.classList.add('hidden');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
+          if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
           mobileBtn.setAttribute('aria-expanded', 'false');
         }
       });
@@ -1827,8 +1817,8 @@
       document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
         link.addEventListener('click', function() {
           mobileMenu.classList.add('hidden');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
+          if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
           mobileBtn.setAttribute('aria-expanded', 'false');
         });
       });
@@ -1862,28 +1852,32 @@
     if (callForm) {
       callForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const name = document.getElementById('inputName').value;
-        const phone = document.getElementById('inputPhone').value;
-        const business = document.getElementById('inputBusiness').value;
-        const industry = document.getElementById('inputIndustry').value;
-        const focus = document.getElementById('inputFocus').value;
+        const name = document.getElementById('inputName')?.value || '';
+        const phone = document.getElementById('inputPhone')?.value || '';
+        const business = document.getElementById('inputBusiness')?.value || '';
+        const industry = document.getElementById('inputIndustry')?.value || '';
+        const focus = document.getElementById('inputFocus')?.value || '';
 
-        const text = `*New Strategic Growth Consultation Request - GetMore OS*%0A%0A` +
-          `*Client Name:* ${encodeURIComponent(name)}%0A` +
-          `*WhatsApp Phone:* ${encodeURIComponent(phone)}%0A` +
-          `*Business:* ${encodeURIComponent(business)}%0A` +
-          `*Industry:* ${encodeURIComponent(industry)}%0A` +
-          `*Growth Focus:* ${encodeURIComponent(focus)}%0A` +
-          `*Currency / Region:* ${encodeURIComponent(currentCurrency)}%0A` +
-          `*Policy:* 7-Day Results Guarantee Pre-Applied%0A` +
-          `*Projected Expansion:* ${encodeURIComponent(calcYearlyGain.textContent)}`;
+        const text = '*New Strategic Growth Consultation Request - GetMore OS*\n\n' +
+          '*Client Name:* ' + name + '\n' +
+          '*WhatsApp Phone:* ' + phone + '\n' +
+          '*Business:* ' + business + '\n' +
+          '*Industry:* ' + industry + '\n' +
+          '*Growth Focus:* ' + focus + '\n' +
+          '*Currency / Region:* ' + currentCurrency + '\n' +
+          '*Policy:* 7-Day Results Guarantee Pre-Applied\n' +
+          '*Projected Expansion:* ' + (calcYearlyGain ? calcYearlyGain.textContent : '');
 
         callForm.classList.add('hidden');
         if (formSubmitted) formSubmitted.classList.remove('hidden');
 
-        window.open(`https://wa.me/919738397933?text=${text}`, '_blank');
+        window.open('https://wa.me/919738397933?text=' + encodeURIComponent(text), '_blank');
       });
     }
+
+    // 8. Safely Trigger Initial Currency & Calculator State
+    currentCurrency = detectUserLocation();
+    setCurrency(currentCurrency);
   </script>
 </body>
 
